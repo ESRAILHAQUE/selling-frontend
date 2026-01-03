@@ -4,6 +4,7 @@ import ServiceFeature from '@/components/ServiceFeature';
 import CallToActionShop from '@/components/CallToActionShop';
 import DedicatedSolutions from '@/components/DedicatedSolutions';
 import StatsCard from '@/components/StatsCard';
+import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import { stats } from '@/data/stats';
 
@@ -49,6 +50,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       <Footer />
     </div>
