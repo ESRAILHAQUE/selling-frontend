@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import ServiceFeature from '@/components/ServiceFeature';
+import CallToActionShop from '@/components/CallToActionShop';
 import StatsCard from '@/components/StatsCard';
 import ProductCard from '@/components/ProductCard';
 import SellerRanking from '@/components/SellerRanking';
@@ -23,6 +24,9 @@ export default function Home() {
       
       {/* Service Feature Section */}
       <ServiceFeature />
+      
+      {/* Call to Action Shop Section */}
+      <CallToActionShop />
       
       {/* Stats Section */}
       <section className="py-12 bg-white">

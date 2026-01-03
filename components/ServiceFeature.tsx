@@ -94,17 +94,19 @@ export default function ServiceFeature() {
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="text-center p-6 rounded-lg hover:shadow-lg transition-shadow"
+              className="text-center p-6 rounded-lg hover:shadow-lg transition-all duration-300 group cursor-pointer"
             >
               {/* Icon Circle */}
               <div className="flex justify-center mb-6">
-                <div className="w-28 h-28 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 bg-gray-50">
-                  {feature.icon}
+                <div className="w-28 h-28 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 bg-gray-50 group-hover:border-orange-500 group-hover:bg-orange-50 transition-all duration-300">
+                  <div className="group-hover:text-orange-500 transition-colors duration-300">
+                    {feature.icon}
+                  </div>
                 </div>
               </div>
               
               {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-300">
                 {feature.title}
               </h3>
               
