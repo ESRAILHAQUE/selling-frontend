@@ -1,4 +1,4 @@
-import { Stat } from '@/data/stats';
+import { Stat } from '@/lib/data/stats';
 
 interface StatsCardProps {
   stat: Stat;

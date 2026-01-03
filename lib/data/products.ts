@@ -20,7 +20,7 @@ export const products: Product[] = [
         category: 'Electronics',
         rating: 4.8,
         reviews: 1245,
-        imageUrl: '/imgi_3_sksk999rrr.jpg',
+        imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
         sales: 15230,
         description: 'High-quality wireless headphones with noise cancellation'
     },
@@ -32,7 +32,7 @@ export const products: Product[] = [
         category: 'Wearables',
         rating: 4.7,
         reviews: 892,
-        imageUrl: '/imgi_4_shaaasha483-1.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 11200,
         description: 'Advanced fitness tracking with heart rate monitoring'
     },
@@ -44,7 +44,7 @@ export const products: Product[] = [
         category: 'Photography',
         rating: 4.9,
         reviews: 456,
-        imageUrl: '/imgi_5_handsom4628-1.jpg',
+        imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
         sales: 3450,
         description: 'Professional-grade camera lens for stunning photos'
     },
@@ -56,7 +56,7 @@ export const products: Product[] = [
         category: 'Furniture',
         rating: 4.6,
         reviews: 678,
-        imageUrl: '/imgi_6_Michelle-Clark-3.webp',
+        imageUrl: '/images/products/imgi_6_Michelle-Clark-3.webp',
         sales: 8900,
         description: 'Comfortable office chair with lumbar support'
     },
@@ -68,7 +68,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.5,
         reviews: 2341,
-        imageUrl: '/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
+        imageUrl: '/images/products/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
         sales: 25600,
         description: 'High-capacity portable charger for all devices'
     },
@@ -80,7 +80,7 @@ export const products: Product[] = [
         category: 'Gaming',
         rating: 4.7,
         reviews: 1123,
-        imageUrl: '/imgi_2_call-back_img.jpg',
+        imageUrl: '/images/products/imgi_2_call-back_img.jpg',
         sales: 13400,
         description: 'RGB backlit mechanical keyboard for gamers'
     },
@@ -92,7 +92,7 @@ export const products: Product[] = [
         category: 'Electronics',
         rating: 4.6,
         reviews: 987,
-        imageUrl: '/imgi_23_call-back_img-600x541.jpg',
+        imageUrl: '/images/products/imgi_2_call-back_img.jpg',
         sales: 18700,
         description: 'Ergonomic wireless mouse with precision tracking'
     },
@@ -104,7 +104,7 @@ export const products: Product[] = [
         category: 'Electronics',
         rating: 4.8,
         reviews: 567,
-        imageUrl: '/imgi_25_sksk999rrr-300x286.jpg',
+        imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
         sales: 7200,
         description: 'Ultra HD 4K monitor for professional work'
     },
@@ -116,7 +116,7 @@ export const products: Product[] = [
         category: 'Audio',
         rating: 4.5,
         reviews: 1456,
-        imageUrl: '/imgi_26_shaaasha483-1-300x282.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 16300,
         description: 'Portable Bluetooth speaker with rich bass'
     },
@@ -128,7 +128,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.4,
         reviews: 234,
-        imageUrl: '/imgi_27_shaaasha483-1-600x565.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 9800,
         description: 'Adjustable aluminum laptop stand'
     },
@@ -140,7 +140,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.6,
         reviews: 789,
-        imageUrl: '/imgi_28_handsom4628-1-200x300.jpg',
+        imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
         sales: 11200,
         description: 'Multi-port USB-C hub for laptops'
     },
@@ -152,7 +152,7 @@ export const products: Product[] = [
         category: 'Audio',
         rating: 4.7,
         reviews: 2134,
-        imageUrl: '/imgi_3_sksk999rrr.jpg',
+        imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
         sales: 28900,
         description: 'True wireless earbuds with active noise cancellation'
     },
@@ -164,7 +164,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.3,
         reviews: 456,
-        imageUrl: '/imgi_4_shaaasha483-1.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 6700,
         description: 'Adjustable stand for tablets and phones'
     },
@@ -176,7 +176,7 @@ export const products: Product[] = [
         category: 'Electronics',
         rating: 4.5,
         reviews: 1234,
-        imageUrl: '/imgi_5_handsom4628-1.jpg',
+        imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
         sales: 14500,
         description: 'Full HD webcam for video calls'
     },
@@ -188,7 +188,7 @@ export const products: Product[] = [
         category: 'Furniture',
         rating: 4.4,
         reviews: 567,
-        imageUrl: '/imgi_6_Michelle-Clark-3.webp',
+        imageUrl: '/images/products/imgi_6_Michelle-Clark-3.webp',
         sales: 8900,
         description: 'LED desk lamp with adjustable brightness'
     },
@@ -200,7 +200,7 @@ export const products: Product[] = [
         category: 'Storage',
         rating: 4.8,
         reviews: 890,
-        imageUrl: '/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
+        imageUrl: '/images/products/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
         sales: 10200,
         description: 'Fast external SSD with USB-C connection'
     },
@@ -212,7 +212,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.3,
         reviews: 3456,
-        imageUrl: '/imgi_2_call-back_img.jpg',
+        imageUrl: '/images/products/imgi_2_call-back_img.jpg',
         sales: 45600,
         description: 'Durable protective case for smartphones'
     },
@@ -224,7 +224,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.2,
         reviews: 1234,
-        imageUrl: '/imgi_23_call-back_img-600x541.jpg',
+        imageUrl: '/images/products/imgi_2_call-back_img.jpg',
         sales: 18900,
         description: 'Cable management system for desk'
     },
@@ -236,7 +236,7 @@ export const products: Product[] = [
         category: 'Furniture',
         rating: 4.6,
         reviews: 678,
-        imageUrl: '/imgi_25_sksk999rrr-300x286.jpg',
+        imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
         sales: 5600,
         description: 'Adjustable monitor arm mount'
     },
@@ -248,7 +248,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.5,
         reviews: 2345,
-        imageUrl: '/imgi_26_shaaasha483-1-300x282.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 32100,
         description: 'Fast wireless charging pad'
     },
@@ -260,7 +260,7 @@ export const products: Product[] = [
         category: 'Audio',
         rating: 4.8,
         reviews: 1789,
-        imageUrl: '/imgi_27_shaaasha483-1-600x565.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 15600,
         description: 'Premium noise cancelling over-ear headphones'
     },
@@ -272,7 +272,7 @@ export const products: Product[] = [
         category: 'Gaming',
         rating: 4.4,
         reviews: 987,
-        imageUrl: '/imgi_28_handsom4628-1-200x300.jpg',
+        imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
         sales: 12300,
         description: 'Large RGB gaming mouse pad'
     },
@@ -284,7 +284,7 @@ export const products: Product[] = [
         category: 'Storage',
         rating: 4.3,
         reviews: 2345,
-        imageUrl: '/imgi_3_sksk999rrr.jpg',
+        imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
         sales: 28900,
         description: 'High-speed USB 3.0 flash drive'
     },
@@ -296,7 +296,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.4,
         reviews: 1234,
-        imageUrl: '/imgi_4_shaaasha483-1.jpg',
+        imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
         sales: 16700,
         description: 'Protective laptop sleeve with padding'
     },
@@ -308,7 +308,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.2,
         reviews: 3456,
-        imageUrl: '/imgi_5_handsom4628-1.jpg',
+        imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
         sales: 45600,
         description: 'High-speed HDMI 2.0 cable'
     },
@@ -320,7 +320,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.3,
         reviews: 789,
-        imageUrl: '/imgi_6_Michelle-Clark-3.webp',
+        imageUrl: '/images/products/imgi_6_Michelle-Clark-3.webp',
         sales: 9800,
         description: 'Ergonomic gel wrist rest for keyboards'
     },
@@ -332,7 +332,7 @@ export const products: Product[] = [
         category: 'Audio',
         rating: 4.6,
         reviews: 567,
-        imageUrl: '/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
+        imageUrl: '/images/products/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
         sales: 8900,
         description: 'USB condenser microphone for streaming'
     },
@@ -344,7 +344,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.5,
         reviews: 1234,
-        imageUrl: '/imgi_2_call-back_img.jpg',
+        imageUrl: '/images/products/imgi_2_call-back_img.jpg',
         sales: 11200,
         description: 'LED ring light for video calls'
     },
@@ -356,7 +356,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.4,
         reviews: 890,
-        imageUrl: '/imgi_23_call-back_img-600x541.jpg',
+        imageUrl: '/images/products/imgi_2_call-back_img.jpg',
         sales: 13400,
         description: 'Large desk mat with mouse pad area'
     },
@@ -368,7 +368,7 @@ export const products: Product[] = [
         category: 'Accessories',
         rating: 4.3,
         reviews: 678,
-        imageUrl: '/imgi_25_sksk999rrr-300x286.jpg',
+        imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
         sales: 7600,
         description: 'USB-powered laptop cooling pad'
     }

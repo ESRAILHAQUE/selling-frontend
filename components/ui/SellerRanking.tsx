@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Seller } from '@/data/sellers';
+import { Seller } from '@/lib/data/sellers';
 
 interface SellerRankingProps {
   seller: Seller;

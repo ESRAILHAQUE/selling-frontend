@@ -56,7 +56,7 @@ export default function DedicatedSolutions() {
           {/* Right Column - Image */}
           <div className="relative h-96 lg:h-[500px] rounded-lg overflow-hidden shadow-xl">
             <Image
-              src="/imgi_1_04194f17ef59ef1e04194f17ef59ef1eHomePage-scaled.jpg"
+              src="/images/hero/imgi_1_04194f17ef59ef1e04194f17ef59ef1eHomePage-scaled.jpg"
               alt="Business solutions and dedication"
               fill
               className="object-cover"

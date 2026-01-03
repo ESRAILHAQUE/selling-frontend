@@ -1,12 +1,12 @@
-import Navbar from '@/components/Navbar';
-import Hero from '@/components/Hero';
-import ServiceFeature from '@/components/ServiceFeature';
-import CallToActionShop from '@/components/CallToActionShop';
-import DedicatedSolutions from '@/components/DedicatedSolutions';
-import StatsCard from '@/components/StatsCard';
-import Testimonials from '@/components/Testimonials';
-import Footer from '@/components/Footer';
-import { stats } from '@/data/stats';
+import Navbar from '@/components/layout/Navbar';
+import Hero from '@/components/common/Hero';
+import ServiceFeature from '@/components/common/ServiceFeature';
+import CallToActionShop from '@/components/common/CallToActionShop';
+import DedicatedSolutions from '@/components/common/DedicatedSolutions';
+import StatsCard from '@/components/common/StatsCard';
+import Testimonials from '@/components/common/Testimonials';
+import Footer from '@/components/layout/Footer';
+import { stats } from '@/lib/data/stats';
 
 export default function Home() {
 

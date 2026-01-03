@@ -21,7 +21,7 @@ export const sellers: Seller[] = [
     rating: 4.9,
     reviews: 12345,
     category: 'Electronics',
-    imageUrl: '/imgi_6_Michelle-Clark-3.webp',
+    imageUrl: '/images/products/imgi_6_Michelle-Clark-3.webp',
     monthlyRevenue: 2450000
   },
   {
@@ -33,7 +33,7 @@ export const sellers: Seller[] = [
     rating: 4.8,
     reviews: 9876,
     category: 'Audio',
-    imageUrl: '/imgi_3_sksk999rrr.jpg',
+    imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
     monthlyRevenue: 1890000
   },
   {
@@ -45,7 +45,7 @@ export const sellers: Seller[] = [
     rating: 4.7,
     reviews: 8765,
     category: 'Wearables',
-    imageUrl: '/imgi_4_shaaasha483-1.jpg',
+    imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
     monthlyRevenue: 1650000
   },
   {
@@ -57,7 +57,7 @@ export const sellers: Seller[] = [
     rating: 4.8,
     reviews: 7654,
     category: 'Gaming',
-    imageUrl: '/imgi_5_handsom4628-1.jpg',
+    imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
     monthlyRevenue: 1450000
   },
   {
@@ -69,7 +69,7 @@ export const sellers: Seller[] = [
     rating: 4.9,
     reviews: 6543,
     category: 'Photography',
-    imageUrl: '/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
+    imageUrl: '/images/products/imgi_17_processed-3dc74718-f239-4d8d-8c5d-76a8588e7764_ASyv2CNy-1.jpg',
     monthlyRevenue: 1250000
   },
   {
@@ -81,7 +81,7 @@ export const sellers: Seller[] = [
     rating: 4.6,
     reviews: 5432,
     category: 'Furniture',
-    imageUrl: '/imgi_2_call-back_img.jpg',
+    imageUrl: '/images/products/imgi_2_call-back_img.jpg',
     monthlyRevenue: 980000
   },
   {
@@ -93,7 +93,7 @@ export const sellers: Seller[] = [
     rating: 4.5,
     reviews: 4321,
     category: 'Accessories',
-    imageUrl: '/imgi_23_call-back_img-600x541.jpg',
+    imageUrl: '/images/products/imgi_2_call-back_img.jpg',
     monthlyRevenue: 870000
   },
   {
@@ -105,7 +105,7 @@ export const sellers: Seller[] = [
     rating: 4.8,
     reviews: 3210,
     category: 'Electronics',
-    imageUrl: '/imgi_25_sksk999rrr-300x286.jpg',
+    imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
     monthlyRevenue: 760000
   },
   {
@@ -117,7 +117,7 @@ export const sellers: Seller[] = [
     rating: 4.4,
     reviews: 2987,
     category: 'Furniture',
-    imageUrl: '/imgi_26_shaaasha483-1-300x282.jpg',
+    imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
     monthlyRevenue: 650000
   },
   {
@@ -129,7 +129,7 @@ export const sellers: Seller[] = [
     rating: 4.6,
     reviews: 2765,
     category: 'Accessories',
-    imageUrl: '/imgi_27_shaaasha483-1-600x565.jpg',
+    imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
     monthlyRevenue: 540000
   },
   {
@@ -141,7 +141,7 @@ export const sellers: Seller[] = [
     rating: 4.5,
     reviews: 2543,
     category: 'Electronics',
-    imageUrl: '/imgi_28_handsom4628-1-200x300.jpg',
+    imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
     monthlyRevenue: 480000
   },
   {
@@ -153,7 +153,7 @@ export const sellers: Seller[] = [
     rating: 4.8,
     reviews: 2321,
     category: 'Storage',
-    imageUrl: '/imgi_3_sksk999rrr.jpg',
+    imageUrl: '/images/products/imgi_3_sksk999rrr.jpg',
     monthlyRevenue: 420000
   },
   {
@@ -165,7 +165,7 @@ export const sellers: Seller[] = [
     rating: 4.3,
     reviews: 2198,
     category: 'Accessories',
-    imageUrl: '/imgi_4_shaaasha483-1.jpg',
+    imageUrl: '/images/products/imgi_4_shaaasha483-1.jpg',
     monthlyRevenue: 380000
   },
   {
@@ -177,7 +177,7 @@ export const sellers: Seller[] = [
     rating: 4.4,
     reviews: 2076,
     category: 'Furniture',
-    imageUrl: '/imgi_5_handsom4628-1.jpg',
+    imageUrl: '/images/products/imgi_5_handsom4628-1.jpg',
     monthlyRevenue: 340000
   },
   {
@@ -189,7 +189,7 @@ export const sellers: Seller[] = [
     rating: 4.2,
     reviews: 1954,
     category: 'Accessories',
-    imageUrl: '/imgi_6_Michelle-Clark-3.webp',
+    imageUrl: '/images/products/imgi_6_Michelle-Clark-3.webp',
     monthlyRevenue: 300000
   }
 ];
