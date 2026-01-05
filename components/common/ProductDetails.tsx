@@ -59,7 +59,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         {/* Right Side - Product Info */}
         <div>
           <ProductInfo
-            product={product}
+            product={{ ...product, slug: product.slug }}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
             quantity={quantity}

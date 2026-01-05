@@ -8,6 +8,7 @@ interface ProductOption {
 }
 
 interface Product {
+  slug: string;
   title: string;
   categories: string[];
   priceRange: { min: number; max: number };
@@ -35,8 +36,29 @@ export default function ProductInfo({
       alert('Please select an option');
       return;
     }
-    // Add to cart logic here
-    console.log('Added to cart:', { option: selectedOption, quantity });
+    
+    // Get current cart from localStorage
+    const currentCart = localStorage.getItem('cart');
+    const cartItems = currentCart ? JSON.parse(currentCart) : [];
+    
+    // Create cart item
+    const cartItem = {
+      id: `${product.slug}-${selectedOption.id}-${Date.now()}`,
+      productSlug: product.slug,
+      productTitle: product.title,
+      optionName: selectedOption.name,
+      price: selectedOption.price,
+      originalPrice: selectedOption.originalPrice,
+      quantity: quantity,
+      imageUrl: '/images/products/imgi_2_call-back_img.jpg'
+    };
+    
+    // Add to cart
+    cartItems.push(cartItem);
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+    
+    // Navigate to cart page
+    window.location.href = '/cart';
   };
 
   return (
@@ -109,7 +131,7 @@ export default function ProductInfo({
             const option = product.options.find(opt => opt.id === e.target.value);
             setSelectedOption(option || null);
           }}
-          className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         >
           <option value="">Choose an option</option>
           {product.options.map((option) => (
@@ -143,7 +165,7 @@ export default function ProductInfo({
             min="1"
             value={quantity}
             onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
-            className="w-16 sm:w-20 px-2 sm:px-3 py-2 text-sm sm:text-base border border-gray-300 rounded-lg text-center"
+            className="w-16 sm:w-20 px-2 sm:px-3 py-2 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-lg text-center"
           />
         </div>
       </div>
