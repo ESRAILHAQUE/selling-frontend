@@ -34,13 +34,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
   const [activeTab, setActiveTab] = useState('description');
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
       {/* Breadcrumbs */}
-      <div className="mb-6">
-        <nav className="text-sm text-gray-600">
+      <div className="mb-4 sm:mb-6">
+        <nav className="text-xs sm:text-sm text-gray-600">
           {product.breadcrumbs.map((crumb, index) => (
             <span key={index}>
-              {index > 0 && <span className="mx-2">/</span>}
+              {index > 0 && <span className="mx-1 sm:mx-2">/</span>}
               <span className={index === product.breadcrumbs.length - 1 ? 'text-gray-900 font-semibold' : 'hover:text-blue-600'}>
                 {crumb}
               </span>
@@ -50,7 +50,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       </div>
 
       {/* Main Product Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10 lg:mb-12">
         {/* Left Side - Promotional Image */}
         <div>
           <PromotionalImage productTitle={product.title} />

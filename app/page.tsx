@@ -25,14 +25,14 @@ export default function Home() {
       <DedicatedSolutions />
       
       {/* Stats Section */}
-      <section className="relative py-16 bg-teal-700 overflow-hidden">
+      <section className="relative py-8 sm:py-12 lg:py-16 bg-teal-700 overflow-hidden">
         {/* Wavy Bottom Border */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
           <svg
             viewBox="0 0 1440 80"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-16 sm:h-20 md:h-24"
+            className="w-full h-12 sm:h-16 md:h-20 lg:h-24"
             preserveAspectRatio="none"
           >
             <path
@@ -42,8 +42,8 @@ export default function Home() {
           </svg>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-20 sm:pb-24 md:pb-28">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {stats.map((stat) => (
               <StatsCard key={stat.id} stat={stat} />
             ))}

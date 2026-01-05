@@ -2,34 +2,26 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import ProductDetails from '@/components/common/ProductDetails';
 import RelatedProducts from '@/components/common/RelatedProducts';
+import { getProductBySlug } from '@/lib/data/products-list';
+import { notFound } from 'next/navigation';
 
-export default function ProductPage() {
-    // Sample product data - in real app, this would come from API/database
-    const product = {
-        slug: 'buy-google-ads-account',
-        title: 'Buy Google Ads Account',
-        category: 'Google',
-        categories: ['Google', 'Social Accounts'],
-        priceRange: { min: 100, max: 500 },
-        breadcrumbs: ['Home', 'Google', 'Buy Google Ads Account'],
-        serviceDetails: [
-            '100% verified account',
-            'Replacement guaranteed',
-            'Reliable and cheap price',
-            'Accounts older than 2-12 years.',
-            'Good, strong, active good account',
-            'Best quality account',
-            '24 hours customer support',
-            'Phone Verified account USA, UK, CA etc.',
-            'Fast delivery',
-            '100% cash-back guarantee'
-        ],
-        options: [
-            { id: '1', name: 'Adwords With $500 Balance', price: 500, originalPrice: 600 },
-            { id: '2', name: 'Adwords With $1000 Balance', price: 1000, originalPrice: 1200 },
-            { id: '3', name: 'Adwords With $2000 Balance', price: 2000, originalPrice: 2500 },
-        ],
-        description: `Buy Google Ads Account
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+}
+
+export default async function ProductPage({ params }: PageProps) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  // Use the Google Ads description for the sample product
+  if (slug === 'buy-google-ads-account') {
+    product.description = `Buy Google Ads Account
 If you're looking to buy a Google Ads account, you've come to the right place. With our team of experts, we can help you get the most out of your Google Ads campaigns. We understand that running a successful Google Ads campaign requires more than just setting up an account and running ads. That's why we provide comprehensive services such as keyword research, ad optimization, and campaign management. With our help, you can rest assured that your campaigns will be effective and will generate maximum returns for your business. Buy Google Ads Account.
 
 What is Google Ads Account?
@@ -58,16 +50,15 @@ Google analytics
 Google Analytics is a powerful tool for tracking website performance and user behavior. It allows businesses to measure the success of their online presence, track user engagement, and make data-driven decisions. With its comprehensive suite of features, Google Analytics can provide valuable insights into how visitors interact with a website or app. This data can help businesses optimize their digital marketing strategies and improve customer experience. With the help of Google Analytics, businesses can gain a better understanding of their customers' needs and preferences, allowing them to create more effective marketing campaigns that drive conversions. Buy Google Ads Account.
 
 Conclusion
-The success of any business is largely dependent on its ability to advertise effectively. Google Ads is one of the most effective ways to reach potential customers and increase sales. With its powerful targeting capabilities and extensive data tracking, businesses can quickly optimize their campaigns for maximum results. However, managing a Google Ads account requires skill and knowledge in order to achieve the desired results. In this article, we explored the best practices for setting up and managing a successful Google Ads account, from campaign structure to budgeting strategies. By following these guidelines, businesses can maximize their return on investment from their Google Ads campaigns and ensure that they are getting the most out of their marketing budget.`
-    };
+The success of any business is largely dependent on its ability to advertise effectively. Google Ads is one of the most effective ways to reach potential customers and increase sales. With its powerful targeting capabilities and extensive data tracking, businesses can quickly optimize their campaigns for maximum results. However, managing a Google Ads account requires skill and knowledge in order to achieve the desired results. In this article, we explored the best practices for setting up and managing a successful Google Ads account, from campaign structure to budgeting strategies. By following these guidelines, businesses can maximize their return on investment from their Google Ads campaigns and ensure that they are getting the most out of their marketing budget.`;
+  }
 
-    return (
-        <div className="min-h-screen bg-gray-50">
-            <Navbar />
-            <ProductDetails product={product} />
-            <RelatedProducts />
-            <Footer />
-        </div>
-    );
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <Navbar />
+      <ProductDetails product={product} />
+      <RelatedProducts />
+      <Footer />
+    </div>
+  );
 }
-

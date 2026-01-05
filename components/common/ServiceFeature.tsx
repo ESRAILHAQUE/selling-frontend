@@ -73,11 +73,11 @@ const features: Feature[] = [
 
 export default function ServiceFeature() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title Section */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Our Service Feature</h2>
+        <div className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">Our Service Feature</h2>
           {/* Separator with three dots and line */}
           <div className="flex items-center justify-center gap-2">
             <div className="flex gap-1">
@@ -85,33 +85,33 @@ export default function ServiceFeature() {
               <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
               <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
             </div>
-            <div className="w-16 h-0.5 bg-orange-500"></div>
+            <div className="w-12 sm:w-16 h-0.5 bg-orange-500"></div>
           </div>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature) => (
             <div
               key={feature.id}
-              className="text-center p-6 rounded-lg hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              className="text-center p-4 sm:p-6 rounded-lg hover:shadow-lg transition-all duration-300 group cursor-pointer"
             >
               {/* Icon Circle */}
-              <div className="flex justify-center mb-6">
-                <div className="w-28 h-28 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 bg-gray-50 group-hover:border-orange-500 group-hover:bg-orange-50 transition-all duration-300">
-                  <div className="group-hover:text-orange-500 transition-colors duration-300">
+              <div className="flex justify-center mb-4 sm:mb-6">
+                <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-400 bg-gray-50 group-hover:border-orange-500 group-hover:bg-orange-50 transition-all duration-300">
+                  <div className="group-hover:text-orange-500 transition-colors duration-300 scale-75 sm:scale-90 lg:scale-100">
                     {feature.icon}
                   </div>
                 </div>
               </div>
               
               {/* Title */}
-              <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-500 transition-colors duration-300">
+              <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 group-hover:text-orange-500 transition-colors duration-300">
                 {feature.title}
               </h3>
               
               {/* Description */}
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
                 {feature.description}
               </p>
             </div>

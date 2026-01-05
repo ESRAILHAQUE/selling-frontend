@@ -74,7 +74,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Horizontally Scrollable Container */}
         <div className="relative">
@@ -84,7 +84,7 @@ export default function Testimonials() {
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseLeave}
-            className="flex gap-6 overflow-x-auto scrollbar-hide pb-4 cursor-grab select-none"
+            className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-4 cursor-grab select-none"
             style={{
               scrollbarWidth: 'none',
               msOverflowStyle: 'none',
@@ -94,12 +94,7 @@ export default function Testimonials() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="flex-shrink-0 bg-white rounded-lg shadow-lg p-6 hover:shadow-xl transition-shadow"
-                style={{
-                  width: 'calc((100vw - 8rem - 3rem) / 3)',
-                  minWidth: '280px',
-                  maxWidth: '400px'
-                }}
+                className="flex-shrink-0 bg-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow w-[calc(100vw-2rem)] sm:w-[calc((100vw-4rem-1rem)/2)] lg:w-[calc((100vw-8rem-3rem)/3)] min-w-[280px] max-w-[100%] sm:max-w-[400px]"
               >
                 {/* Quote Icon - Light Purple */}
                 <div className="flex justify-center mb-4">

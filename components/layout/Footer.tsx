@@ -9,20 +9,20 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-800 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {/* 30 Days Warranty Section */}
           <div>
-            <h3 className="text-cyan-400 text-xl font-bold mb-4">30 Days Warranty</h3>
-            <p className="text-sm leading-relaxed text-white">
+            <h3 className="text-cyan-400 text-lg sm:text-xl font-bold mb-3 sm:mb-4">30 Days Warranty</h3>
+            <p className="text-xs sm:text-sm leading-relaxed text-white">
               We offer 30 days warranty for our all products. This means that if you are not completely satisfied with your purchase, you will get free replacement within 30 days. But this warranty does not cover damages caused by misuse or improper care.
             </p>
           </div>
 
           {/* Useful Links Section */}
           <div>
-            <h3 className="text-cyan-400 text-xl font-bold mb-4">Useful Links</h3>
-            <ul className="space-y-2 text-sm text-white">
+            <h3 className="text-cyan-400 text-lg sm:text-xl font-bold mb-3 sm:mb-4">Useful Links</h3>
+            <ul className="space-y-2 text-xs sm:text-sm text-white">
               <li>
                 <Link href="/privacy" className="hover:text-cyan-400 transition-colors">
                   Privacy Policy
@@ -58,8 +58,8 @@ export default function Footer() {
 
           {/* Payment Section */}
           <div>
-            <h3 className="text-cyan-400 text-xl font-bold mb-4">Payment</h3>
-            <ul className="space-y-2 text-sm text-white">
+            <h3 className="text-cyan-400 text-lg sm:text-xl font-bold mb-3 sm:mb-4">Payment</h3>
+            <ul className="space-y-2 text-xs sm:text-sm text-white">
               <li>Bitcoin:- Accept</li>
               <li>Ethereum:- Accept</li>
               <li>USDT:- Accept</li>
@@ -71,12 +71,12 @@ export default function Footer() {
 
           {/* Contact us Section */}
           <div>
-            <h3 className="text-cyan-400 text-xl font-bold mb-4">Contact us</h3>
-            <div className="space-y-2 text-sm">
+            <h3 className="text-cyan-400 text-lg sm:text-xl font-bold mb-3 sm:mb-4">Contact us</h3>
+            <div className="space-y-2 text-xs sm:text-sm">
               <p className="text-orange-400">Contact us/24 Hours Reply</p>
               <p>
                 <span className="text-purple-400">Email:</span>{' '}
-                <span className="text-white">usatopseller420@gmail.com</span>
+                <span className="text-white break-all">usatopseller420@gmail.com</span>
               </p>
               <p>
                 <span className="text-yellow-400">Skype:</span>{' '}
@@ -88,7 +88,7 @@ export default function Footer() {
               </p>
               <p>
                 <span className="text-orange-400">WhatsApp:</span>{' '}
-                <span className="text-white">+1(678) 609-3906</span>
+                <span className="text-white break-all">+1(678) 609-3906</span>
               </p>
             </div>
           </div>
@@ -97,14 +97,14 @@ export default function Footer() {
       
       {/* Bottom Strip with Scroll to Top Button */}
       <div className="border-t border-gray-700">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-end">
           <button
             onClick={scrollToTop}
-            className="bg-blue-600 hover:bg-blue-700 text-white p-3 rounded transition-colors shadow-lg"
+            className="bg-blue-600 hover:bg-blue-700 text-white p-2 sm:p-3 rounded transition-colors shadow-lg"
             aria-label="Scroll to top"
           >
             <svg
-              className="w-5 h-5"
+              className="w-4 h-4 sm:w-5 sm:h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
