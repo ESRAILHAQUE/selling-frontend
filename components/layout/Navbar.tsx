@@ -160,12 +160,12 @@ export default function Navbar() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="flex items-center gap-1 hover:text-green-200 transition-colors text-sm xl:text-base"
+                      className="flex items-center gap-1 hover:text-green-200 transition-colors text-sm xl:text-base py-3"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <span className="flex items-center gap-1 cursor-pointer hover:text-green-200 transition-colors text-sm xl:text-base">
+                    <span className="flex items-center gap-1 cursor-pointer hover:text-green-200 transition-colors text-sm xl:text-base py-3">
                       {item.label}
                       {item.dropdown && (
                         <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,7 +177,11 @@ export default function Navbar() {
 
                   {/* Desktop Dropdown Menu */}
                   {item.dropdown && openDropdown === item.label && (
-                    <div className="absolute top-full left-0 mt-1 bg-white shadow-xl rounded-lg min-w-[250px] py-2 z-50">
+                    <div 
+                      className="absolute top-full left-0 pt-2 bg-white shadow-xl rounded-sm min-w-[250px] py-2 z-50"
+                      onMouseEnter={() => setOpenDropdown(item.label)}
+                      onMouseLeave={() => setOpenDropdown(null)}
+                    >
                       {item.dropdown.map((dropdownItem) => (
                         <Link
                           key={dropdownItem.label}
@@ -197,6 +201,7 @@ export default function Navbar() {
           {/* Mobile Navigation */}
           <div className="lg:hidden">
             <div className="flex items-center justify-between h-12">
+              <div className="flex-1"></div>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="text-white p-2"
@@ -212,9 +217,26 @@ export default function Navbar() {
               </button>
             </div>
 
-            {/* Mobile Menu */}
-            {mobileMenuOpen && (
-              <div className="pb-4 border-t border-green-500">
+            {/* Mobile Menu Sidebar */}
+            <div
+              className={`fixed top-0 right-0 h-full w-80 bg-green-600 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+                mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+              }`}
+            >
+              <div className="p-4 border-b border-green-500 flex justify-between items-center">
+                <h2 className="text-xl font-bold text-white">Menu</h2>
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-white p-2"
+                  aria-label="Close menu"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div className="overflow-y-auto h-[calc(100vh-64px)] pb-4">
                 <ul className="space-y-1 mt-2">
                   {navItems.map((item) => (
                     <li key={item.label}>
@@ -266,6 +288,14 @@ export default function Navbar() {
                   ))}
                 </ul>
               </div>
+            </div>
+
+            {/* Overlay */}
+            {mobileMenuOpen && (
+              <div
+                className="fixed inset-0 bg-black bg-opacity-50 z-40"
+                onClick={() => setMobileMenuOpen(false)}
+              />
             )}
           </div>
         </div>
