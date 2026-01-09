@@ -76,19 +76,21 @@ export default function Footer() {
               <p className="text-orange-400">Contact us/24 Hours Reply</p>
               <p>
                 <span className="text-purple-400">Email:</span>{' '}
-                <span className="text-white break-all">usatopseller420@gmail.com</span>
+                <span className="text-white break-all">hello@usamarketsmm.com</span>
               </p>
               <p>
-                <span className="text-yellow-400">Skype:</span>{' '}
-                <span className="text-white">usatopseller</span>
+                <span className="text-blue-400">Website:</span>{' '}
+                <a href="https://usamarketsmm.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 break-all">
+                  https://usamarketsmm.com
+                </a>
               </p>
               <p>
                 <span className="text-green-400">Telegram:</span>{' '}
-                <span className="text-white">@usatopseller</span>
+                <span className="text-white">@Usamarketsmm</span>
               </p>
               <p>
                 <span className="text-orange-400">WhatsApp:</span>{' '}
-                <span className="text-white break-all">+1(678) 609-3906</span>
+                <span className="text-white break-all">+1(712)298-2593</span>
               </p>
             </div>
           </div>

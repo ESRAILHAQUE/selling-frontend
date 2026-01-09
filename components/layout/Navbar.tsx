@@ -111,10 +111,10 @@ export default function Navbar() {
       <div className="bg-green-600 text-white py-2 overflow-hidden relative">
         <div className="flex whitespace-nowrap animate-scroll">
           <span className="inline-block px-4">
-            Welcome to our Shop. We always try to provide 100% safe and reliable service to our client. usatopseller.com is on of the best quality service provider website at the cheapest price. So if you are interested about our any service, Order Now
+            Welcome to our Shop. We always try to provide 100% safe and reliable service to our client. usamarketsmm.com is on of the best quality service provider website at the cheapest price. So if you are interested about our any service, Order Now
           </span>
           <span className="inline-block px-4">
-            Welcome to our Shop. We always try to provide 100% safe and reliable service to our client. usatopseller.com is on of the best quality service provider website at the cheapest price. So if you are interested about our any service, Order Now
+            Welcome to our Shop. We always try to provide 100% safe and reliable service to our client. usamarketsmm.com is on of the best quality service provider website at the cheapest price. So if you are interested about our any service, Order Now
           </span>
         </div>
       </div>

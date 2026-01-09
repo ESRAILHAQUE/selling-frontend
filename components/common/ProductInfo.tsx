@@ -102,20 +102,22 @@ export default function ProductInfo({
         <p className="text-xs sm:text-sm text-purple-600 font-semibold mb-2 sm:mb-3">Contact us/24 Hours Reply</p>
         <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
           <p>
-            <span className="text-black">Skype:</span>{' '}
-            <span className="text-red-600 break-all">usatopseller</span>
+            <span className="text-black">Email:</span>{' '}
+            <span className="text-purple-600 break-all">hello@usamarketsmm.com</span>
+          </p>
+          <p>
+            <span className="text-black">Website:</span>{' '}
+            <a href="https://usamarketsmm.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline break-all">
+              https://usamarketsmm.com
+            </a>
           </p>
           <p>
             <span className="text-black">Telegram:</span>{' '}
-            <span className="text-red-600 break-all">@usatopseller</span>
+            <span className="text-red-600 break-all">@Usamarketsmm</span>
           </p>
           <p>
             <span className="text-black">WhatsApp:</span>{' '}
-            <span className="text-purple-600 break-all">+1(678) 609-3906</span>
-          </p>
-          <p>
-            <span className="text-black">Email:</span>{' '}
-            <span className="text-purple-600 break-all">usatopseller420@gmail.com</span>
+            <span className="text-purple-600 break-all">+1(712)298-2593</span>
           </p>
         </div>
       </div>
