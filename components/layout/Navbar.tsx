@@ -181,7 +181,7 @@ export default function Navbar() {
       <div className="bg-purple-800 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-14 sm:h-16">
-            <h1 className="text-lg sm:text-2xl lg:text-3xl font-bold">USA TOP SELLER</h1>
+            <h1 className="text-lg sm:text-2xl lg:text-3xl font-bold">USAMARKETSMM</h1>
             <div className="flex items-center gap-2 sm:gap-4">
               <Link
                 href="/login"

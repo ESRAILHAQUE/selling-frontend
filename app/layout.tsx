@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "TopSeller - Discover Top Sellers and Premium Products",
+  title: "Usamarketsmm - Discover Top Sellers and Premium Products",
   description: "Connect with verified sellers and explore thousands of quality products. Join our marketplace and start your journey today.",
 };
 
