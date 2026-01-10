@@ -14,8 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Usamarketsmm - Discover Top Sellers and Premium Products",
-  description: "Connect with verified sellers and explore thousands of quality products. Join our marketplace and start your journey today.",
+  title: "USAMARKETSMM - Global IT Shop & Service Agency",
+  description: "As your trusted IT company, we provide our IT services worldwide with utmost care and Selling some Digital Account. Our main goal is to work according to the needs of our customers and fulfill them accurately.",
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({

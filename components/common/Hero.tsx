@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import Logo from '@/components/common/Logo';
 
 export default function Hero() {
   return (
@@ -22,9 +23,10 @@ export default function Hero() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 w-full">
             {/* Left Side - Text Content */}
             <div className="text-white">
-              {/* Red Banner */}
+              {/* Logo Banner */}
               <div className="inline-block mb-4 sm:mb-6">
-                <div className="bg-red-600 border-2 border-dashed border-white px-4 sm:px-6 py-2 sm:py-3">
+                <div className="bg-red-600 border-2 border-dashed border-white px-4 sm:px-6 py-2 sm:py-3 flex items-center gap-2">
+                  <Logo size="sm" showText={false} className="text-white" />
                   <span className="text-white font-bold text-sm sm:text-base uppercase tracking-wide">
                     USAMARKETSMM
                   </span>
