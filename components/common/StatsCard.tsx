@@ -27,14 +27,14 @@ export default function StatsCard({ stat }: StatsCardProps) {
     <div className="text-center">
       {/* Circular Icon with Image */}
       <div className="flex justify-center mb-4">
-        <div className={`w-20 h-20 sm:w-24 sm:h-24 ${stat.iconColor} rounded-full flex items-center justify-center shadow-lg overflow-hidden`}>
+        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center shadow-lg overflow-hidden relative">
           {iconImage ? (
             <Image
               src={iconImage}
               alt={stat.label}
-              width={80}
-              height={80}
-              className="w-full h-full object-cover"
+              width={96}
+              height={96}
+              className="w-full h-full object-contain p-2"
             />
           ) : (
             <div className="w-full h-full bg-gray-300" />
