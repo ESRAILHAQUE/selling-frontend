@@ -70,7 +70,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
       {/* Product Tabs */}
       <ProductTabs
-        product={{ ...product, title: product.title }}
+        product={{ ...product, title: product.title, slug: product.slug }}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />

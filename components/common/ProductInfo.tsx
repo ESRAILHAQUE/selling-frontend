@@ -57,6 +57,11 @@ export default function ProductInfo({
     cartItems.push(cartItem);
     localStorage.setItem('cart', JSON.stringify(cartItems));
     
+    // Dispatch custom event to update cart count in navbar
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('cartUpdated'));
+    }
+    
     // Navigate to cart page
     window.location.href = '/cart';
   };
@@ -172,7 +177,19 @@ export default function ProductInfo({
             type="number"
             min="1"
             value={quantity}
-            onChange={(e) => setQuantity(parseInt(e.target.value) || 1)}
+            onChange={(e) => {
+              const val = parseInt(e.target.value);
+              if (val && val > 0) {
+                setQuantity(val);
+              } else if (e.target.value === '') {
+                setQuantity(1);
+              }
+            }}
+            onBlur={(e) => {
+              if (!e.target.value || parseInt(e.target.value) < 1) {
+                setQuantity(1);
+              }
+            }}
             className="w-16 sm:w-20 px-2 sm:px-3 py-2 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-lg text-center"
           />
         </div>
@@ -184,23 +201,6 @@ export default function ProductInfo({
       >
         Add to cart
       </button>
-
-      {/* Product Meta */}
-      <div className="text-xs sm:text-sm text-gray-600 space-y-1">
-        <p>SKU: N/A</p>
-        <p>
-          Categories:{' '}
-          {product.categories.map((cat, index) => (
-            <span key={index}>
-              {index > 0 && ', '}
-              <a href="#" className="text-blue-600 hover:underline">{cat}</a>
-            </span>
-          ))}
-        </p>
-        <p>
-          Tag: <a href="#" className="text-blue-600 hover:underline">{product.title}</a>
-        </p>
-      </div>
     </div>
   );
 }
