@@ -26,7 +26,7 @@ export default function Home() {
 
       {/* Stats Section */}
       <section className="relative py-8 sm:py-12 lg:py-16 bg-teal-700 overflow-hidden">
-        {/* Multiple Wavy Bottom Borders - Stacked */}
+        {/* Multiple Wavy Bottom Borders - Overlapping */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
           <svg
             viewBox="0 0 1440 200"
@@ -35,19 +35,19 @@ export default function Home() {
             className="w-full h-24 sm:h-32 md:h-40 lg:h-48"
             preserveAspectRatio="none"
           >
-            {/* First Wave - Bottom Layer */}
+            {/* First Wave - Bottom Layer (Darkest) */}
             <path
-              d="M0,160 C400,120 800,180 1200,140 C1400,120 1440,160 1440,200 L0,200 Z"
+              d="M0,180 C200,160 400,190 600,170 C800,150 1000,180 1200,165 C1300,157 1400,162 1440,165 L1440,200 L0,200 Z"
               fill="#d1d5db"
             />
             {/* Second Wave - Middle Layer */}
             <path
-              d="M0,140 C300,100 600,160 900,120 C1200,80 1440,140 1440,200 L0,200 Z"
+              d="M0,160 C300,140 600,170 900,150 C1200,130 1440,160 1440,200 L0,200 Z"
               fill="#e5e7eb"
             />
-            {/* Third Wave - Top Layer */}
+            {/* Third Wave - Top Layer (Lightest) */}
             <path
-              d="M0,120 C200,80 400,140 600,100 C800,60 1000,120 1200,90 C1300,75 1400,85 1440,90 L1440,200 L0,200 Z"
+              d="M0,140 C200,120 400,150 600,130 C800,110 1000,140 1200,125 C1300,117 1400,122 1440,125 L1440,200 L0,200 Z"
               fill="#f3f4f6"
             />
           </svg>

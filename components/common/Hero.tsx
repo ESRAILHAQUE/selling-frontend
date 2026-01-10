@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden">
-      <div className="relative h-[600px] sm:h-[700px] lg:h-[900px] xl:h-[1000px]">
+      <div className="relative h-[500px] sm:h-[600px] lg:h-[700px]">
         {/* Background Image */}
         <Image
           src="/images/hero/hero-image.jpg"
@@ -32,7 +32,7 @@ export default function Hero() {
               </div>
 
               {/* Main Headline */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold uppercase leading-tight mb-4 sm:mb-6">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold uppercase leading-tight mb-4 sm:mb-6">
                 GLOBAL IT SHOP &<br />
                 <span className="ml-0 sm:ml-4">SERVICE AGENCY</span>
               </h1>
