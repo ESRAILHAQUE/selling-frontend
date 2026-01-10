@@ -281,9 +281,12 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors mb-4">
+                <Link
+                  href="/checkout"
+                  className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors mb-4 text-center"
+                >
                   Proceed to Checkout
-                </button>
+                </Link>
 
                 <div className="text-xs text-gray-600 space-y-2">
                   <p>✓ 30 Days Warranty</p>
