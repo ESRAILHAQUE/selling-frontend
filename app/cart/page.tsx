@@ -22,39 +22,25 @@ export default function CartPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Load cart items from localStorage or use sample data for testing
+    // Load cart items from localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       try {
-        setCartItems(JSON.parse(savedCart));
+        const parsedCart = JSON.parse(savedCart);
+        // Ensure cart is an array and not empty object
+        if (Array.isArray(parsedCart) && parsedCart.length > 0) {
+          setCartItems(parsedCart);
+        } else {
+          setCartItems([]);
+          localStorage.removeItem('cart');
+        }
       } catch (e) {
         console.error('Error parsing cart:', e);
+        setCartItems([]);
+        localStorage.removeItem('cart');
       }
     } else {
-      // Sample cart data for testing - using product info
-      const sampleCart: CartItem[] = [
-        {
-          id: '1',
-          productSlug: 'buy-verified-paxful-accounts',
-          productTitle: 'Buy Verified Paxful Accounts',
-          optionName: 'Basic Paxful Account',
-          price: 180,
-          quantity: 2,
-          imageUrl: '/images/products/imgi_2_call-back_img.jpg'
-        },
-        {
-          id: '2',
-          productSlug: 'buy-google-ads-account',
-          productTitle: 'Buy Google Ads Account',
-          optionName: 'Adwords With $500 Balance',
-          price: 500,
-          originalPrice: 600,
-          quantity: 1,
-          imageUrl: '/images/products/imgi_2_call-back_img.jpg'
-        }
-      ];
-      setCartItems(sampleCart);
-      localStorage.setItem('cart', JSON.stringify(sampleCart));
+      setCartItems([]);
     }
     setLoading(false);
   }, []);
