@@ -3,10 +3,6 @@
 import Link from 'next/link';
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <footer className="bg-gray-800 text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -76,7 +72,9 @@ export default function Footer() {
               <p className="text-orange-400">Contact us/24 Hours Reply</p>
               <p>
                 <span className="text-purple-400">Email:</span>{' '}
-                <span className="text-white break-all">hello@usamarketsmm.com</span>
+                <a href="mailto:hello@usamarketsmm.com" className="text-white hover:text-cyan-400 break-all">
+                  hello@usamarketsmm.com
+                </a>
               </p>
               <p>
                 <span className="text-blue-400">Website:</span>{' '}
@@ -86,39 +84,18 @@ export default function Footer() {
               </p>
               <p>
                 <span className="text-green-400">Telegram:</span>{' '}
-                <span className="text-white">@Usamarketsmm</span>
+                <a href="https://t.me/Usamarketsmm" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400">
+                  @Usamarketsmm
+                </a>
               </p>
               <p>
                 <span className="text-orange-400">WhatsApp:</span>{' '}
-                <span className="text-white break-all">+1(712)298-2593</span>
+                <a href="https://wa.me/17122982593" target="_blank" rel="noopener noreferrer" className="text-white hover:text-cyan-400 break-all">
+                  +1(712)298-2593
+                </a>
               </p>
             </div>
           </div>
-        </div>
-      </div>
-      
-      {/* Bottom Strip with Scroll to Top Button */}
-      <div className="border-t border-gray-700">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 flex justify-end">
-          <button
-            onClick={scrollToTop}
-            className="bg-blue-600 hover:bg-blue-700 text-white p-2 sm:p-3 rounded transition-colors shadow-lg"
-            aria-label="Scroll to top"
-          >
-            <svg
-              className="w-4 h-4 sm:w-5 sm:h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 10l7-7m0 0l7 7m-7-7v18"
-              />
-            </svg>
-          </button>
         </div>
       </div>
     </footer>

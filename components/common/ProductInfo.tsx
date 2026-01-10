@@ -103,7 +103,9 @@ export default function ProductInfo({
         <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
           <p>
             <span className="text-black">Email:</span>{' '}
-            <span className="text-purple-600 break-all">hello@usamarketsmm.com</span>
+            <a href="mailto:hello@usamarketsmm.com" className="text-purple-600 hover:underline break-all">
+              hello@usamarketsmm.com
+            </a>
           </p>
           <p>
             <span className="text-black">Website:</span>{' '}
@@ -113,11 +115,15 @@ export default function ProductInfo({
           </p>
           <p>
             <span className="text-black">Telegram:</span>{' '}
-            <span className="text-red-600 break-all">@Usamarketsmm</span>
+            <a href="https://t.me/Usamarketsmm" target="_blank" rel="noopener noreferrer" className="text-red-600 hover:underline break-all">
+              @Usamarketsmm
+            </a>
           </p>
           <p>
             <span className="text-black">WhatsApp:</span>{' '}
-            <span className="text-purple-600 break-all">+1(712)298-2593</span>
+            <a href="https://wa.me/17122982593" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline break-all">
+              +1(712)298-2593
+            </a>
           </p>
         </div>
       </div>
