@@ -222,7 +222,7 @@ export default function Navbar() {
                 {cartCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center font-semibold">
                     {cartCount > 99 ? '99+' : cartCount}
-                  </span>
+                </span>
                 )}
               </Link>
             </div>

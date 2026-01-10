@@ -130,12 +130,17 @@ export default function CheckoutPage() {
     orders.push(order);
     localStorage.setItem('orders', JSON.stringify(orders));
 
-    // Clear cart
+    // Clear cart immediately
     localStorage.removeItem('cart');
-    window.dispatchEvent(new Event('cartUpdated'));
+    // Update cart count in navbar
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('cartUpdated'));
+    }
 
     // Redirect to order confirmation page
-    router.push(`/checkout/confirmation?orderId=${order.id}`);
+    setTimeout(() => {
+      router.push(`/checkout/confirmation?orderId=${order.id}`);
+    }, 100);
   };
 
   const subtotal = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
@@ -201,7 +206,7 @@ export default function CheckoutPage() {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                         errors.firstName ? 'border-red-500' : 'border-gray-300'
                       }`}
                       required
@@ -220,7 +225,7 @@ export default function CheckoutPage() {
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                         errors.lastName ? 'border-red-500' : 'border-gray-300'
                       }`}
                       required
@@ -240,7 +245,7 @@ export default function CheckoutPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                       errors.email ? 'border-red-500' : 'border-gray-300'
                     }`}
                     required
@@ -259,7 +264,7 @@ export default function CheckoutPage() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                       errors.phone ? 'border-red-500' : 'border-gray-300'
                     }`}
                     required
@@ -278,7 +283,7 @@ export default function CheckoutPage() {
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                       errors.address ? 'border-red-500' : 'border-gray-300'
                     }`}
                     required
@@ -298,7 +303,7 @@ export default function CheckoutPage() {
                       name="city"
                       value={formData.city}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                         errors.city ? 'border-red-500' : 'border-gray-300'
                       }`}
                       required
@@ -317,7 +322,7 @@ export default function CheckoutPage() {
                       name="state"
                       value={formData.state}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                         errors.state ? 'border-red-500' : 'border-gray-300'
                       }`}
                       required
@@ -336,7 +341,7 @@ export default function CheckoutPage() {
                       name="zipCode"
                       value={formData.zipCode}
                       onChange={handleInputChange}
-                      className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                      className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                         errors.zipCode ? 'border-red-500' : 'border-gray-300'
                       }`}
                       required
@@ -355,7 +360,7 @@ export default function CheckoutPage() {
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
+                    className={`w-full px-4 py-2 text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
                       errors.country ? 'border-red-500' : 'border-gray-300'
                     }`}
                     required
@@ -380,7 +385,7 @@ export default function CheckoutPage() {
                     value={formData.notes}
                     onChange={handleInputChange}
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y"
+                    className="w-full px-4 py-2 text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y"
                     placeholder="Any special instructions or notes for your order..."
                   />
                 </div>

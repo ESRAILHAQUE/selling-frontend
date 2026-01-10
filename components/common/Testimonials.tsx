@@ -91,43 +91,43 @@ export default function Testimonials() {
               WebkitOverflowScrolling: 'touch',
             }}
           >
-            {testimonials.map((testimonial) => (
-              <div
-                key={testimonial.id}
+          {testimonials.map((testimonial) => (
+            <div
+              key={testimonial.id}
                 className="flex-shrink-0 bg-white rounded-lg shadow-lg p-4 sm:p-6 hover:shadow-xl transition-shadow w-[calc(100vw-2rem)] sm:w-[calc((100vw-4rem-1rem)/2)] lg:w-[calc((100vw-8rem-3rem)/3)] min-w-[280px] max-w-[100%] sm:max-w-[400px]"
-              >
+            >
                 {/* Quote Icon - Light Purple */}
-                <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-4">
                   <div className="text-7xl text-purple-300 font-serif leading-none" style={{ fontFamily: 'serif' }}>"</div>
-                </div>
-
-                {/* Testimonial Text */}
-                <p className="text-gray-700 mb-4 leading-relaxed text-center">
-                  {testimonial.text}
-                </p>
-
-                {/* Star Rating */}
-                <div className="flex justify-center gap-1 mb-6">
-                  {renderStars(testimonial.rating)}
-                </div>
-
-                {/* Reviewer Profile */}
-                <div className="flex flex-col items-center">
-                  <div className="relative w-16 h-16 rounded-full overflow-hidden mb-3">
-                    <Image
-                      src={testimonial.imageUrl}
-                      alt={testimonial.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
-                  {testimonial.title && (
-                    <p className="text-sm text-gray-500">{testimonial.title}</p>
-                  )}
-                </div>
               </div>
-            ))}
+
+              {/* Testimonial Text */}
+              <p className="text-gray-700 mb-4 leading-relaxed text-center">
+                {testimonial.text}
+              </p>
+
+              {/* Star Rating */}
+              <div className="flex justify-center gap-1 mb-6">
+                {renderStars(testimonial.rating)}
+              </div>
+
+              {/* Reviewer Profile */}
+              <div className="flex flex-col items-center">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden mb-3">
+                  <Image
+                    src={testimonial.imageUrl}
+                    alt={testimonial.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <h4 className="font-bold text-gray-900">{testimonial.name}</h4>
+                {testimonial.title && (
+                  <p className="text-sm text-gray-500">{testimonial.title}</p>
+                )}
+              </div>
+            </div>
+          ))}
           </div>
         </div>
 
@@ -149,7 +149,7 @@ export default function Testimonials() {
                 setCurrentIndex(index);
               }}
               className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-orange-500' : 'bg-gray-400'
-                }`}
+              }`}
               aria-label={`Go to testimonial ${index + 1}`}
             />
           ))}
