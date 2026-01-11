@@ -215,7 +215,7 @@ export default function Navbar() {
             </div>
             
             {/* Nav Items */}
-            <ul className="flex items-center space-x-4 xl:space-x-6 flex-1 justify-center">
+            <ul className="flex items-center space-x-3 xl:space-x-4 flex-1 justify-center">
               {navItems.map((item) => (
                 <li
                   key={item.label}
@@ -226,15 +226,15 @@ export default function Navbar() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="flex items-center gap-1 hover:text-green-200 transition-colors text-sm xl:text-base py-3"
+                      className="flex items-center gap-1 hover:text-green-200 transition-colors text-xs xl:text-sm py-2 whitespace-nowrap"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <span className="flex items-center gap-1 cursor-pointer hover:text-green-200 transition-colors text-sm xl:text-base py-3">
+                    <span className="flex items-center gap-1 cursor-pointer hover:text-green-200 transition-colors text-xs xl:text-sm py-2 whitespace-nowrap">
                       {item.label}
                       {item.dropdown && (
-                        <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                         </svg>
                       )}
