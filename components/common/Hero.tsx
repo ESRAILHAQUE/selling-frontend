@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="relative h-[500px] sm:h-[600px] lg:h-[700px]">
         {/* Background Image */}
         <Image
-          src="/images/hero/hero-image.jpg"
+          src="/images/hero/hero-image.png"
           alt="USAMARKETSMM - Global IT Shop & Service Agency"
           fill
           className="object-cover"

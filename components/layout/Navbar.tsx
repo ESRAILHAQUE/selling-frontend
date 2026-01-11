@@ -204,39 +204,18 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Main Header - Dark Purple */}
-      <div className="bg-purple-800 text-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 sm:h-16">
-            <Logo size="md" showText={true} />
-            <div className="flex items-center gap-2 sm:gap-4">
-              <Link
-                href="/login"
-                className="bg-blue-500 hover:bg-blue-600 text-white px-3 sm:px-6 py-1.5 sm:py-2 rounded-lg text-xs sm:text-base font-semibold transition-colors"
-              >
-                LOGIN
-              </Link>
-              <Link href="/cart" className="relative">
-                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                </svg>
-                {cartCount > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center font-semibold">
-                    {cartCount > 99 ? '99+' : cartCount}
-                </span>
-                )}
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Navigation Bar - Green */}
       <nav className="bg-green-600 text-white sticky top-0 z-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center h-12">
-            <ul className="flex items-center space-x-4 xl:space-x-6 w-full">
+          <div className="hidden lg:flex items-center h-14 sm:h-16 justify-between">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <Logo size="md" showText={true} />
+            </div>
+            
+            {/* Nav Items */}
+            <ul className="flex items-center space-x-4 xl:space-x-6 flex-1 justify-center">
               {navItems.map((item) => (
                 <li
                   key={item.label}
@@ -283,25 +262,56 @@ export default function Navbar() {
                 </li>
               ))}
             </ul>
+            
+            {/* Cart Icon */}
+            <div className="flex-shrink-0">
+              <Link href="/cart" className="relative">
+                <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center font-semibold">
+                    {cartCount > 99 ? '99+' : cartCount}
+                  </span>
+                )}
+              </Link>
+            </div>
           </div>
 
           {/* Mobile Navigation */}
           <div className="lg:hidden">
-            <div className="flex items-center justify-between h-12">
-              <div className="flex-1"></div>
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-white p-2"
-                aria-label="Toggle menu"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {mobileMenuOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            <div className="flex items-center justify-between h-14 sm:h-16">
+              {/* Logo */}
+              <div className="flex-shrink-0">
+                <Logo size="sm" showText={true} />
+              </div>
+              
+              {/* Cart and Menu */}
+              <div className="flex items-center gap-4">
+                <Link href="/cart" className="relative">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                  {cartCount > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center font-semibold">
+                      {cartCount > 99 ? '99+' : cartCount}
+                    </span>
                   )}
-                </svg>
-              </button>
+                </Link>
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="text-white p-2"
+                  aria-label="Toggle menu"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {mobileMenuOpen ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    )}
+                  </svg>
+                </button>
+              </div>
             </div>
 
             {/* Mobile Menu Sidebar */}
