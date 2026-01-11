@@ -60,8 +60,6 @@ export default function Footer() {
               <li>Ethereum:- Accept</li>
               <li>USDT:- Accept</li>
               <li>Any Cryptocurrency Coin:- Accept</li>
-              <li>PayPal FNF / Payoneer:- Accept</li>
-              <li>Perfect Money / Cash App:- Accept</li>
             </ul>
           </div>
 

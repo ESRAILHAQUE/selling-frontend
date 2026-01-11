@@ -33,12 +33,111 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
   const [saveInfo, setSaveInfo] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
+  // Generate default reviews for products
+  const getDefaultReviews = (slug: string): Review[] => {
+    const defaultReviews: Record<string, Review[]> = {
+      'buy-gmail-accounts': [
+        {
+          id: 'default-1',
+          rating: 5,
+          review: 'Excellent service! The Gmail accounts I purchased are working perfectly. Fast delivery and great customer support. Highly recommended!',
+          name: 'John Smith',
+          email: 'john.smith@example.com',
+          date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: 'default-2',
+          rating: 5,
+          review: 'Very satisfied with my purchase. All accounts are verified and active. The replacement guarantee gives me peace of mind. Will definitely order again!',
+          name: 'Sarah Johnson',
+          email: 'sarah.j@example.com',
+          date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: 'default-3',
+          rating: 4,
+          review: 'Good quality accounts at reasonable prices. Delivery was quick and the accounts are working as expected. Minor issue with one account but it was replaced quickly.',
+          name: 'Michael Brown',
+          email: 'm.brown@example.com',
+          date: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString()
+        }
+      ],
+      'buy-google-ads-account': [
+        {
+          id: 'default-1',
+          rating: 5,
+          review: 'Perfect Google Ads account with good balance. The account is fully verified and ready to use. Customer service was very helpful throughout the process.',
+          name: 'David Wilson',
+          email: 'd.wilson@example.com',
+          date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
+        },
+        {
+          id: 'default-2',
+          rating: 5,
+          review: 'Outstanding service! The account came with the promised balance and all features are working. Fast delivery and excellent support. Highly recommend!',
+          name: 'Emily Davis',
+          email: 'emily.d@example.com',
+          date: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString()
+        }
+      ]
+    };
+
+    // Return default reviews for the product, or generic ones if not found
+    if (defaultReviews[slug]) {
+      return defaultReviews[slug];
+    }
+
+    // Generic default reviews for other products
+    return [
+      {
+        id: 'default-1',
+        rating: 5,
+        review: 'Great service! The account I purchased is working perfectly. Fast delivery and excellent customer support. Highly recommended!',
+        name: 'Alex Thompson',
+        email: 'alex.t@example.com',
+        date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
+      },
+      {
+        id: 'default-2',
+        rating: 5,
+        review: 'Very satisfied with my purchase. The account is verified and active. The replacement guarantee is a great feature. Will order again!',
+        name: 'Jessica Martinez',
+        email: 'j.martinez@example.com',
+        date: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString()
+      },
+      {
+        id: 'default-3',
+        rating: 4,
+        review: 'Good quality account at a fair price. Delivery was quick and everything works as expected. Minor issue resolved quickly by support.',
+        name: 'Robert Taylor',
+        email: 'r.taylor@example.com',
+        date: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString()
+      }
+    ];
+  };
+
   useEffect(() => {
     // Load reviews from localStorage
     const productSlug = product.slug || 'default';
     const storedReviews = localStorage.getItem(`reviews-${productSlug}`);
+
     if (storedReviews) {
-      setReviews(JSON.parse(storedReviews));
+      const parsedReviews = JSON.parse(storedReviews);
+      // Only use stored reviews if they exist and are not just defaults
+      const hasUserReviews = parsedReviews.some((r: Review) => !r.id.startsWith('default-'));
+      if (hasUserReviews || parsedReviews.length > 0) {
+        setReviews(parsedReviews);
+      } else {
+        // Initialize with default reviews if no user reviews exist
+        const defaultReviews = getDefaultReviews(productSlug);
+        setReviews(defaultReviews);
+        localStorage.setItem(`reviews-${productSlug}`, JSON.stringify(defaultReviews));
+      }
+    } else {
+      // Initialize with default reviews if no reviews exist
+      const defaultReviews = getDefaultReviews(productSlug);
+      setReviews(defaultReviews);
+      localStorage.setItem(`reviews-${productSlug}`, JSON.stringify(defaultReviews));
     }
   }, [product.slug]);
 

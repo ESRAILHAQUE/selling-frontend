@@ -38,63 +38,7 @@ export async function middleware(request: NextRequest) {
     }
   }
 
-  // Block Bangladesh (BD)
-  if (country === 'BD') {
-    return new NextResponse(
-      `
-      <!DOCTYPE html>
-      <html lang="en">
-      <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Access Restricted</title>
-        <style>
-          * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-          }
-          body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-          }
-          .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 600px;
-          }
-          h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-          }
-          p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <h1>Access Restricted</h1>
-          <p>Sorry, access to this website is not available from your location.</p>
-        </div>
-      </body>
-      </html>
-      `,
-      {
-        status: 403,
-        headers: {
-          'Content-Type': 'text/html',
-        },
-      }
-    );
-  }
+  // Country restriction removed - all countries allowed
 
   // If country is not available, try to detect via IP geolocation API
   // This is a fallback for non-Vercel deployments
