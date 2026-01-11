@@ -45,17 +45,6 @@ export default function FloatingChat() {
             </svg>
           </a>
 
-          {/* Skype */}
-          <a
-            href="skype:usamarketsmm?chat"
-            className="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform"
-            aria-label="Skype"
-          >
-            <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12.04 0C5.408-.02.005 5.37.005 12.051c0 2.8 1.363 5.311 3.471 6.93-.512-1.196-.828-2.58-.828-4.04 0-4.338 2.667-8.633 6.933-10.508 4.267-1.875 8.533-1.875 12.8 0 4.267 1.875 6.933 6.17 6.933 10.508 0 1.46-.316 2.844-.828 4.04 2.108-1.619 3.471-4.13 3.471-6.93C23.995 5.366 18.56.012 12.04 0zm-.472 15.322c-1.897 0-3.44-1.342-3.44-3 0-1.657 1.543-3 3.44-3 1.897 0 3.44 1.343 3.44 3 0 1.658-1.543 3-3.44 3zm5.568 0c-1.897 0-3.44-1.342-3.44-3 0-1.657 1.543-3 3.44-3 1.897 0 3.44 1.343 3.44 3 0 1.658-1.543 3-3.44 3z" />
-            </svg>
-          </a>
-
           {/* Email */}
           <a
             href="mailto:hello@usamarketsmm.com"
@@ -67,32 +56,25 @@ export default function FloatingChat() {
             </svg>
           </a>
 
-          {/* Close Button */}
-          <button
-            onClick={toggleChat}
-            className={`w-14 h-14 bg-purple-400 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 ${
-              isRotating ? 'rotate-45' : ''
-            }`}
-            aria-label="Close"
-          >
-            <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
         </div>
       )}
 
-      {/* Chat Button */}
+      {/* Chat/Close Button - Toggles between message and cross icon */}
       <button
         onClick={toggleChat}
-        className={`w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 ${
-          isRotating ? 'rotate-180' : ''
-        }`}
-        aria-label="Open chat"
+        className={`w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 ${isRotating ? 'rotate-180' : ''
+          }`}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
       >
-        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
+        {isOpen ? (
+          <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        ) : (
+          <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          </svg>
+        )}
       </button>
     </div>
   );
