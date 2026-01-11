@@ -2,13 +2,14 @@ import Image from 'next/image';
 
 interface PromotionalImageProps {
   productTitle: string;
+  imagePath: string;
 }
 
-export default function PromotionalImage({ productTitle }: PromotionalImageProps) {
+export default function PromotionalImage({ productTitle, imagePath }: PromotionalImageProps) {
   return (
     <div className="relative rounded-lg overflow-hidden">
       <Image
-        src="/images/products/imgi_2_call-back_img.jpg"
+        src={imagePath}
         alt={productTitle}
         width={600}
         height={600}

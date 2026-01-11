@@ -22,6 +22,7 @@ interface Product {
   serviceDetails: string[];
   options: ProductOption[];
   description: string;
+  imagePath: string;
 }
 
 interface ProductDetailsProps {
@@ -53,7 +54,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-10 lg:mb-12">
         {/* Left Side - Promotional Image */}
         <div>
-          <PromotionalImage productTitle={product.title} />
+          <PromotionalImage productTitle={product.title} imagePath={product.imagePath} />
         </div>
 
         {/* Right Side - Product Info */}

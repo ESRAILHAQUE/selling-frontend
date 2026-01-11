@@ -14,6 +14,7 @@ interface Product {
   priceRange: { min: number; max: number };
   serviceDetails: string[];
   options: ProductOption[];
+  imagePath: string;
 }
 
 interface ProductInfoProps {
@@ -50,7 +51,7 @@ export default function ProductInfo({
       price: selectedOption.price,
       originalPrice: selectedOption.originalPrice,
       quantity: quantity,
-      imageUrl: '/images/products/imgi_2_call-back_img.jpg'
+      imageUrl: product.imagePath
     };
     
     // Add to cart

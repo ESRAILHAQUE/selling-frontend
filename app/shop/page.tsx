@@ -37,7 +37,7 @@ export default function ShopPage() {
               {/* Product Image */}
               <div className="relative h-48 w-full bg-gradient-to-br from-purple-600 to-blue-600">
                 <Image
-                  src="/images/products/imgi_2_call-back_img.jpg"
+                  src={product.imagePath}
                   alt={product.title}
                   fill
                   className="object-cover"

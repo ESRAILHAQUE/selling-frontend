@@ -16,6 +16,7 @@ export interface ProductData {
     originalPrice?: number;
   }>;
   description: string;
+  imagePath: string;
 }
 
 // Helper function to generate product data
@@ -47,6 +48,7 @@ function createProduct(
       '100% cash-back guarantee'
     ],
     options,
+    imagePath: `/images/products/${slug}.jpg`,
     description: `${title}\nIf you're looking to ${title.toLowerCase()}, you've come to the right place. With our team of experts, we can help you get the most out of your account. We understand that managing accounts requires expertise and reliability. That's why we provide comprehensive services and support. With our help, you can rest assured that your account will be effective and reliable. ${title}.\n\nWhat is ${title}?\n${title} is a service that enables you to access and manage your account effectively. It is a powerful tool that allows you to easily manage your needs and track performance. With the help of ${title}, you can reach your goals with tailored solutions and track the results. This helps you understand which strategies work best and optimize accordingly.\n\nWhy choose us?\nWe provide reliable, verified accounts with full support. Our accounts are tested and ready to use. We offer 24/7 customer support and guarantee satisfaction. All our accounts come with replacement guarantee and are fully verified.`
   };
 }
