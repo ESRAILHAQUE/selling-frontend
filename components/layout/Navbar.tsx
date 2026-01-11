@@ -210,12 +210,12 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center h-14 sm:h-16 justify-between">
             {/* Logo */}
-            <div className="flex-shrink-0">
-              <Logo size="md" showText={true} />
+            <div className="flex-shrink-0 -ml-2 sm:-ml-4">
+              <Logo size="sm" showText={true} />
             </div>
             
             {/* Nav Items */}
-            <ul className="flex items-center space-x-3 xl:space-x-4 flex-1 justify-center">
+            <ul className="flex items-center space-x-3 xl:space-x-4 flex-1 justify-center mx-8 xl:mx-12">
               {navItems.map((item) => (
                 <li
                   key={item.label}
@@ -264,7 +264,7 @@ export default function Navbar() {
             </ul>
             
             {/* Cart Icon */}
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 -mr-2 sm:-mr-4">
               <Link href="/cart" className="relative">
                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
