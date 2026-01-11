@@ -7,13 +7,14 @@ interface PromotionalImageProps {
 
 export default function PromotionalImage({ productTitle, imagePath }: PromotionalImageProps) {
   return (
-    <div className="relative rounded-lg overflow-hidden">
+    <div className="relative rounded-lg overflow-hidden aspect-square">
       <Image
         src={imagePath}
         alt={productTitle}
-        width={600}
-        height={600}
-        className="w-full h-auto object-cover"
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+        className="object-contain"
+        quality={100}
         priority
       />
     </div>

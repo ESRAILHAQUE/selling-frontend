@@ -23,11 +23,12 @@ export default function RelatedProducts() {
           {relatedProducts.map((product) => (
             <div key={product.slug} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
               {/* Product Image */}
-              <div className="relative h-48 w-full bg-gradient-to-br from-purple-600 to-blue-600">
+              <div className="relative h-64 w-full overflow-hidden rounded-t-lg bg-gray-100">
                 <Image
                   src={product.imagePath}
                   alt={product.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover"
                 />
               </div>
