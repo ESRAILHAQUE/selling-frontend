@@ -1,6 +1,5 @@
 // Product data for all dropdown menu items
-// This will be replaced with real data later
-import { getProductDescriptionSync } from "./descriptions-split";
+// Descriptions are loaded lazily on the client to improve performance
 
 export interface ProductData {
   slug: string;
@@ -55,9 +54,8 @@ function createProduct(
     ],
     options,
     imagePath: `/images/products/${slug}.jpg`,
-    description:
-      getProductDescriptionSync(slug) ||
-      `${title}\nIf you're looking to ${title.toLowerCase()}, you've come to the right place. With our team of experts, we can help you get the most out of your account. We understand that managing accounts requires expertise and reliability. That's why we provide comprehensive services and support. With our help, you can rest assured that your account will be effective and reliable. ${title}.\n\nWhat is ${title}?\n${title} is a service that enables you to access and manage your account effectively. It is a powerful tool that allows you to easily manage your needs and track performance. With the help of ${title}, you can reach your goals with tailored solutions and track the results. This helps you understand which strategies work best and optimize accordingly.\n\nWhy choose us?\nWe provide reliable, verified accounts with full support. Our accounts are tested and ready to use. We offer 24/7 customer support and guarantee satisfaction. All our accounts come with replacement guarantee and are fully verified.`,
+    // Empty description - will be loaded lazily on client
+    description: "",
   };
 }
 
@@ -91,7 +89,8 @@ export const productsData: Record<string, ProductData> = {
       { id: "5", name: "200 Gmail Accounts", price: 250 },
     ],
     imagePath: "/images/products/buy-gmail-accounts.jpg",
-    description: getProductDescriptionSync("buy-gmail-accounts"),
+    // Empty description - will be loaded lazily on client
+    description: "",
   },
   "buy-old-gmail-accounts": createProduct(
     "buy-old-gmail-accounts",

@@ -194,6 +194,11 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
     // Use loaded description or fallback to prop
     const descriptionToUse = loadedDescription || product.description;
     
+    // If no description available, return empty array
+    if (!descriptionToUse || descriptionToUse.trim() === "") {
+      return [];
+    }
+    
     // Split by double newlines to get sections
     // For performance: Show only first 15 sections initially
     const allSections = descriptionToUse.split(/\n\n+/);
