@@ -111,10 +111,23 @@ export default function Navbar() {
     // Load cart count from localStorage
     const updateCartCount = () => {
       if (typeof window !== 'undefined') {
-        const cart = localStorage.getItem('cart');
-        const cartItems = cart ? JSON.parse(cart) : [];
-        const totalQuantity = cartItems.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
-        setCartCount(totalQuantity);
+        try {
+          const cart = localStorage.getItem('cart');
+          let cartItems = cart ? JSON.parse(cart) : [];
+          
+          // Ensure cartItems is an array
+          if (!Array.isArray(cartItems)) {
+            cartItems = [];
+            localStorage.setItem('cart', JSON.stringify([]));
+          }
+          
+          const totalQuantity = cartItems.reduce((sum: number, item: any) => sum + (item.quantity || 1), 0);
+          setCartCount(totalQuantity);
+        } catch (error) {
+          console.error('Error reading cart from localStorage:', error);
+          localStorage.setItem('cart', JSON.stringify([]));
+          setCartCount(0);
+        }
       }
     };
 

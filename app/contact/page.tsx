@@ -1,29 +1,142 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+// SEO Metadata for Contact Page
+export const metadata: Metadata = {
+  title: 'Contact Us - USA Markets SMM | 24/7 Customer Support',
+  description: 'Contact USA Markets SMM for verified accounts and digital services. Available 24/7 via Email, Telegram, and WhatsApp. Get instant support for all your account needs.',
+  keywords: [
+    'contact usa markets smm',
+    'customer support',
+    'verified accounts support',
+    'buy accounts contact',
+    'account seller contact',
+    '24/7 support',
+    'telegram support',
+    'whatsapp support'
+  ],
+  openGraph: {
+    title: 'Contact USA Markets SMM | 24/7 Support',
+    description: 'Get in touch with us 24/7 via Email, Telegram, or WhatsApp for all your verified account needs.',
+    url: 'https://usamarketsmm.com/contact',
+    siteName: 'USA Markets SMM',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact USA Markets SMM',
+    description: '24/7 customer support via Email, Telegram, and WhatsApp.',
+  },
+  alternates: {
+    canonical: 'https://usamarketsmm.com/contact',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function ContactPage() {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-blue-600">Home</Link>
-          <span className="mx-2">/</span>
-          <span className="text-gray-900 font-semibold">Contact Us</span>
-        </nav>
+  // BreadcrumbList Schema
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://usamarketsmm.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact Us",
+        "item": "https://usamarketsmm.com/contact"
+      }
+    ]
+  };
 
-        {/* Page Header */}
-        <div className="mb-8 sm:mb-12 text-center">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Contact Us
-          </h1>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-            We're here to help! Get in touch with us 24/7 for any questions or support.
-          </p>
-        </div>
+  // LocalBusiness Schema for Contact Page
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "USA Markets SMM",
+    "alternateName": "USAMARKETSMM",
+    "image": "https://usamarketsmm.com/logo.png",
+    "url": "https://usamarketsmm.com",
+    "telephone": "+1-712-298-2593",
+    "email": "hello@usamarketsmm.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "40.7128",
+      "longitude": "-74.0060"
+    },
+    "priceRange": "$$$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": [
+      "https://t.me/Usamarketsmm",
+      "https://wa.me/17122982593"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1250"
+    }
+  };
+  return (
+    <>
+      {/* Breadcrumb Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      {/* LocalBusiness Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        
+        <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {/* Breadcrumbs */}
+          <nav className="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-blue-600">Home</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-900 font-semibold">Contact Us</span>
+          </nav>
+
+          {/* Page Header */}
+          <header className="mb-8 sm:mb-12 text-center">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Contact USA Markets SMM - 24/7 Customer Support
+            </h1>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+              We're here to help! Get in touch with us 24/7 for any questions, support, or inquiries about our verified accounts and digital services. Our dedicated team responds within 24 hours.
+            </p>
+          </header>
 
         {/* Contact Information */}
         <div className="max-w-4xl mx-auto">
@@ -117,10 +230,10 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </div>
+      </article>
 
       <Footer />
     </div>
+  </>
   );
 }
-

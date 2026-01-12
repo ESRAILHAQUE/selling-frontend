@@ -9,9 +9,51 @@ import Footer from '@/components/layout/Footer';
 import { stats } from '@/lib/data/stats';
 
 export default function Home() {
+  // Organization Schema for Homepage SEO
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "USA Markets SMM",
+    alternateName: "USAMARKETSMM",
+    url: "https://usamarketsmm.com",
+    logo: "https://usamarketsmm.com/logo.png",
+    description:
+      "Leading provider of verified digital accounts including Gmail, PayPal, Facebook, Instagram, and more. Trusted by thousands worldwide.",
+    email: "hello@usamarketsmm.com",
+    telephone: "+1-712-298-2593",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "US",
+    },
+    sameAs: [
+      "https://t.me/Usamarketsmm",
+      "https://wa.me/17122982593",
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.9",
+      reviewCount: "1250",
+      bestRating: "5",
+      worstRating: "1",
+    },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
+      lowPrice: "15",
+      highPrice: "3000",
+      offerCount: "43",
+    },
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      {/* Organization Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+
+      <div className="min-h-screen bg-gray-50">
       <Navbar />
       <Hero />
 
@@ -66,6 +108,7 @@ export default function Home() {
       <Testimonials />
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }

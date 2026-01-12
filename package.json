@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seo:check": "node scripts/check-seo-content.js --min 2000"
   },
   "dependencies": {
     "next": "16.1.1",

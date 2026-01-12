@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useCallback } from "react";
+import { generateProductReviews } from "@/lib/data/review-generator";
 
 interface Product {
   title?: string;
@@ -23,129 +24,72 @@ interface ProductTabsProps {
   setActiveTab: (tab: string) => void;
 }
 
-export default function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
+export default function ProductTabs({
+  product,
+  activeTab,
+  setActiveTab,
+}: ProductTabsProps) {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-  const [reviewText, setReviewText] = useState('');
-  const [reviewName, setReviewName] = useState('');
-  const [reviewEmail, setReviewEmail] = useState('');
+  const [reviewText, setReviewText] = useState("");
+  const [reviewName, setReviewName] = useState("");
+  const [reviewEmail, setReviewEmail] = useState("");
   const [saveInfo, setSaveInfo] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // Generate default reviews for products
-  const getDefaultReviews = (slug: string): Review[] => {
-    const defaultReviews: Record<string, Review[]> = {
-      'buy-gmail-accounts': [
-        {
-          id: 'default-1',
-          rating: 5,
-          review: 'Excellent service! The Gmail accounts I purchased are working perfectly. Fast delivery and great customer support. Highly recommended!',
-          name: 'John Smith',
-          email: 'john.smith@example.com',
-          date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-          id: 'default-2',
-          rating: 5,
-          review: 'Very satisfied with my purchase. All accounts are verified and active. The replacement guarantee gives me peace of mind. Will definitely order again!',
-          name: 'Sarah Johnson',
-          email: 'sarah.j@example.com',
-          date: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-          id: 'default-3',
-          rating: 4,
-          review: 'Good quality accounts at reasonable prices. Delivery was quick and the accounts are working as expected. Minor issue with one account but it was replaced quickly.',
-          name: 'Michael Brown',
-          email: 'm.brown@example.com',
-          date: new Date(Date.now() - 21 * 24 * 60 * 60 * 1000).toISOString()
-        }
-      ],
-      'buy-google-ads-account': [
-        {
-          id: 'default-1',
-          rating: 5,
-          review: 'Perfect Google Ads account with good balance. The account is fully verified and ready to use. Customer service was very helpful throughout the process.',
-          name: 'David Wilson',
-          email: 'd.wilson@example.com',
-          date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString()
-        },
-        {
-          id: 'default-2',
-          rating: 5,
-          review: 'Outstanding service! The account came with the promised balance and all features are working. Fast delivery and excellent support. Highly recommend!',
-          name: 'Emily Davis',
-          email: 'emily.d@example.com',
-          date: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000).toISOString()
-        }
-      ]
-    };
-
-    // Return default reviews for the product, or generic ones if not found
-    if (defaultReviews[slug]) {
-      return defaultReviews[slug];
-    }
-
-    // Generic default reviews for other products
-    return [
-      {
-        id: 'default-1',
-        rating: 5,
-        review: 'Great service! The account I purchased is working perfectly. Fast delivery and excellent customer support. Highly recommended!',
-        name: 'Alex Thompson',
-        email: 'alex.t@example.com',
-        date: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000).toISOString()
-      },
-      {
-        id: 'default-2',
-        rating: 5,
-        review: 'Very satisfied with my purchase. The account is verified and active. The replacement guarantee is a great feature. Will order again!',
-        name: 'Jessica Martinez',
-        email: 'j.martinez@example.com',
-        date: new Date(Date.now() - 18 * 24 * 60 * 60 * 1000).toISOString()
-      },
-      {
-        id: 'default-3',
-        rating: 4,
-        review: 'Good quality account at a fair price. Delivery was quick and everything works as expected. Minor issue resolved quickly by support.',
-        name: 'Robert Taylor',
-        email: 'r.taylor@example.com',
-        date: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000).toISOString()
-      }
-    ];
-  };
-
   useEffect(() => {
     // Load reviews from localStorage
-    const productSlug = product.slug || 'default';
+    const productSlug = product.slug || "default";
     const storedReviews = localStorage.getItem(`reviews-${productSlug}`);
 
     if (storedReviews) {
       const parsedReviews = JSON.parse(storedReviews);
-      // Only use stored reviews if they exist and are not just defaults
-      const hasUserReviews = parsedReviews.some((r: Review) => !r.id.startsWith('default-'));
-      if (hasUserReviews || parsedReviews.length > 0) {
-        setReviews(parsedReviews);
-      } else {
-        // Initialize with default reviews if no user reviews exist
-        const defaultReviews = getDefaultReviews(productSlug);
+
+      // Check if reviews are old format (contain default- ids or generic names)
+      const hasOldFormat = parsedReviews.some(
+        (r: Review) =>
+          r.id.startsWith("default-") ||
+          r.name === "John Smith" ||
+          r.name === "Sarah Johnson" ||
+          r.name === "Alex Thompson"
+      );
+
+      if (hasOldFormat || parsedReviews.length < 3) {
+        // Generate new unique reviews
+        const defaultReviews = generateProductReviews(
+          productSlug,
+          product.title || "Account",
+          5
+        );
         setReviews(defaultReviews);
-        localStorage.setItem(`reviews-${productSlug}`, JSON.stringify(defaultReviews));
+        localStorage.setItem(
+          `reviews-${productSlug}`,
+          JSON.stringify(defaultReviews)
+        );
+      } else {
+        setReviews(parsedReviews);
       }
     } else {
-      // Initialize with default reviews if no reviews exist
-      const defaultReviews = getDefaultReviews(productSlug);
+      // Generate unique reviews for this product
+      const defaultReviews = generateProductReviews(
+        productSlug,
+        product.title || "Account",
+        5
+      );
       setReviews(defaultReviews);
-      localStorage.setItem(`reviews-${productSlug}`, JSON.stringify(defaultReviews));
+      localStorage.setItem(
+        `reviews-${productSlug}`,
+        JSON.stringify(defaultReviews)
+      );
     }
-  }, [product.slug]);
+  }, [product.slug, product.title]);
 
   const handleSubmitReview = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!rating || !reviewText || !reviewName || !reviewEmail) {
-      alert('Please fill in all required fields and select a rating.');
+      alert("Please fill in all required fields and select a rating.");
       return;
     }
 
@@ -155,26 +99,32 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
       review: reviewText,
       name: reviewName,
       email: reviewEmail,
-      date: new Date().toISOString()
+      date: new Date().toISOString(),
     };
 
     const updatedReviews = [...reviews, newReview];
     setReviews(updatedReviews);
 
     // Save to localStorage
-    const productSlug = product.slug || 'default';
-    localStorage.setItem(`reviews-${productSlug}`, JSON.stringify(updatedReviews));
+    const productSlug = product.slug || "default";
+    localStorage.setItem(
+      `reviews-${productSlug}`,
+      JSON.stringify(updatedReviews)
+    );
 
     // Save user info if checkbox is checked
     if (saveInfo) {
-      localStorage.setItem('reviewUserInfo', JSON.stringify({ name: reviewName, email: reviewEmail }));
+      localStorage.setItem(
+        "reviewUserInfo",
+        JSON.stringify({ name: reviewName, email: reviewEmail })
+      );
     }
 
     // Reset form
     setRating(0);
-    setReviewText('');
-    setReviewName('');
-    setReviewEmail('');
+    setReviewText("");
+    setReviewName("");
+    setReviewEmail("");
     setSaveInfo(false);
     setSubmitted(true);
 
@@ -186,54 +136,177 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
 
   // Load saved user info
   useEffect(() => {
-    const savedInfo = localStorage.getItem('reviewUserInfo');
+    const savedInfo = localStorage.getItem("reviewUserInfo");
     if (savedInfo) {
       const { name, email } = JSON.parse(savedInfo);
       setReviewName(name);
       setReviewEmail(email);
     }
   }, []);
-  const formatDescription = (text: string) => {
-    // Split by double newlines to get sections
-    const sections = text.split(/\n\n+/);
 
-    return sections.map((section, index) => {
-      const trimmed = section.trim();
-      if (!trimmed) return null;
+  // Memoized helper function to make links clickable in text
+  const makeLinksClickable = useCallback(
+    (text: string): (string | React.ReactElement)[] => {
+      // Quick check if text contains any links - skip processing if none
+      if (
+        !text.includes("@") &&
+        !text.includes("http") &&
+        !text.includes("+1")
+      ) {
+        return [text];
+      }
 
-      // Check if it's a heading (usually first line and shorter)
-      const lines = trimmed.split('\n');
-      const firstLine = lines[0].trim();
+      const parts: (string | React.ReactElement)[] = [];
+      let lastIndex = 0;
+      let keyCounter = 0;
 
-      // If first line looks like a heading (short, no period, or ends with ?)
-      if (firstLine.length < 100 && (firstLine.endsWith('?') || firstLine.endsWith('Account') || firstLine.includes('Google'))) {
-        const content = lines.slice(1).join('\n').trim();
+      // Optimized regex - only match actual contact info
+      const combinedRegex =
+        /(hello@usamarketsmm\.com|@Usamarketsmm|\+1\(712\)298-2593|https?:\/\/[^\s]+)/g;
 
-        if (index === 0) {
+      let match;
+      while ((match = combinedRegex.exec(text)) !== null) {
+        // Add text before the match
+        if (match.index > lastIndex) {
+          parts.push(text.substring(lastIndex, match.index));
+        }
+
+        const matchedText = match[0];
+
+        // Determine link type and create appropriate link
+        if (matchedText.includes("@") && !matchedText.startsWith("@")) {
+          // Email
+          parts.push(
+            <a
+              key={`link-${keyCounter++}`}
+              href={`mailto:${matchedText}`}
+              className="text-blue-600 hover:text-blue-800 underline">
+              {matchedText}
+            </a>
+          );
+        } else if (matchedText.startsWith("@")) {
+          // Telegram
+          const username = matchedText.substring(1);
+          parts.push(
+            <a
+              key={`link-${keyCounter++}`}
+              href={`https://t.me/${username}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline">
+              {matchedText}
+            </a>
+          );
+        } else if (matchedText.startsWith("+")) {
+          // Phone number
+          const cleanPhone = matchedText.replace(/[^\d+]/g, "");
+          parts.push(
+            <a
+              key={`link-${keyCounter++}`}
+              href={`tel:${cleanPhone}`}
+              className="text-blue-600 hover:text-blue-800 underline">
+              {matchedText}
+            </a>
+          );
+        } else if (matchedText.startsWith("http")) {
+          // URL
+          parts.push(
+            <a
+              key={`link-${keyCounter++}`}
+              href={matchedText}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:text-blue-800 underline">
+              {matchedText}
+            </a>
+          );
+        }
+
+        lastIndex = match.index + matchedText.length;
+      }
+
+      // Add remaining text
+      if (lastIndex < text.length) {
+        parts.push(text.substring(lastIndex));
+      }
+
+      return parts.length > 0 ? parts : [text];
+    },
+    []
+  );
+
+  // Memoize the formatted description to prevent re-rendering on every state change
+  const formattedDescription = useMemo(() => {
+    // Split by double newlines to get sections (limit to reasonable number for performance)
+    const sections = product.description.split(/\n\n+/).slice(0, 100);
+
+    return sections
+      .map((section, index) => {
+        const trimmed = section.trim();
+        if (!trimmed) return null;
+
+        // Check if it's a heading (usually first line and shorter)
+        const lines = trimmed.split("\n");
+        const firstLine = lines[0].trim();
+
+        // Optimized heading detection
+        const isHeading =
+          firstLine.length < 120 &&
+          (!firstLine.endsWith(".") ||
+            firstLine.endsWith("?") ||
+            /^\d+\.\s/.test(firstLine) ||
+            /^[A-Z][^.!?]*$/.test(firstLine) ||
+            firstLine.includes("Why ") ||
+            firstLine.includes("What ") ||
+            firstLine.includes("How ") ||
+            firstLine.includes("Benefits") ||
+            firstLine.includes("Features") ||
+            firstLine.includes("Package") ||
+            firstLine.includes("Account"));
+
+        if (isHeading) {
+          const content = lines.slice(1).join("\n").trim();
+
+          if (index === 0) {
+            return (
+              <div key={index} className="mb-6">
+                <h2 className="text-2xl font-bold text-green-600 mb-4">
+                  {firstLine}
+                </h2>
+                {content && (
+                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                    {makeLinksClickable(content)}
+                  </p>
+                )}
+              </div>
+            );
+          }
+
           return (
             <div key={index} className="mb-6">
-              <h2 className="text-2xl font-bold text-green-600 mb-4">{firstLine}</h2>
-              {content && <p className="text-gray-700 leading-relaxed whitespace-pre-line">{content}</p>}
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                {firstLine}
+              </h3>
+              {content && (
+                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+                  {makeLinksClickable(content)}
+                </p>
+              )}
             </div>
           );
         }
 
+        // Regular paragraph with clickable links
         return (
-          <div key={index} className="mb-6">
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{firstLine}</h3>
-            {content && <p className="text-gray-700 leading-relaxed whitespace-pre-line">{content}</p>}
+          <div key={index} className="mb-4">
+            <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+              {makeLinksClickable(trimmed)}
+            </p>
           </div>
         );
-      }
-
-      // Regular paragraph
-      return (
-        <div key={index} className="mb-4">
-          <p className="text-gray-700 leading-relaxed whitespace-pre-line">{trimmed}</p>
-        </div>
-      );
-    }).filter(Boolean);
-  };
+      })
+      .filter(Boolean);
+  }, [product.description, makeLinksClickable]);
 
   return (
     <div className="mb-12">
@@ -241,30 +314,30 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
       <div className="border-b border-gray-200 mb-6">
         <nav className="flex space-x-8">
           <button
-            onClick={() => setActiveTab('description')}
-            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'description'
-              ? 'border-blue-500 text-blue-600'
-              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-          >
+            onClick={() => setActiveTab("description")}
+            className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              activeTab === "description"
+                ? "border-blue-500 text-blue-600"
+                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+            }`}>
             Description
           </button>
           <button
-            onClick={() => setActiveTab('additional')}
-            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'additional'
-              ? 'border-blue-500 text-blue-600'
-              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-          >
+            onClick={() => setActiveTab("additional")}
+            className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              activeTab === "additional"
+                ? "border-blue-500 text-blue-600"
+                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+            }`}>
             Additional information
           </button>
           <button
-            onClick={() => setActiveTab('reviews')}
-            className={`py-4 px-1 border-b-2 font-medium text-sm ${activeTab === 'reviews'
-              ? 'border-blue-500 text-blue-600'
-              : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-              }`}
-          >
+            onClick={() => setActiveTab("reviews")}
+            className={`py-4 px-1 border-b-2 font-medium text-sm ${
+              activeTab === "reviews"
+                ? "border-blue-500 text-blue-600"
+                : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
+            }`}>
             Reviews ({reviews.length})
           </button>
         </nav>
@@ -272,20 +345,21 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
 
       {/* Tab Content */}
       <div className="prose max-w-none">
-        {activeTab === 'description' && (
-          <div className="text-gray-700">
-            {formatDescription(product.description)}
-          </div>
+        {activeTab === "description" && (
+          <div className="text-gray-700">{formattedDescription}</div>
         )}
 
-        {activeTab === 'additional' && (
+        {activeTab === "additional" && (
           <div className="text-gray-700">
             <table className="w-full border-collapse">
               <tbody>
                 <tr className="border-b border-gray-200">
-                  <td className="py-3 px-4 font-semibold text-gray-900 w-1/3">Buy Gmail Accounts</td>
+                  <td className="py-3 px-4 font-semibold text-gray-900 w-1/3">
+                    Buy Gmail Accounts
+                  </td>
                   <td className="py-3 px-4 text-gray-700">
-                    05 Gmail Accounts, 20 Gmail Accounts, 50 Gmail Accounts, 100 Gmail Accounts, 200 Gmail Accounts
+                    05 Gmail Accounts, 20 Gmail Accounts, 50 Gmail Accounts, 100
+                    Gmail Accounts, 200 Gmail Accounts
                   </td>
                 </tr>
               </tbody>
@@ -293,23 +367,27 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
           </div>
         )}
 
-        {activeTab === 'reviews' && (
+        {activeTab === "reviews" && (
           <div className="text-gray-700">
             {/* Existing Reviews */}
             {reviews.length > 0 && (
               <div className="mb-8 space-y-6">
                 {reviews.map((review) => (
-                  <div key={review.id} className="border-b border-gray-200 pb-6 last:border-b-0">
+                  <div
+                    key={review.id}
+                    className="border-b border-gray-200 pb-6 last:border-b-0">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="flex gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
                           <svg
                             key={star}
-                            className={`w-5 h-5 ${star <= review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'
-                              }`}
+                            className={`w-5 h-5 ${
+                              star <= review.rating
+                                ? "text-yellow-400 fill-current"
+                                : "text-gray-300"
+                            }`}
                             fill="currentColor"
-                            viewBox="0 0 24 24"
-                          >
+                            viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ))}
@@ -318,8 +396,12 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
                         {new Date(review.date).toLocaleDateString()}
                       </span>
                     </div>
-                    <p className="font-semibold text-gray-900 mb-2">{review.name}</p>
-                    <p className="text-gray-700 leading-relaxed">{review.review}</p>
+                    <p className="font-semibold text-gray-900 mb-2">
+                      {review.name}
+                    </p>
+                    <p className="text-gray-700 leading-relaxed">
+                      {review.review}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -328,8 +410,12 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
             {/* Success Message */}
             {submitted && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
-                <p className="text-green-800 font-semibold">Thank you for your review!</p>
-                <p className="text-green-600 text-sm mt-1">Your review will be displayed shortly.</p>
+                <p className="text-green-800 font-semibold">
+                  Thank you for your review!
+                </p>
+                <p className="text-green-600 text-sm mt-1">
+                  Your review will be displayed shortly.
+                </p>
               </div>
             )}
 
@@ -338,13 +424,17 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
               <p className="mb-4">There are no reviews yet.</p>
             )}
             <h3 className="text-xl font-bold mb-2">
-              {reviews.length === 0 ? 'Be the first to review' : 'Add a review'} "{product.title || 'Buy Google Ads Account'}"
+              {reviews.length === 0 ? "Be the first to review" : "Add a review"}{" "}
+              "{product.title || "Buy Google Ads Account"}"
             </h3>
             <p className="text-sm text-gray-600 mb-6">
-              Your email address will not be published. Required fields are marked *
+              Your email address will not be published. Required fields are
+              marked *
             </p>
 
-            <form onSubmit={handleSubmitReview} className="border border-gray-200 rounded-lg p-6 bg-white">
+            <form
+              onSubmit={handleSubmitReview}
+              className="border border-gray-200 rounded-lg p-6 bg-white">
               <div className="mb-6">
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Your rating *
@@ -357,15 +447,20 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
                       onClick={() => setRating(star)}
                       onMouseEnter={() => setHoverRating(star)}
                       onMouseLeave={() => setHoverRating(0)}
-                      className="focus:outline-none transition-colors"
-                    >
+                      className="focus:outline-none transition-colors">
                       <svg
-                        className={`w-6 h-6 ${star <= (hoverRating || rating) ? 'text-yellow-400' : 'text-gray-300'
-                          }`}
-                        fill={star <= (hoverRating || rating) ? 'currentColor' : 'none'}
+                        className={`w-6 h-6 ${
+                          star <= (hoverRating || rating)
+                            ? "text-yellow-400"
+                            : "text-gray-300"
+                        }`}
+                        fill={
+                          star <= (hoverRating || rating)
+                            ? "currentColor"
+                            : "none"
+                        }
                         stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
+                        viewBox="0 0 24 24">
                         <path
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -377,7 +472,9 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
                   ))}
                 </div>
                 {rating === 0 && (
-                  <p className="text-red-500 text-xs mt-1">Please select a rating</p>
+                  <p className="text-red-500 text-xs mt-1">
+                    Please select a rating
+                  </p>
                 )}
               </div>
 
@@ -430,14 +527,16 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
                     onChange={(e) => setSaveInfo(e.target.checked)}
                     className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                   />
-                  <span>Save my name, email, and website in this browser for the next time I comment.</span>
+                  <span>
+                    Save my name, email, and website in this browser for the
+                    next time I comment.
+                  </span>
                 </label>
               </div>
 
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
-              >
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors">
                 Submit
               </button>
             </form>
@@ -447,4 +546,3 @@ export default function ProductTabs({ product, activeTab, setActiveTab }: Produc
     </div>
   );
 }
-

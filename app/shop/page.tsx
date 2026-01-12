@@ -3,82 +3,189 @@ import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import Image from 'next/image';
 import { productsData } from '@/lib/data/products-list';
+import type { Metadata } from 'next';
+
+// SEO Metadata for Shop Page
+export const metadata: Metadata = {
+  title: 'Shop Verified Accounts | Buy Premium PVA Accounts - USA Markets SMM',
+  description: 'Browse our complete collection of verified accounts including Gmail, PayPal, Facebook, Instagram, Twitter, LinkedIn, Bank accounts & more. 100% verified, instant delivery, 30-day warranty. Trusted by 10,000+ customers worldwide.',
+  keywords: [
+    'buy verified accounts',
+    'pva accounts for sale',
+    'bulk accounts',
+    'buy gmail accounts',
+    'buy paypal accounts',
+    'buy facebook accounts',
+    'buy instagram accounts',
+    'cheap verified accounts',
+    'social media accounts',
+    'bank accounts for sale',
+    'verified digital accounts'
+  ],
+  openGraph: {
+    title: 'Shop Verified Accounts | USA Markets SMM',
+    description: 'Browse 40+ types of verified accounts. 100% verified, instant delivery, 30-day warranty.',
+    url: 'https://usamarketsmm.com/shop',
+    siteName: 'USA Markets SMM',
+    type: 'website',
+    images: [
+      {
+        url: 'https://usamarketsmm.com/images/shop-og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'USA Markets SMM - Verified Accounts Shop',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Shop Verified Accounts | USA Markets SMM',
+    description: 'Browse 40+ types of verified accounts. 100% verified, instant delivery, 30-day warranty.',
+  },
+  alternates: {
+    canonical: 'https://usamarketsmm.com/shop',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function ShopPage() {
   const products = Object.values(productsData);
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-blue-600">Home</Link>
-          <span className="mx-2">/</span>
-          <span className="text-gray-900 font-semibold">Shop</span>
-        </nav>
+  // BreadcrumbList Schema for Shop Page
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://usamarketsmm.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Shop",
+        "item": "https://usamarketsmm.com/shop"
+      }
+    ]
+  };
 
-        {/* Page Header */}
-        <div className="mb-8 sm:mb-12">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Our Shop</h1>
-          <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
-            Browse our wide selection of verified accounts and services. All products come with 30 days warranty and 24/7 customer support.
-          </p>
-        </div>
+  // ItemList Schema for Product Catalog
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "numberOfItems": products.length,
+    "itemListElement": products.map((product, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://usamarketsmm.com/product/${product.slug}`,
+      "name": product.title
+    }))
+  };
+
+  return (
+    <>
+      {/* Breadcrumb Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
+      {/* Product Catalog Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {/* Breadcrumbs */}
+          <nav className="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-blue-600">Home</Link>
+            <span className="mx-2">/</span>
+            <span className="text-gray-900 font-semibold">Shop</span>
+          </nav>
+
+          {/* Page Header */}
+          <div className="mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              Buy Verified Accounts - Premium PVA Accounts Shop
+            </h1>
+            <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
+              Browse our complete collection of 40+ verified accounts including Gmail, PayPal, Facebook, Instagram, LinkedIn, Bank accounts and more. All products come with 100% verification, instant delivery, 30-day warranty, and 24/7 customer support. Trusted by over 10,000 satisfied customers worldwide.
+            </p>
+          </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-          {products.map((product) => (
-            <div
-              key={product.slug}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
-            >
-              {/* Product Image */}
-              <div className="relative h-64 w-full overflow-hidden rounded-t-lg bg-gray-100">
-                <Image
-                  src={product.imagePath}
-                  alt={product.title}
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="object-cover"
-                />
-              </div>
+        <section aria-label="Product catalog">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+            {products.map((product) => (
+              <article
+                key={product.slug}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+                itemScope
+                itemType="https://schema.org/Product"
+              >
+                {/* Product Image */}
+                <div className="relative h-64 w-full overflow-hidden rounded-t-lg bg-gray-100">
+                  <Image
+                    src={product.imagePath}
+                    alt={`${product.title} - Buy verified ${product.category} accounts at USA Markets SMM`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    className="object-cover"
+                    itemProp="image"
+                  />
+                </div>
 
-              {/* Product Info */}
-              <div className="p-4 sm:p-6">
-                <p className="text-xs text-gray-500 mb-2">{product.category}</p>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
-                  {product.title}
-                </h3>
-                
-                {/* Price Range */}
-                <p className="text-xl font-bold text-blue-600 mb-4">
-                  ${product.priceRange.min.toFixed(2)} – ${product.priceRange.max.toFixed(2)}
-                </p>
+                {/* Product Info */}
+                <div className="p-4 sm:p-6">
+                  <p className="text-xs text-gray-500 mb-2" itemProp="category">{product.category}</p>
+                  <h2 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2" itemProp="name">
+                    {product.title}
+                  </h2>
+                  
+                  {/* Price Range */}
+                  <div itemProp="offers" itemScope itemType="https://schema.org/AggregateOffer">
+                    <meta itemProp="priceCurrency" content="USD" />
+                    <meta itemProp="lowPrice" content={product.priceRange.min.toString()} />
+                    <meta itemProp="highPrice" content={product.priceRange.max.toString()} />
+                    <p className="text-xl font-bold text-blue-600 mb-4">
+                      ${product.priceRange.min.toFixed(2)} – ${product.priceRange.max.toFixed(2)}
+                    </p>
+                  </div>
 
-                {/* View Product Button */}
-                <Link
-                  href={`/product/${product.slug}`}
-                  className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors"
-                >
-                  View Product
-                </Link>
-              </div>
+                  {/* View Product Button */}
+                  <Link
+                    href={`/product/${product.slug}`}
+                    className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors"
+                    aria-label={`View details for ${product.title}`}
+                  >
+                    View Product
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {/* Empty State (shouldn't show, but just in case) */}
+          {products.length === 0 && (
+            <div className="text-center py-16">
+              <p className="text-gray-600 text-lg">No products available at the moment.</p>
             </div>
-          ))}
+          )}
+        </section>
         </div>
 
-        {/* Empty State (shouldn't show, but just in case) */}
-        {products.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-gray-600 text-lg">No products available at the moment.</p>
-          </div>
-        )}
+        <Footer />
       </div>
-
-      <Footer />
-    </div>
+    </>
   );
 }
 
