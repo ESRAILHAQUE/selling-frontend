@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useEffect, useMemo, useCallback, memo } from "react";
 import { generateProductReviews } from "@/lib/data/review-generator";
+import { getProductDescription } from "@/lib/data/descriptions-split";
 
 interface Product {
   title?: string;
@@ -24,11 +25,7 @@ interface ProductTabsProps {
   setActiveTab: (tab: string) => void;
 }
 
-export default function ProductTabs({
-  product,
-  activeTab,
-  setActiveTab,
-}: ProductTabsProps) {
+function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -37,10 +34,48 @@ export default function ProductTabs({
   const [reviewEmail, setReviewEmail] = useState("");
   const [saveInfo, setSaveInfo] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  const [loadedDescription, setLoadedDescription] = useState<string>("");
+  const [isLoadingDescription, setIsLoadingDescription] = useState(true);
+
+  // Memoize product slug to prevent unnecessary recalculations
+  const productSlug = useMemo(() => product.slug || "default", [product.slug]);
+
+  // Load description asynchronously (lazy loading)
+  useEffect(() => {
+    let mounted = true;
+    
+    async function loadDescription() {
+      if (!product.slug) {
+        setIsLoadingDescription(false);
+        return;
+      }
+      
+      setIsLoadingDescription(true);
+      try {
+        const desc = await getProductDescription(product.slug);
+        if (mounted) {
+          setLoadedDescription(desc || product.description);
+          setIsLoadingDescription(false);
+        }
+      } catch (error) {
+        console.error("Failed to load description:", error);
+        if (mounted) {
+          setLoadedDescription(product.description);
+          setIsLoadingDescription(false);
+        }
+      }
+    }
+    
+    loadDescription();
+    
+    return () => {
+      mounted = false;
+    };
+  }, [product.slug, product.description]);
 
   useEffect(() => {
     // Load reviews from localStorage
-    const productSlug = product.slug || "default";
     const storedReviews = localStorage.getItem(`reviews-${productSlug}`);
 
     if (storedReviews) {
@@ -83,7 +118,7 @@ export default function ProductTabs({
         JSON.stringify(defaultReviews)
       );
     }
-  }, [product.slug, product.title]);
+  }, [productSlug, product.title]);
 
   const handleSubmitReview = (e: React.FormEvent) => {
     e.preventDefault();
@@ -145,100 +180,26 @@ export default function ProductTabs({
   }, []);
 
   // Memoized helper function to make links clickable in text
+  // Simplified - no regex processing to prevent page freeze
+  // Links will be clickable via CSS or added manually in descriptions
   const makeLinksClickable = useCallback(
-    (text: string): (string | React.ReactElement)[] => {
-      // Quick check if text contains any links - skip processing if none
-      if (
-        !text.includes("@") &&
-        !text.includes("http") &&
-        !text.includes("+1")
-      ) {
-        return [text];
-      }
-
-      const parts: (string | React.ReactElement)[] = [];
-      let lastIndex = 0;
-      let keyCounter = 0;
-
-      // Optimized regex - only match actual contact info
-      const combinedRegex =
-        /(hello@usamarketsmm\.com|@Usamarketsmm|\+1\(712\)298-2593|https?:\/\/[^\s]+)/g;
-
-      let match;
-      while ((match = combinedRegex.exec(text)) !== null) {
-        // Add text before the match
-        if (match.index > lastIndex) {
-          parts.push(text.substring(lastIndex, match.index));
-        }
-
-        const matchedText = match[0];
-
-        // Determine link type and create appropriate link
-        if (matchedText.includes("@") && !matchedText.startsWith("@")) {
-          // Email
-          parts.push(
-            <a
-              key={`link-${keyCounter++}`}
-              href={`mailto:${matchedText}`}
-              className="text-blue-600 hover:text-blue-800 underline">
-              {matchedText}
-            </a>
-          );
-        } else if (matchedText.startsWith("@")) {
-          // Telegram
-          const username = matchedText.substring(1);
-          parts.push(
-            <a
-              key={`link-${keyCounter++}`}
-              href={`https://t.me/${username}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline">
-              {matchedText}
-            </a>
-          );
-        } else if (matchedText.startsWith("+")) {
-          // Phone number
-          const cleanPhone = matchedText.replace(/[^\d+]/g, "");
-          parts.push(
-            <a
-              key={`link-${keyCounter++}`}
-              href={`tel:${cleanPhone}`}
-              className="text-blue-600 hover:text-blue-800 underline">
-              {matchedText}
-            </a>
-          );
-        } else if (matchedText.startsWith("http")) {
-          // URL
-          parts.push(
-            <a
-              key={`link-${keyCounter++}`}
-              href={matchedText}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 hover:text-blue-800 underline">
-              {matchedText}
-            </a>
-          );
-        }
-
-        lastIndex = match.index + matchedText.length;
-      }
-
-      // Add remaining text
-      if (lastIndex < text.length) {
-        parts.push(text.substring(lastIndex));
-      }
-
-      return parts.length > 0 ? parts : [text];
+    (text: string): string => {
+      return text;
     },
     []
   );
 
   // Memoize the formatted description to prevent re-rendering on every state change
   const formattedDescription = useMemo(() => {
-    // Split by double newlines to get sections (limit to reasonable number for performance)
-    const sections = product.description.split(/\n\n+/).slice(0, 100);
+    // Use loaded description or fallback to prop
+    const descriptionToUse = loadedDescription || product.description;
+    
+    // Split by double newlines to get sections
+    // For performance: Show only first 15 sections initially
+    const allSections = descriptionToUse.split(/\n\n+/);
+    const sections = showFullDescription
+      ? allSections
+      : allSections.slice(0, 15);
 
     return sections
       .map((section, index) => {
@@ -275,7 +236,7 @@ export default function ProductTabs({
                 </h2>
                 {content && (
                   <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {makeLinksClickable(content)}
+                    {content}
                   </p>
                 )}
               </div>
@@ -289,7 +250,7 @@ export default function ProductTabs({
               </h3>
               {content && (
                 <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                  {makeLinksClickable(content)}
+                  {content}
                 </p>
               )}
             </div>
@@ -306,7 +267,7 @@ export default function ProductTabs({
         );
       })
       .filter(Boolean);
-  }, [product.description, makeLinksClickable]);
+  }, [loadedDescription, product.description, makeLinksClickable, showFullDescription]);
 
   return (
     <div className="mb-12">
@@ -346,7 +307,28 @@ export default function ProductTabs({
       {/* Tab Content */}
       <div className="prose max-w-none">
         {activeTab === "description" && (
-          <div className="text-gray-700">{formattedDescription}</div>
+          <div className="text-gray-700">
+            {isLoadingDescription ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+                <span className="ml-3 text-gray-600">Loading content...</span>
+              </div>
+            ) : (
+              <>
+                {formattedDescription}
+                {!showFullDescription &&
+                  (loadedDescription || product.description).split(/\n\n+/).length > 15 && (
+                    <div className="mt-6 text-center">
+                      <button
+                        onClick={() => setShowFullDescription(true)}
+                        className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
+                        Show More Content
+                      </button>
+                    </div>
+                  )}
+              </>
+            )}
+          </div>
         )}
 
         {activeTab === "additional" && (
@@ -546,3 +528,11 @@ export default function ProductTabs({
     </div>
   );
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(ProductTabs, (prevProps, nextProps) => {
+  return (
+    prevProps.product.slug === nextProps.product.slug &&
+    prevProps.activeTab === nextProps.activeTab
+  );
+});

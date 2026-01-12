@@ -3,6 +3,7 @@ import Footer from "@/components/layout/Footer";
 import ProductDetails from "@/components/common/ProductDetails";
 import RelatedProducts from "@/components/common/RelatedProducts";
 import { getProductBySlug, getAllProductSlugs } from "@/lib/data/products-list";
+import { getMetaDescription } from "@/lib/data/meta-descriptions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
@@ -26,8 +27,8 @@ export async function generateMetadata({
     };
   }
 
-  // Extract first 160 characters for meta description
-  const metaDescription = product.description.slice(0, 160).trim() + "...";
+  // Get optimized meta description (doesn't load full description)
+  const metaDescription = getMetaDescription(slug, product.title);
 
   return {
     title: `${product.title} | USA Markets SMM - Premium ${product.category}`,
@@ -100,12 +101,15 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
+  // Get meta description for structured data
+  const productMetaDescription = getMetaDescription(slug, product.title);
+
   // Structured Data (JSON-LD) for Google Rich Snippets
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.title,
-    description: product.description.slice(0, 200),
+    description: productMetaDescription,
     category: product.category,
     offers: {
       "@type": "AggregateOffer",
