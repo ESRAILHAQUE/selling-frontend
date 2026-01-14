@@ -34,7 +34,6 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
   const [reviewEmail, setReviewEmail] = useState("");
   const [saveInfo, setSaveInfo] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [showFullDescription, setShowFullDescription] = useState(false);
   const [loadedDescription, setLoadedDescription] = useState<string>("");
   const [isLoadingDescription, setIsLoadingDescription] = useState(true);
 
@@ -44,66 +43,118 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
   // Load description asynchronously (lazy loading)
   useEffect(() => {
     let mounted = true;
-    
+    let timeoutId: NodeJS.Timeout;
+
     async function loadDescription() {
       if (!product.slug) {
+        setLoadedDescription("Product information will be available soon.");
         setIsLoadingDescription(false);
         return;
       }
-      
+
       setIsLoadingDescription(true);
+
+      // Set a timeout to prevent infinite loading
+      timeoutId = setTimeout(() => {
+        if (mounted) {
+          console.warn(`Description loading timeout for: ${product.slug}`);
+          setLoadedDescription(
+            "Product description is being updated. Please check back soon."
+          );
+          setIsLoadingDescription(false);
+        }
+      }, 3000); // 3 second timeout
+
       try {
         const desc = await getProductDescription(product.slug);
+        clearTimeout(timeoutId);
+
         if (mounted) {
-          setLoadedDescription(desc || product.description);
+          if (desc && desc.trim() !== "") {
+            setLoadedDescription(desc);
+          } else {
+            // Don't retry - just show fallback message
+            setLoadedDescription(
+              "Product description is being updated. Please check back soon."
+            );
+          }
           setIsLoadingDescription(false);
         }
       } catch (error) {
+        clearTimeout(timeoutId);
         console.error("Failed to load description:", error);
         if (mounted) {
-          setLoadedDescription(product.description);
+          setLoadedDescription(
+            "Product description is being updated. Please check back soon."
+          );
           setIsLoadingDescription(false);
         }
       }
     }
-    
+
     loadDescription();
-    
+
     return () => {
       mounted = false;
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     };
-  }, [product.slug, product.description]);
+  }, [product.slug]);
 
   useEffect(() => {
+    let mounted = true;
+
     // Load reviews from localStorage
     const storedReviews = localStorage.getItem(`reviews-${productSlug}`);
 
     if (storedReviews) {
-      const parsedReviews = JSON.parse(storedReviews);
+      try {
+        const parsedReviews = JSON.parse(storedReviews);
 
-      // Check if reviews are old format (contain default- ids or generic names)
-      const hasOldFormat = parsedReviews.some(
-        (r: Review) =>
-          r.id.startsWith("default-") ||
-          r.name === "John Smith" ||
-          r.name === "Sarah Johnson" ||
-          r.name === "Alex Thompson"
-      );
+        // Check if reviews are old format (contain default- ids or generic names)
+        const hasOldFormat = parsedReviews.some(
+          (r: Review) =>
+            r.id.startsWith("default-") ||
+            r.name === "John Smith" ||
+            r.name === "Sarah Johnson" ||
+            r.name === "Alex Thompson"
+        );
 
-      if (hasOldFormat || parsedReviews.length < 3) {
-        // Generate new unique reviews
+        if (hasOldFormat || parsedReviews.length < 3) {
+          // Generate new unique reviews
+          const defaultReviews = generateProductReviews(
+            productSlug,
+            product.title || "Account",
+            5
+          );
+          if (mounted) {
+            setReviews(defaultReviews);
+            localStorage.setItem(
+              `reviews-${productSlug}`,
+              JSON.stringify(defaultReviews)
+            );
+          }
+        } else {
+          if (mounted) {
+            setReviews(parsedReviews);
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing reviews:", error);
+        // Generate new reviews on parse error
         const defaultReviews = generateProductReviews(
           productSlug,
           product.title || "Account",
           5
         );
-        setReviews(defaultReviews);
-        localStorage.setItem(
-          `reviews-${productSlug}`,
-          JSON.stringify(defaultReviews)
-        );
-      } else {
-        setReviews(parsedReviews);
+        if (mounted) {
+          setReviews(defaultReviews);
+          localStorage.setItem(
+            `reviews-${productSlug}`,
+            JSON.stringify(defaultReviews)
+          );
+        }
       }
     } else {
       // Generate unique reviews for this product
@@ -112,12 +163,18 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
         product.title || "Account",
         5
       );
-      setReviews(defaultReviews);
-      localStorage.setItem(
-        `reviews-${productSlug}`,
-        JSON.stringify(defaultReviews)
-      );
+      if (mounted) {
+        setReviews(defaultReviews);
+        localStorage.setItem(
+          `reviews-${productSlug}`,
+          JSON.stringify(defaultReviews)
+        );
+      }
     }
+
+    return () => {
+      mounted = false;
+    };
   }, [productSlug, product.title]);
 
   const handleSubmitReview = (e: React.FormEvent) => {
@@ -179,34 +236,20 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
     }
   }, []);
 
-  // Memoized helper function to make links clickable in text
-  // Simplified - no regex processing to prevent page freeze
-  // Links will be clickable via CSS or added manually in descriptions
-  const makeLinksClickable = useCallback(
-    (text: string): string => {
-      return text;
-    },
-    []
-  );
-
   // Memoize the formatted description to prevent re-rendering on every state change
   const formattedDescription = useMemo(() => {
     // Use loaded description or fallback to prop
     const descriptionToUse = loadedDescription || product.description;
-    
+
     // If no description available, return empty array
     if (!descriptionToUse || descriptionToUse.trim() === "") {
       return [];
     }
-    
-    // Split by double newlines to get sections
-    // For performance: Show only first 15 sections initially
-    const allSections = descriptionToUse.split(/\n\n+/);
-    const sections = showFullDescription
-      ? allSections
-      : allSections.slice(0, 15);
 
-    return sections
+    // Split by double newlines to get sections
+    const allSections = descriptionToUse.split(/\n\n+/);
+
+    return allSections
       .map((section, index) => {
         const trimmed = section.trim();
         if (!trimmed) return null;
@@ -215,13 +258,12 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
         const lines = trimmed.split("\n");
         const firstLine = lines[0].trim();
 
-        // Optimized heading detection
+        // Optimized heading detection - removed regex for performance
         const isHeading =
           firstLine.length < 120 &&
           (!firstLine.endsWith(".") ||
             firstLine.endsWith("?") ||
-            /^\d+\.\s/.test(firstLine) ||
-            /^[A-Z][^.!?]*$/.test(firstLine) ||
+            firstLine.startsWith("##") ||
             firstLine.includes("Why ") ||
             firstLine.includes("What ") ||
             firstLine.includes("How ") ||
@@ -262,17 +304,17 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
           );
         }
 
-        // Regular paragraph with clickable links
+        // Regular paragraph
         return (
           <div key={index} className="mb-4">
             <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-              {makeLinksClickable(trimmed)}
+              {trimmed}
             </p>
           </div>
         );
       })
       .filter(Boolean);
-  }, [loadedDescription, product.description, makeLinksClickable, showFullDescription]);
+  }, [loadedDescription, product.description]);
 
   return (
     <div className="mb-12">
@@ -319,19 +361,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
                 <span className="ml-3 text-gray-600">Loading content...</span>
               </div>
             ) : (
-              <>
-                {formattedDescription}
-                {!showFullDescription &&
-                  (loadedDescription || product.description).split(/\n\n+/).length > 15 && (
-                    <div className="mt-6 text-center">
-                      <button
-                        onClick={() => setShowFullDescription(true)}
-                        className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors">
-                        Show More Content
-                      </button>
-                    </div>
-                  )}
-              </>
+              <>{formattedDescription}</>
             )}
           </div>
         )}
@@ -536,8 +566,11 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
 
 // Memoize component to prevent unnecessary re-renders
 export default memo(ProductTabs, (prevProps, nextProps) => {
+  // Return true if props are the SAME (skip re-render)
+  // Return false if props have CHANGED (do re-render)
   return (
     prevProps.product.slug === nextProps.product.slug &&
-    prevProps.activeTab === nextProps.activeTab
+    prevProps.activeTab === nextProps.activeTab &&
+    prevProps.setActiveTab === nextProps.setActiveTab
   );
 });
