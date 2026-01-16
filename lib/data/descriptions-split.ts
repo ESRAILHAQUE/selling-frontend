@@ -4,7 +4,8 @@
 // Import all descriptions statically
 import * as buyGmailAccounts from "./descriptions/buy-gmail-accounts";
 import * as buyOldGmailAccounts from "./descriptions/buy-old-gmail-accounts";
-import * as buySocialSecurityNumber from "./descriptions/buy-social-security-number";
+import * as buyOldYahooAccount from "./descriptions/buy-old-yahoo-account";
+import * as buyOutlookAccount from "./descriptions/buy-outlook-account";
 import * as buyFacebookAdsAccounts from "./descriptions/buy-facebook-ads-accounts";
 import * as buyUsaFacebookAccounts from "./descriptions/buy-usa-facebook-accounts";
 import * as buyFacebookAccountWith5000Friends from "./descriptions/buy-facebook-account-with-5000-friends";
@@ -42,7 +43,6 @@ import * as buyVerifiedBinanceAccounts from "./descriptions/buy-verified-binance
 import * as buyGoogleReviews from "./descriptions/buy-google-reviews";
 import * as buyGoogleBusinessReviews from "./descriptions/buy-google-business-reviews";
 import * as buyGoogle5StarReviews from "./descriptions/buy-google-5-star-reviews";
-import * as buyTrustpilotReviews from "./descriptions/buy-trustpilot-reviews";
 import * as buySoundcloudAccounts from "./descriptions/buy-soundcloud-accounts";
 import * as buyNaverAccount from "./descriptions/buy-naver-account";
 
@@ -50,7 +50,8 @@ import * as buyNaverAccount from "./descriptions/buy-naver-account";
 const descriptionModules: Record<string, { description: string }> = {
   "buy-gmail-accounts": buyGmailAccounts,
   "buy-old-gmail-accounts": buyOldGmailAccounts,
-  "buy-social-security-number": buySocialSecurityNumber,
+  "buy-old-yahoo-account": buyOldYahooAccount,
+  "buy-outlook-account": buyOutlookAccount,
   "buy-facebook-ads-accounts": buyFacebookAdsAccounts,
   "buy-usa-facebook-accounts": buyUsaFacebookAccounts,
   "buy-facebook-account-with-5000-friends": buyFacebookAccountWith5000Friends,
@@ -88,7 +89,6 @@ const descriptionModules: Record<string, { description: string }> = {
   "buy-google-reviews": buyGoogleReviews,
   "buy-google-business-reviews": buyGoogleBusinessReviews,
   "buy-google-5-star-reviews": buyGoogle5StarReviews,
-  "buy-trustpilot-reviews": buyTrustpilotReviews,
   "buy-soundcloud-accounts": buySoundcloudAccounts,
   "buy-naver-account": buyNaverAccount,
 };
@@ -140,7 +140,8 @@ export function hasDescription(slug: string): boolean {
 export const availableProducts = [
   "buy-gmail-accounts",
   "buy-old-gmail-accounts",
-  "buy-social-security-number",
+  "buy-old-yahoo-account",
+  "buy-outlook-account",
   "buy-facebook-ads-accounts",
   "buy-usa-facebook-accounts",
   "buy-facebook-account-with-5000-friends",
@@ -178,6 +179,5 @@ export const availableProducts = [
   "buy-google-reviews",
   "buy-google-business-reviews",
   "buy-google-5-star-reviews",
-  "buy-trustpilot-reviews",
   "buy-soundcloud-accounts",
 ];

@@ -1,35 +1,37 @@
 <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="faviconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#9333EA" />
-      <stop offset="50%" stopColor="#3B82F6" />
-      <stop offset="100%" stopColor="#10B981" />
-    </linearGradient>
-  </defs>
+  <!-- Shield Outline - Green -->
+  <path
+    d="M50 10 L20 20 L20 60 Q20 75 28 85 Q36 95 50 95 Q64 95 72 85 Q80 75 80 60 L80 20 Z"
+    stroke="#10B981"
+    stroke-width="4"
+    fill="none"
+  />
   
-  {/* Background Circle */}
-  <circle cx="50" cy="50" r="48" fill="url(#faviconGradient)" />
+  <!-- Large Checkmark - Green -->
+  <path
+    d="M30 60 L40 70 L70 40"
+    stroke="#10B981"
+    stroke-width="5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
   
-  {/* Globe/Network Icon */}
-  <g transform="translate(50, 50)">
-    {/* Globe Grid Lines */}
-    <ellipse cx="0" cy="0" rx="25" ry="15" fill="none" stroke="white" strokeWidth="2.5" opacity="0.9" />
-    <ellipse cx="0" cy="0" rx="15" ry="25" fill="none" stroke="white" strokeWidth="2.5" opacity="0.9" />
-    <line x1="-25" y1="0" x2="25" y2="0" stroke="white" strokeWidth="2.5" opacity="0.9" />
-    <line x1="0" y1="-25" x2="0" y2="25" stroke="white" strokeWidth="2.5" opacity="0.9" />
-    
-    {/* Connection Nodes */}
-    <circle cx="-15" cy="-10" r="3.5" fill="white" />
-    <circle cx="15" cy="-10" r="3.5" fill="white" />
-    <circle cx="-15" cy="10" r="3.5" fill="white" />
-    <circle cx="15" cy="10" r="3.5" fill="white" />
-    <circle cx="0" cy="0" r="5" fill="white" />
-    
-    {/* Connection Lines */}
-    <line x1="-15" y1="-10" x2="0" y2="0" stroke="white" strokeWidth="2" opacity="0.7" />
-    <line x1="15" y1="-10" x2="0" y2="0" stroke="white" strokeWidth="2" opacity="0.7" />
-    <line x1="-15" y1="10" x2="0" y2="0" stroke="white" strokeWidth="2" opacity="0.7" />
-    <line x1="15" y1="10" x2="0" y2="0" stroke="white" strokeWidth="2" opacity="0.7" />
+  <!-- E-commerce Symbol (Horizontal Lines) - Blue - Upper Right -->
+  <g transform="translate(55, 30)">
+    <line x1="0" y1="0" x2="20" y2="0" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+    <line x1="0" y1="7" x2="16" y2="7" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+    <line x1="0" y1="14" x2="20" y2="14" stroke="#3B82F6" stroke-width="3" stroke-linecap="round" />
+  </g>
+  
+  <!-- Network/Connectivity Nodes - Blue - Lower Left -->
+  <g transform="translate(25, 80)">
+    <!-- Dots -->
+    <circle cx="0" cy="0" r="3" fill="#3B82F6" />
+    <circle cx="15" cy="0" r="3" fill="#3B82F6" />
+    <circle cx="7.5" cy="13" r="3" fill="#3B82F6" />
+    <!-- Connection Lines -->
+    <line x1="0" y1="0" x2="15" y2="0" stroke="#3B82F6" stroke-width="2" opacity="0.7" />
+    <line x1="0" y1="0" x2="7.5" y2="13" stroke="#3B82F6" stroke-width="2" opacity="0.7" />
+    <line x1="15" y1="0" x2="7.5" y2="13" stroke="#3B82F6" stroke-width="2" opacity="0.7" />
   </g>
 </svg>
-

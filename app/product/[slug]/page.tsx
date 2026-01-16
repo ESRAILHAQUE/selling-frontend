@@ -2,7 +2,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProductDetails from "@/components/common/ProductDetails";
 import RelatedProducts from "@/components/common/RelatedProducts";
-import { getProductBySlug, getAllProductSlugs } from "@/lib/data/products-list";
+import { getProductBySlug, getAllProductSlugs, getProductShortDescription } from "@/lib/data/products-list";
 import { getMetaDescription } from "@/lib/data/meta-descriptions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -101,6 +101,10 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
+  // Get short description for product
+  const shortDescription = getProductShortDescription(slug);
+  const productWithDescription = { ...product, shortDescription };
+
   // Get meta description for structured data
   const productMetaDescription = getMetaDescription(slug, product.title);
 
@@ -168,7 +172,7 @@ export default async function ProductPage({ params }: PageProps) {
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <ProductDetails product={product} />
+        <ProductDetails product={productWithDescription} />
         <RelatedProducts />
         <Footer />
       </div>

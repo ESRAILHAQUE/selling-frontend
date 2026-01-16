@@ -269,7 +269,7 @@ export default function CartPage() {
 
                 <Link
                   href="/checkout"
-                  className="block w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors mb-4 text-center"
+                  className="btn-primary block w-full text-white font-semibold py-3 px-6 rounded-lg mb-4 text-center shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Proceed to Checkout
                 </Link>

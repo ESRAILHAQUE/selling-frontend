@@ -60,6 +60,8 @@ export default function DedicatedSolutions() {
               alt="Business solutions and dedication"
               fill
               className="object-cover"
+              loading="lazy"
+              quality={85}
             />
           </div>
         </div>

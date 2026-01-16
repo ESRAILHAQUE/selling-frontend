@@ -17,6 +17,7 @@ export interface ProductData {
   }>;
   description: string;
   imagePath: string;
+  shortDescription?: string;
 }
 
 // Helper function to generate product data
@@ -67,7 +68,7 @@ export const productsData: Record<string, ProductData> = {
     title: "Buy Gmail Accounts",
     category: "Email Accounts",
     categories: ["Email Accounts"],
-    priceRange: { min: 15, max: 250 },
+    priceRange: { min: 6, max: 340 },
     breadcrumbs: ["Home", "Email Accounts", "Buy Gmail Accounts"],
     serviceDetails: [
       "100% verified Gmail account",
@@ -82,11 +83,11 @@ export const productsData: Record<string, ProductData> = {
       "100% cash-back guarantee",
     ],
     options: [
-      { id: "1", name: "05 Gmail Accounts", price: 15 },
+      { id: "1", name: "05 Gmail Accounts", price: 6 },
       { id: "2", name: "20 Gmail Accounts", price: 50 },
       { id: "3", name: "50 Gmail Accounts", price: 100 },
       { id: "4", name: "100 Gmail Accounts", price: 180 },
-      { id: "5", name: "200 Gmail Accounts", price: 250 },
+      { id: "5", name: "200 Gmail Accounts", price: 340 },
     ],
     imagePath: "/images/products/buy-gmail-accounts.jpg",
     // Empty description - will be loaded lazily on client
@@ -106,18 +107,32 @@ export const productsData: Record<string, ProductData> = {
       { id: "5", name: "200 Old Gmail Accounts", price: 300 },
     ]
   ),
-  "buy-social-security-number": createProduct(
-    "buy-social-security-number",
-    "Buy Social Security Number",
+  "buy-old-yahoo-account": createProduct(
+    "buy-old-yahoo-account",
+    "Buy Old Yahoo Account",
     "Email Accounts",
     ["Email Accounts"],
-    { min: 5, max: 500 },
+    { min: 8, max: 25 },
     [
-      { id: "1", name: "Single SSN", price: 5 },
-      { id: "2", name: "5 SSN Package", price: 20 },
-      { id: "3", name: "10 SSN Package", price: 35 },
-      { id: "4", name: "20 SSN Package", price: 150 },
-      { id: "5", name: "50 SSN Package", price: 500 },
+      { id: "1", name: "05 Old Yahoo Accounts", price: 8 },
+      { id: "2", name: "20 Old Yahoo Accounts", price: 12 },
+      { id: "3", name: "50 Old Yahoo Accounts", price: 18 },
+      { id: "4", name: "100 Old Yahoo Accounts", price: 22 },
+      { id: "5", name: "200 Old Yahoo Accounts", price: 25 },
+    ]
+  ),
+  "buy-outlook-account": createProduct(
+    "buy-outlook-account",
+    "Buy Outlook Account",
+    "Email Accounts",
+    ["Email Accounts"],
+    { min: 16, max: 260 },
+    [
+      { id: "1", name: "05 Outlook Accounts", price: 16 },
+      { id: "2", name: "20 Outlook Accounts", price: 50 },
+      { id: "3", name: "50 Outlook Accounts", price: 100 },
+      { id: "4", name: "100 Outlook Accounts", price: 180 },
+      { id: "5", name: "200 Outlook Accounts", price: 260 },
     ]
   ),
   // Social Accounts
@@ -167,12 +182,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy LinkedIn Account",
     "Social Accounts",
     ["Social Accounts"],
-    { min: 50, max: 500 },
+    { min: 30, max: 250 },
     [
-      { id: "1", name: "Basic LinkedIn Account", price: 50 },
-      { id: "2", name: "Premium LinkedIn Account", price: 150 },
-      { id: "3", name: "Business LinkedIn Account", price: 300 },
-      { id: "4", name: "Enterprise LinkedIn Account", price: 500 },
+      { id: "1", name: "Basic LinkedIn Account", price: 30 },
+      { id: "2", name: "Premium LinkedIn Account", price: 80 },
+      { id: "3", name: "Business LinkedIn Account", price: 150 },
+      { id: "4", name: "Enterprise LinkedIn Account", price: 250 },
     ]
   ),
   "buy-twitter-accounts": createProduct(
@@ -234,12 +249,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy naver account",
     "Social Accounts",
     ["Social Accounts"],
-    { min: 45, max: 350 },
+    { min: 10, max: 300 },
     [
-      { id: "1", name: "Single Naver Account", price: 45 },
-      { id: "2", name: "5 Naver Accounts", price: 180 },
-      { id: "3", name: "10 Naver Accounts", price: 280 },
-      { id: "4", name: "20 Naver Accounts", price: 350 },
+      { id: "1", name: "Single Naver Account", price: 10 },
+      { id: "2", name: "5 Naver Accounts", price: 50 },
+      { id: "3", name: "10 Naver Accounts", price: 150 },
+      { id: "4", name: "20 Naver Accounts", price: 300 },
     ]
   ),
   // Bank Accounts
@@ -248,13 +263,13 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified PayPal Accounts",
     "Bank account",
     ["Bank account"],
-    { min: 150, max: 2000 },
+    { min: 110, max: 150 },
     [
-      { id: "1", name: "Basic PayPal Account", price: 150 },
-      { id: "2", name: "Verified PayPal Account", price: 300 },
-      { id: "3", name: "Business PayPal Account", price: 600 },
-      { id: "4", name: "Premium PayPal Account", price: 1200 },
-      { id: "5", name: "Enterprise PayPal Account", price: 2000 },
+      { id: "1", name: "Basic PayPal Account", price: 110 },
+      { id: "2", name: "Verified PayPal Account", price: 120 },
+      { id: "3", name: "Business PayPal Account", price: 130 },
+      { id: "4", name: "Premium PayPal Account", price: 140 },
+      { id: "5", name: "Enterprise PayPal Account", price: 150 },
     ]
   ),
   "buy-verified-payoneer-accounts": createProduct(
@@ -262,13 +277,13 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Payoneer Accounts",
     "Bank account",
     ["Bank account"],
-    { min: 120, max: 1500 },
+    { min: 120, max: 250 },
     [
       { id: "1", name: "Basic Payoneer Account", price: 120 },
-      { id: "2", name: "Verified Payoneer Account", price: 250 },
-      { id: "3", name: "Business Payoneer Account", price: 500 },
-      { id: "4", name: "Premium Payoneer Account", price: 1000 },
-      { id: "5", name: "Enterprise Payoneer Account", price: 1500 },
+      { id: "2", name: "Verified Payoneer Account", price: 160 },
+      { id: "3", name: "Business Payoneer Account", price: 200 },
+      { id: "4", name: "Premium Payoneer Account", price: 230 },
+      { id: "5", name: "Enterprise Payoneer Account", price: 250 },
     ]
   ),
   "buy-verified-cash-app-account": createProduct(
@@ -276,12 +291,38 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Cash App Account",
     "Bank account",
     ["Bank account"],
-    { min: 100, max: 800 },
+    { min: 160, max: 450 },
     [
-      { id: "1", name: "Basic Cash App Account", price: 100 },
-      { id: "2", name: "Verified Cash App Account", price: 200 },
-      { id: "3", name: "Premium Cash App Account", price: 400 },
-      { id: "4", name: "Business Cash App Account", price: 800 },
+      { id: "1", name: "Basic Cash App Account", price: 160 },
+      { id: "2", name: "Verified Cash App Account", price: 250 },
+      { id: "3", name: "Premium Cash App Account", price: 350 },
+      { id: "4", name: "Business Cash App Account", price: 450 },
+    ]
+  ),
+  "buy-verified-wise-accounts": createProduct(
+    "buy-verified-wise-accounts",
+    "Buy Verified Wise Accounts",
+    "Bank account",
+    ["Bank account"],
+    { min: 200, max: 380 },
+    [
+      { id: "1", name: "Basic Wise Account", price: 200 },
+      { id: "2", name: "Verified Wise Account", price: 250 },
+      { id: "3", name: "Premium Wise Account", price: 320 },
+      { id: "4", name: "Business Wise Account", price: 380 },
+    ]
+  ),
+  "buy-verified-stripe-accounts": createProduct(
+    "buy-verified-stripe-accounts",
+    "Buy Verified Stripe Accounts",
+    "Bank account",
+    ["Bank account"],
+    { min: 370, max: 570 },
+    [
+      { id: "1", name: "Basic Stripe Account", price: 370 },
+      { id: "2", name: "Verified Stripe Account", price: 440 },
+      { id: "3", name: "Premium Stripe Account", price: 510 },
+      { id: "4", name: "Business Stripe Account", price: 570 },
     ]
   ),
   "buy-chime-bank-accounts": createProduct(
@@ -289,12 +330,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy Chime Bank Accounts",
     "Bank account",
     ["Bank account"],
-    { min: 80, max: 600 },
+    { min: 100, max: 220 },
     [
-      { id: "1", name: "Basic Chime Account", price: 80 },
-      { id: "2", name: "Verified Chime Account", price: 180 },
-      { id: "3", name: "Premium Chime Account", price: 350 },
-      { id: "4", name: "Business Chime Account", price: 600 },
+      { id: "1", name: "Basic Chime Account", price: 100 },
+      { id: "2", name: "Verified Chime Account", price: 140 },
+      { id: "3", name: "Premium Chime Account", price: 180 },
+      { id: "4", name: "Business Chime Account", price: 220 },
     ]
   ),
   "buy-verified-onlyfans-accounts": createProduct(
@@ -302,12 +343,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified OnlyFans Accounts",
     "Bank account",
     ["Bank account"],
-    { min: 200, max: 1500 },
+    { min: 90, max: 360 },
     [
-      { id: "1", name: "Basic OnlyFans Account", price: 200 },
-      { id: "2", name: "Verified OnlyFans Account", price: 400 },
-      { id: "3", name: "Premium OnlyFans Account", price: 800 },
-      { id: "4", name: "VIP OnlyFans Account", price: 1500 },
+      { id: "1", name: "Basic OnlyFans Account", price: 90 },
+      { id: "2", name: "Verified OnlyFans Account", price: 180 },
+      { id: "3", name: "Premium OnlyFans Account", price: 270 },
+      { id: "4", name: "VIP OnlyFans Account", price: 360 },
     ]
   ),
   "buy-verified-skrill-accounts": createProduct(
@@ -315,12 +356,38 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Skrill Accounts",
     "Bank account",
     ["Bank account"],
-    { min: 130, max: 1200 },
+    { min: 90, max: 800 },
     [
-      { id: "1", name: "Basic Skrill Account", price: 130 },
-      { id: "2", name: "Verified Skrill Account", price: 280 },
-      { id: "3", name: "Premium Skrill Account", price: 600 },
-      { id: "4", name: "Business Skrill Account", price: 1200 },
+      { id: "1", name: "Basic Skrill Account", price: 90 },
+      { id: "2", name: "Verified Skrill Account", price: 250 },
+      { id: "3", name: "Premium Skrill Account", price: 500 },
+      { id: "4", name: "Business Skrill Account", price: 800 },
+    ]
+  ),
+  "buy-verified-go2bank-accounts": createProduct(
+    "buy-verified-go2bank-accounts",
+    "Buy Verified Go2Bank Accounts",
+    "Bank account",
+    ["Bank account"],
+    { min: 50, max: 120 },
+    [
+      { id: "1", name: "Basic Go2Bank Account", price: 50 },
+      { id: "2", name: "Verified Go2Bank Account", price: 70 },
+      { id: "3", name: "Premium Go2Bank Account", price: 90 },
+      { id: "4", name: "Business Go2Bank Account", price: 120 },
+    ]
+  ),
+  "buy-verified-venmo-accounts": createProduct(
+    "buy-verified-venmo-accounts",
+    "Buy Verified Venmo Accounts",
+    "Bank account",
+    ["Bank account"],
+    { min: 120, max: 250 },
+    [
+      { id: "1", name: "Basic Venmo Account", price: 120 },
+      { id: "2", name: "Verified Venmo Account", price: 160 },
+      { id: "3", name: "Premium Venmo Account", price: 200 },
+      { id: "4", name: "Business Venmo Account", price: 250 },
     ]
   ),
   "buy-verified-bluebird-accounts": createProduct(
@@ -380,12 +447,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Chase Bank Account",
     "Bank account",
     ["Bank account"],
-    { min: 320, max: 2800 },
+    { min: 80, max: 1000 },
     [
-      { id: "1", name: "Basic Chase Bank Account", price: 320 },
-      { id: "2", name: "Verified Chase Bank Account", price: 650 },
-      { id: "3", name: "Premium Chase Bank Account", price: 1300 },
-      { id: "4", name: "Business Chase Bank Account", price: 2800 },
+      { id: "1", name: "Basic Chase Bank Account", price: 80 },
+      { id: "2", name: "Verified Chase Bank Account", price: 300 },
+      { id: "3", name: "Premium Chase Bank Account", price: 600 },
+      { id: "4", name: "Business Chase Bank Account", price: 1000 },
     ]
   ),
   // Premium Banking
@@ -407,12 +474,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Apple Pay Accounts",
     "Premium Banking",
     ["Premium Banking"],
-    { min: 200, max: 1800 },
+    { min: 370, max: 470 },
     [
-      { id: "1", name: "Basic Apple Pay Account", price: 200 },
-      { id: "2", name: "Verified Apple Pay Account", price: 450 },
-      { id: "3", name: "Premium Apple Pay Account", price: 900 },
-      { id: "4", name: "Business Apple Pay Account", price: 1800 },
+      { id: "1", name: "Basic Apple Pay Account", price: 370 },
+      { id: "2", name: "Verified Apple Pay Account", price: 400 },
+      { id: "3", name: "Premium Apple Pay Account", price: 440 },
+      { id: "4", name: "Business Apple Pay Account", price: 470 },
     ]
   ),
   "buy-verified-alipay-accounts": createProduct(
@@ -551,11 +618,11 @@ export const productsData: Record<string, ProductData> = {
     "Buy Google Voice Accounts",
     "Google",
     ["Google"],
-    { min: 50, max: 400 },
+    { min: 15, max: 400 },
     [
-      { id: "1", name: "Single Google Voice Account", price: 50 },
-      { id: "2", name: "5 Google Voice Accounts", price: 200 },
-      { id: "3", name: "10 Google Voice Accounts", price: 350 },
+      { id: "1", name: "Single Google Voice Account", price: 15 },
+      { id: "2", name: "5 Google Voice Accounts", price: 60 },
+      { id: "3", name: "10 Google Voice Accounts", price: 200 },
       { id: "4", name: "20 Google Voice Accounts", price: 400 },
     ]
   ),
@@ -564,25 +631,25 @@ export const productsData: Record<string, ProductData> = {
     "Buy Google Ads Account",
     "Google",
     ["Google", "Social Accounts"],
-    { min: 100, max: 500 },
+    { min: 220, max: 320 },
     [
       {
         id: "1",
         name: "Adwords With $500 Balance",
-        price: 500,
-        originalPrice: 600,
+        price: 220,
+        originalPrice: 260,
       },
       {
         id: "2",
         name: "Adwords With $1000 Balance",
-        price: 1000,
-        originalPrice: 1200,
+        price: 270,
+        originalPrice: 320,
       },
       {
         id: "3",
         name: "Adwords With $2000 Balance",
-        price: 2000,
-        originalPrice: 2500,
+        price: 320,
+        originalPrice: 380,
       },
     ]
   ),
@@ -591,12 +658,12 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Coinbase Accounts",
     "Google",
     ["Google"],
-    { min: 250, max: 2000 },
+    { min: 180, max: 380 },
     [
-      { id: "1", name: "Basic Coinbase Account", price: 250 },
-      { id: "2", name: "Verified Coinbase Account", price: 500 },
-      { id: "3", name: "Premium Coinbase Account", price: 1000 },
-      { id: "4", name: "Business Coinbase Account", price: 2000 },
+      { id: "1", name: "Basic Coinbase Account", price: 180 },
+      { id: "2", name: "Verified Coinbase Account", price: 250 },
+      { id: "3", name: "Premium Coinbase Account", price: 320 },
+      { id: "4", name: "Business Coinbase Account", price: 380 },
     ]
   ),
   "buy-verified-binance-accounts": createProduct(
@@ -604,12 +671,38 @@ export const productsData: Record<string, ProductData> = {
     "Buy Verified Binance Accounts",
     "Google",
     ["Google"],
-    { min: 300, max: 2500 },
+    { min: 200, max: 350 },
     [
-      { id: "1", name: "Basic Binance Account", price: 300 },
-      { id: "2", name: "Verified Binance Account", price: 600 },
-      { id: "3", name: "Premium Binance Account", price: 1200 },
-      { id: "4", name: "Business Binance Account", price: 2500 },
+      { id: "1", name: "Basic Binance Account", price: 200 },
+      { id: "2", name: "Verified Binance Account", price: 250 },
+      { id: "3", name: "Premium Binance Account", price: 300 },
+      { id: "4", name: "Business Binance Account", price: 350 },
+    ]
+  ),
+  "buy-verified-bybit-account": createProduct(
+    "buy-verified-bybit-account",
+    "Buy Verified Bybit Account",
+    "Google",
+    ["Google"],
+    { min: 170, max: 270 },
+    [
+      { id: "1", name: "Basic Bybit Account", price: 170 },
+      { id: "2", name: "Verified Bybit Account", price: 200 },
+      { id: "3", name: "Premium Bybit Account", price: 240 },
+      { id: "4", name: "Business Bybit Account", price: 270 },
+    ]
+  ),
+  "buy-verified-crypto-com-account": createProduct(
+    "buy-verified-crypto-com-account",
+    "Buy Verified Crypto.com Account",
+    "Google",
+    ["Google"],
+    { min: 220, max: 350 },
+    [
+      { id: "1", name: "Basic Crypto.com Account", price: 220 },
+      { id: "2", name: "Verified Crypto.com Account", price: 270 },
+      { id: "3", name: "Premium Crypto.com Account", price: 310 },
+      { id: "4", name: "Business Crypto.com Account", price: 350 },
     ]
   ),
   // Reviews
@@ -655,25 +748,56 @@ export const productsData: Record<string, ProductData> = {
       { id: "5", name: "200 Google 5 Star Reviews", price: 700 },
     ]
   ),
-  "buy-trustpilot-reviews": createProduct(
-    "buy-trustpilot-reviews",
-    "Buy TrustPilot Reviews",
-    "Reviews",
-    ["Reviews"],
-    { min: 35, max: 800 },
+  "buy-walmart-seller-account": createProduct(
+    "buy-walmart-seller-account",
+    "Buy Walmart Seller Account",
+    "Premium Banking",
+    ["Premium Banking"],
+    { min: 1900, max: 4900 },
     [
-      { id: "1", name: "10 TrustPilot Reviews", price: 35 },
-      { id: "2", name: "25 TrustPilot Reviews", price: 80 },
-      { id: "3", name: "50 TrustPilot Reviews", price: 220 },
-      { id: "4", name: "100 TrustPilot Reviews", price: 450 },
-      { id: "5", name: "200 TrustPilot Reviews", price: 800 },
+      { id: "1", name: "Basic Walmart Seller Account", price: 1900 },
+      { id: "2", name: "Verified Walmart Seller Account", price: 2800 },
+      { id: "3", name: "Premium Walmart Seller Account", price: 3800 },
+      { id: "4", name: "Enterprise Walmart Seller Account", price: 4900 },
     ]
   ),
+};
+
+// Product-specific short descriptions
+export const productShortDescriptions: Record<string, string> = {
+  "buy-gmail-accounts": "Looking for high-quality, real, and active Gmail accounts? Our premium Gmail accounts come from USA and European phone-verified sources, including aged Gmail accounts at competitive prices. These accounts are more reliable, build trust, and work seamlessly for both personal and business purposes. Get instant delivery and enjoy the peace of mind that comes with fully verified accounts.",
+  "buy-google-voice-accounts": "Get premium Google Voice accounts with US phone numbers for your business needs. Our verified accounts come with instant delivery, reliable service, and full access to call and SMS features. Perfect for businesses, marketers, and individuals who need a professional phone number with Google Voice capabilities.",
+  "buy-naver-account": "Purchase verified Naver accounts for Korean market access and digital marketing. Our premium Naver accounts are fully verified, phone-authenticated, and ready for immediate use. Perfect for businesses targeting Korean audiences, SEO professionals, and marketers who need reliable Korean social media accounts. Get instant delivery and full account access with our trusted Naver account service.",
+  "buy-linkedin-account": "Get premium LinkedIn accounts for professional networking and B2B marketing. Our verified LinkedIn accounts come with established profiles, professional connections, and full access to networking features. Perfect for sales professionals, recruiters, business developers, and marketers who need authentic LinkedIn presence. Build credibility and expand your professional network with our trusted LinkedIn account service.",
+  "buy-old-yahoo-account": "Purchase aged Yahoo accounts with established history and proven credibility. Our premium old Yahoo accounts come from verified sources, ensuring reliable email deliverability and professional appearance. Perfect for email marketing, business communications, and online platforms. Get instant delivery and enjoy accounts that build trust and improve your communication effectiveness.",
+  "buy-google-ads-account": "Get verified Google Ads accounts with pre-loaded balance for your advertising campaigns. Our premium Google Ads accounts come ready to use, fully verified, and approved for immediate advertising. Perfect for digital marketers, businesses, and agencies who need reliable Google Ads access. Start your campaigns instantly with our trusted Google Ads account service.",
+  "buy-verified-binance-accounts": "Purchase KYC verified Binance accounts for cryptocurrency trading. Our premium Binance accounts are fully verified, compliant with regulations, and ready for immediate trading. Perfect for crypto traders, investors, and businesses who need reliable access to Binance exchange. Get instant delivery and full account access with trading capabilities.",
+  "buy-verified-coinbase-accounts": "Get verified Coinbase accounts for secure cryptocurrency trading and investment. Our premium Coinbase accounts are fully KYC verified, bank-linked, and ready for immediate use. Perfect for crypto enthusiasts, investors, and businesses who need reliable Coinbase access. Start trading securely with our trusted Coinbase account service.",
+  "buy-verified-paypal-accounts": "Purchase verified PayPal accounts for secure online payments and transactions. Our premium PayPal accounts are fully verified, bank-linked, and ready for immediate use. Perfect for e-commerce businesses, freelancers, and individuals who need reliable PayPal access. Get instant delivery and full payment processing capabilities.",
+  "buy-verified-cash-app-account": "Get verified Cash App accounts for instant money transfers and payments. Our premium Cash App accounts are fully verified, bank-linked, and ready for immediate use. Perfect for businesses, freelancers, and individuals who need reliable Cash App access. Start sending and receiving money instantly with our trusted Cash App account service.",
+  "buy-chime-bank-accounts": "Purchase verified Chime bank accounts for modern online banking. Our premium Chime accounts are fully verified, FDIC-insured, and ready for immediate use. Perfect for individuals and businesses who need reliable online banking with no hidden fees. Get instant delivery and full banking access with our trusted Chime account service.",
+  "buy-verified-payoneer-accounts": "Get verified Payoneer accounts for global payments and freelancer payments. Our premium Payoneer accounts are fully verified, bank-linked, and ready for international transactions. Perfect for freelancers, businesses, and individuals who need reliable global payment solutions. Receive payments worldwide with our trusted Payoneer account service.",
+  "buy-verified-skrill-accounts": "Purchase verified Skrill accounts for secure online payments and money transfers. Our premium Skrill accounts are fully verified, approved, and ready for immediate use. Perfect for online businesses, freelancers, and individuals who need reliable payment processing. Get instant delivery and full payment capabilities with our trusted Skrill account service.",
+  "buy-verified-onlyfans-accounts": "Get verified OnlyFans accounts for content creation and monetization. Our premium OnlyFans accounts are fully verified, ready to use, and approved for content publishing. Perfect for content creators, influencers, and businesses who need reliable OnlyFans access. Start monetizing your content instantly with our trusted OnlyFans account service.",
+  "buy-verified-chase-bank-account": "Purchase verified Chase Bank accounts for premium banking services. Our premium Chase accounts are fully verified, approved, and ready for immediate banking access. Perfect for businesses and individuals who need reliable Chase Bank services. Get instant delivery and full banking capabilities with our trusted Chase Bank account service.",
+  "buy-verified-apple-pay-accounts": "Get verified Apple Pay accounts for secure contactless payments. Our premium Apple Pay accounts are fully verified, card-linked, and ready for immediate use. Perfect for businesses and individuals who need reliable Apple Pay access. Make secure payments instantly with our trusted Apple Pay account service.",
+  "buy-verified-bybit-account": "Purchase verified Bybit accounts for cryptocurrency derivatives trading. Our premium Bybit accounts are fully KYC verified, approved, and ready for immediate trading. Perfect for crypto traders and investors who need reliable Bybit exchange access. Start trading derivatives instantly with our trusted Bybit account service.",
+  "buy-verified-crypto-com-account": "Get verified Crypto.com accounts for cryptocurrency trading and card services. Our premium Crypto.com accounts are fully verified, approved, and ready for immediate use. Perfect for crypto enthusiasts who need reliable Crypto.com access. Start trading and earn rewards with our trusted Crypto.com account service.",
+  "buy-verified-wise-accounts": "Purchase verified Wise (formerly TransferWise) accounts for low-cost international money transfers. Our premium Wise accounts are fully verified, approved, and ready for global transactions. Perfect for businesses and individuals who need reliable international payment solutions. Send money worldwide with low fees using our trusted Wise account service.",
+  "buy-verified-stripe-accounts": "Get verified Stripe accounts for online payment processing and e-commerce. Our premium Stripe accounts are fully verified, approved, and ready for immediate payment processing. Perfect for online businesses, marketplaces, and SaaS companies who need reliable payment solutions. Start accepting payments instantly with our trusted Stripe account service.",
+  "buy-verified-go2bank-accounts": "Purchase verified Go2Bank accounts for modern digital banking. Our premium Go2Bank accounts are fully verified, approved, and ready for immediate use. Perfect for individuals who need reliable online banking with early direct deposit and cashback rewards. Get instant delivery and full banking access with our trusted Go2Bank account service.",
+  "buy-verified-venmo-accounts": "Get verified Venmo accounts for instant peer-to-peer payments. Our premium Venmo accounts are fully verified, bank-linked, and ready for immediate use. Perfect for individuals and businesses who need reliable Venmo payment access. Send and receive money instantly with our trusted Venmo account service.",
+  "buy-walmart-seller-account": "Purchase Walmart Seller accounts for marketplace selling. Our premium Walmart Seller accounts are fully verified, approved, and ready for immediate use. Perfect for businesses and sellers who want to reach millions of customers on Walmart marketplace. Start selling on Walmart instantly with our trusted seller account service.",
 };
 
 // Get product by slug
 export function getProductBySlug(slug: string): ProductData | null {
   return productsData[slug] || null;
+}
+
+// Get short description for a product
+export function getProductShortDescription(slug: string): string | undefined {
+  return productShortDescriptions[slug];
 }
 
 // Get all product slugs

@@ -15,6 +15,7 @@ interface Product {
   serviceDetails: string[];
   options: ProductOption[];
   imagePath: string;
+  shortDescription?: string;
 }
 
 interface ProductInfoProps {
@@ -88,6 +89,15 @@ export default function ProductInfo({
           Price range: ${product.priceRange.min.toFixed(2)} through ${product.priceRange.max.toFixed(2)}
         </div>
       </div>
+
+      {/* Short Description */}
+      {product.shortDescription && (
+        <div className="mb-4 sm:mb-6">
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
+            {product.shortDescription}
+          </p>
+        </div>
+      )}
 
       {/* Service Details */}
       <div className="mb-4 sm:mb-6">
@@ -198,7 +208,7 @@ export default function ProductInfo({
 
       <button
         onClick={handleAddToCart}
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg transition-colors mb-3 sm:mb-4 text-sm sm:text-base"
+        className="btn-primary w-full text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg mb-3 sm:mb-4 text-sm sm:text-base shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
       >
         Add to cart
       </button>

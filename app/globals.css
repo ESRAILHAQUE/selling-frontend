@@ -59,3 +59,13 @@ body {
   animation: slideUp 0.8s ease-out forwards;
   opacity: 0;
 }
+
+/* Custom Button Hover Effect for #105495 color */
+.btn-primary {
+  background-color: #105495;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0d4375;
+}

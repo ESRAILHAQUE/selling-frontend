@@ -23,7 +23,6 @@ export default function PromotionalImage({ productTitle, imagePath }: Promotiona
           quality={85}
           priority
           onError={() => setImageError(true)}
-          unoptimized
         />
       ) : (
         <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">

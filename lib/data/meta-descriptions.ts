@@ -6,8 +6,10 @@ export const metaDescriptions: Record<string, string> = {
     "Buy verified Gmail accounts for your business. PVA accounts with instant delivery, 24/7 support, and 100% satisfaction guarantee.",
   "buy-old-gmail-accounts":
     "Purchase aged Gmail accounts for enhanced credibility. Verified, active accounts with full replacement guarantee and secure delivery.",
-  "buy-social-security-number":
-    "Get verified SSN for your business needs. Secure, instant delivery with full documentation and 24/7 customer support.",
+  "buy-old-yahoo-account":
+    "Buy old Yahoo accounts with established history. Aged accounts with verified status, full access, and instant delivery for business use.",
+  "buy-outlook-account":
+    "Purchase Outlook accounts for professional email communication. Verified Microsoft Outlook accounts with instant delivery and full access.",
   "buy-facebook-ads-accounts":
     "Buy Facebook Ads accounts with spending limits. Pre-verified, ready to use, with full replacement guarantee and instant delivery.",
   "buy-usa-facebook-accounts":
@@ -82,8 +84,6 @@ export const metaDescriptions: Record<string, string> = {
     "Get Google Business Profile reviews to boost visibility. Genuine reviews from verified accounts with safe delivery.",
   "buy-google-5-star-reviews":
     "Buy 5-star Google reviews to improve your rating. Authentic reviews from real users with guaranteed retention.",
-  "buy-trustpilot-reviews":
-    "Purchase TrustPilot reviews for social proof. Verified reviewers with genuine profiles and natural posting schedule.",
   "buy-soundcloud-accounts":
     "Get SoundCloud accounts for music promotion. Aged accounts with followers, plays, and full access for instant use.",
   "buy-naver-account":

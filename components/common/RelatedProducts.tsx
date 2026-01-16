@@ -4,7 +4,7 @@ import { getProductBySlug } from '@/lib/data/products-list';
 
 const relatedProductSlugs = [
   'buy-twitter-accounts',
-  'buy-social-security-number',
+  'buy-old-yahoo-account',
   'buy-old-gmail-accounts',
   'buy-usa-facebook-accounts'
 ];
@@ -30,6 +30,8 @@ export default function RelatedProducts() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover"
+                  loading="lazy"
+                  quality={85}
                 />
               </div>
 
@@ -46,7 +48,7 @@ export default function RelatedProducts() {
                 {/* Select Options Button */}
                 <Link
                   href={`/product/${product.slug}`}
-                  className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-semibold py-2 px-4 rounded-lg transition-colors"
+                  className="btn-primary block w-full text-white text-center font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                 >
                   Select options
                 </Link>

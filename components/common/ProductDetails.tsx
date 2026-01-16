@@ -23,6 +23,7 @@ interface Product {
   options: ProductOption[];
   description: string;
   imagePath: string;
+  shortDescription?: string;
 }
 
 interface ProductDetailsProps {

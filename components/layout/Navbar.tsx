@@ -25,7 +25,8 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: 'Buy Gmail Accounts', href: '/product/buy-gmail-accounts' },
       { label: 'Buy Old Gmail Accounts', href: '/product/buy-old-gmail-accounts' },
-      { label: 'Buy Social Security Number', href: '/product/buy-social-security-number' }
+      { label: 'Buy Old Yahoo Account', href: '/product/buy-old-yahoo-account' },
+      { label: 'Buy Outlook Account', href: '/product/buy-outlook-account' }
     ]
   },
   {
@@ -89,8 +90,7 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: 'Buy Google reviews', href: '/product/buy-google-reviews' },
       { label: 'Buy Google Business Reviews', href: '/product/buy-google-business-reviews' },
-      { label: 'Buy Google 5 Star Reviews', href: '/product/buy-google-5-star-reviews' },
-      { label: 'Buy TrustPilot Reviews', href: '/product/buy-trustpilot-reviews' }
+      { label: 'Buy Google 5 Star Reviews', href: '/product/buy-google-5-star-reviews' }
     ]
   },
   {
@@ -217,8 +217,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Navigation Bar - Green */}
-      <nav className="bg-green-600 text-white sticky top-0 z-50">
+      {/* Navigation Bar - Blue */}
+      <nav className="text-white sticky top-0 z-50" style={{ backgroundColor: '#105495' }}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center h-14 sm:h-16 justify-between">
@@ -239,12 +239,12 @@ export default function Navbar() {
                   {item.href ? (
                     <Link
                       href={item.href}
-                      className="flex items-center gap-1 hover:text-green-200 transition-colors text-xs xl:text-sm py-2 whitespace-nowrap"
+                      className="flex items-center gap-1 hover:text-blue-200 transition-colors text-xs xl:text-sm py-2 whitespace-nowrap"
                     >
                       {item.label}
                     </Link>
                   ) : (
-                    <span className="flex items-center gap-1 cursor-pointer hover:text-green-200 transition-colors text-xs xl:text-sm py-2 whitespace-nowrap">
+                    <span className="flex items-center gap-1 cursor-pointer hover:text-blue-200 transition-colors text-xs xl:text-sm py-2 whitespace-nowrap">
                       {item.label}
                       {item.dropdown && (
                         <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -265,7 +265,7 @@ export default function Navbar() {
                         <Link
                           key={dropdownItem.label}
                           href={dropdownItem.href}
-                          className="block px-4 py-2 text-gray-800 hover:bg-green-50 hover:text-green-600 transition-colors text-sm"
+                          className="block px-4 py-2 text-gray-800 hover:bg-blue-50 hover:text-blue-600 transition-colors text-sm"
                         >
                           {dropdownItem.label}
                         </Link>
@@ -329,11 +329,12 @@ export default function Navbar() {
 
             {/* Mobile Menu Sidebar */}
             <div
-              className={`fixed top-0 right-0 h-full w-80 bg-green-600 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
+              className={`fixed top-0 right-0 h-full w-80 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out ${
                 mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
               }`}
+              style={{ backgroundColor: '#105495' }}
             >
-              <div className="p-4 border-b border-green-500 flex justify-between items-center">
+              <div className="p-4 border-b flex justify-between items-center" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}>
                 <h2 className="text-xl font-bold text-white">Menu</h2>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
@@ -354,7 +355,9 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           onClick={() => setMobileMenuOpen(false)}
-                          className="block px-4 py-2 hover:bg-green-700 transition-colors"
+                          className="block px-4 py-2 transition-colors"
+                          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(13, 67, 117, 0.8)'}
+                          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                         >
                           {item.label}
                         </Link>
@@ -362,7 +365,10 @@ export default function Navbar() {
                         <>
                           <button
                             onClick={() => setMobileDropdownOpen(mobileDropdownOpen === item.label ? null : item.label)}
-                            className="w-full flex items-center justify-between px-4 py-2 hover:bg-green-700 transition-colors text-left"
+                            className="w-full flex items-center justify-between px-4 py-2 transition-colors text-left"
+                            style={{ backgroundColor: mobileDropdownOpen === item.label ? 'rgba(13, 67, 117, 0.5)' : 'transparent' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(13, 67, 117, 0.8)'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = mobileDropdownOpen === item.label ? 'rgba(13, 67, 117, 0.5)' : 'transparent'}
                           >
                             <span>{item.label}</span>
                             <svg
@@ -375,7 +381,7 @@ export default function Navbar() {
                             </svg>
                           </button>
                           {item.dropdown && mobileDropdownOpen === item.label && (
-                            <ul className="bg-green-700 pl-4">
+                            <ul className="pl-4" style={{ backgroundColor: 'rgba(13, 67, 117, 0.3)' }}>
                               {item.dropdown.map((dropdownItem) => (
                                 <li key={dropdownItem.label}>
                                   <Link
@@ -384,7 +390,9 @@ export default function Navbar() {
                                       setMobileMenuOpen(false);
                                       setMobileDropdownOpen(null);
                                     }}
-                                    className="block px-4 py-2 hover:bg-green-600 transition-colors text-sm"
+                                    className="block px-4 py-2 transition-colors text-sm"
+                                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'rgba(16, 84, 149, 0.8)'}
+                                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
                                   >
                                     {dropdownItem.label}
                                   </Link>
