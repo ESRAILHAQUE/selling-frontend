@@ -16,7 +16,7 @@ export default function PromotionalImage({ productTitle, imagePath }: Promotiona
       {!imageError ? (
         <Image
           src={imagePath}
-          alt={productTitle}
+          alt={`${productTitle} - Premium verified account with 100% delivery guarantee and 30-day replacement warranty`}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
           className="object-cover"

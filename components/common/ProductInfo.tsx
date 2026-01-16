@@ -201,6 +201,7 @@ export default function ProductInfo({
                 setQuantity(1);
               }
             }}
+            aria-label="Product quantity"
             className="w-16 sm:w-20 px-2 sm:px-3 py-2 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-lg text-center"
           />
         </div>
@@ -209,6 +210,7 @@ export default function ProductInfo({
       <button
         onClick={handleAddToCart}
         className="btn-primary w-full text-white font-semibold py-2.5 sm:py-3 px-4 sm:px-6 rounded-lg mb-3 sm:mb-4 text-sm sm:text-base shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+        aria-label={`Add ${product.title} to shopping cart`}
       >
         Add to cart
       </button>

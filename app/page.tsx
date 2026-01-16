@@ -55,6 +55,7 @@ export default function Home() {
 
       <div className="min-h-screen bg-gray-50">
       <Navbar />
+      <main id="main-content" tabIndex={-1}>
       <Hero />
 
       {/* Service Feature Section */}
@@ -106,6 +107,7 @@ export default function Home() {
 
       {/* Testimonials Section */}
       <Testimonials />
+      </main>
 
       <Footer />
       </div>

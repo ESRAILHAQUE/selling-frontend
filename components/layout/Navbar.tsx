@@ -107,6 +107,12 @@ export default function Navbar() {
   const [mobileDropdownOpen, setMobileDropdownOpen] = useState<string | null>(null);
   const [cartCount, setCartCount] = useState(0);
 
+  // Skip to main content for accessibility
+  const skipToMainContent = () => {
+    const mainContent = document.getElementById('main-content');
+    mainContent?.focus();
+  };
+
   useEffect(() => {
     // Load cart count from localStorage
     const updateCartCount = () => {
@@ -147,8 +153,20 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Skip Navigation Link for Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:bg-blue-600 focus:text-white focus:px-4 focus:py-2"
+        onClick={(e) => {
+          e.preventDefault();
+          skipToMainContent();
+        }}
+      >
+        Skip to main content
+      </a>
+
       {/* Top Banner - Services Scrolling */}
-      <div className="bg-purple-800 py-3 sm:py-4 overflow-hidden relative">
+      <div className="bg-purple-800 py-3 sm:py-4 overflow-hidden relative" role="banner" aria-label="Services showcase">
         <div className="flex items-center gap-6 sm:gap-8 lg:gap-12 animate-scroll">
           {/* Duplicate set for seamless scrolling */}
           {[...Array(2)].map((_, setIndex) => (
@@ -217,8 +235,8 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Navigation Bar - Blue */}
-      <nav className="text-white sticky top-0 z-50" style={{ backgroundColor: '#105495' }}>
+      {/* Navigation Bar - Blue with improved contrast */}
+      <nav className="sticky top-0 z-50" style={{ backgroundColor: '#105495', color: '#FFFFFF' }} role="navigation" aria-label="Main navigation">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center h-14 sm:h-16 justify-between">
@@ -278,7 +296,7 @@ export default function Navbar() {
             
             {/* Cart Icon */}
             <div className="flex-shrink-0 -mr-2 sm:-mr-4">
-              <Link href="/cart" className="relative">
+              <Link href="/cart" className="relative" aria-label={`Shopping cart with ${cartCount} items`}>
                 <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                 </svg>
@@ -301,7 +319,7 @@ export default function Navbar() {
               
               {/* Cart and Menu */}
               <div className="flex items-center gap-4">
-                <Link href="/cart" className="relative">
+                <Link href="/cart" className="relative" aria-label={`Shopping cart with ${cartCount} items`}>
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                   </svg>

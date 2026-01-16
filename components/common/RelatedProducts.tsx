@@ -26,7 +26,7 @@ export default function RelatedProducts() {
               <div className="relative w-full aspect-square overflow-hidden rounded-t-lg bg-gray-100">
                 <Image
                   src={product.imagePath}
-                  alt={product.title}
+                  alt={`${product.title} - Premium verified accounts with instant delivery and 30-day warranty`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover"

@@ -172,8 +172,10 @@ export default async function ProductPage({ params }: PageProps) {
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />
+        <main id="main-content" tabIndex={-1}>
         <ProductDetails product={productWithDescription} />
         <RelatedProducts />
+        </main>
         <Footer />
       </div>
     </>

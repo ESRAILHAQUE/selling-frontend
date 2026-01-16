@@ -505,6 +505,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
                   onChange={(e) => setReviewText(e.target.value)}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-y"
                   placeholder="Write your review here..."
+                  aria-label="Your review text"
                   required
                 />
               </div>
@@ -519,6 +520,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
                     value={reviewName}
                     onChange={(e) => setReviewName(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    aria-label="Your name"
                     required
                   />
                 </div>
@@ -531,6 +533,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
                     value={reviewEmail}
                     onChange={(e) => setReviewEmail(e.target.value)}
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    aria-label="Your email address"
                     required
                   />
                 </div>
@@ -553,7 +556,8 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
 
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors">
+                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors"
+                aria-label="Submit your product review">
                 Submit
               </button>
             </form>

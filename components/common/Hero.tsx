@@ -9,7 +9,7 @@ export default function Hero() {
         {/* Background Image */}
         <Image
           src="/images/hero/hero-image.png"
-          alt="USAMARKETSMM - Global IT Shop & Service Agency"
+          alt="USA Markets SMM - Premium verified digital accounts marketplace with instant delivery and 30-day warranty"
           fill
           className="object-cover"
           priority

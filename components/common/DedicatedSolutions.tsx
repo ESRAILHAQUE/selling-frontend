@@ -57,7 +57,7 @@ export default function DedicatedSolutions() {
           <div className="relative h-64 sm:h-80 lg:h-96 xl:h-[500px] rounded-lg overflow-hidden shadow-xl order-1 lg:order-2">
             <Image
               src="/images/hero/imgi_1_04194f17ef59ef1e04194f17ef59ef1eHomePage-scaled.jpg"
-              alt="Business solutions and dedication"
+              alt="Professional business team providing dedicated IT solutions and verified account services worldwide"
               fill
               className="object-cover"
               loading="lazy"
