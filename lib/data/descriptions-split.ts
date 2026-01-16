@@ -180,4 +180,12 @@ export const availableProducts = [
   "buy-google-business-reviews",
   "buy-google-5-star-reviews",
   "buy-soundcloud-accounts",
+  "buy-naver-account",
+  "buy-verified-bybit-account",
+  "buy-verified-crypto-com-account",
+  "buy-verified-wise-accounts",
+  "buy-verified-stripe-accounts",
+  "buy-verified-go2bank-accounts",
+  "buy-verified-venmo-accounts",
+  "buy-walmart-seller-account",
 ];

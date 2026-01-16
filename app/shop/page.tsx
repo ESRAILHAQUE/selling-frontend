@@ -107,110 +107,110 @@ export default function ShopPage() {
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <main id="main-content" tabIndex={-1}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+            {/* Breadcrumbs */}
+            <nav className="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
+              <Link href="/" className="hover:text-blue-600">
+                Home
+              </Link>
+              <span className="mx-2">/</span>
+              <span className="text-gray-900 font-semibold">Shop</span>
+            </nav>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          {/* Breadcrumbs */}
-          <nav className="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="hover:text-blue-600">
-              Home
-            </Link>
-            <span className="mx-2">/</span>
-            <span className="text-gray-900 font-semibold">Shop</span>
-          </nav>
-
-          {/* Page Header */}
-          <div className="mb-8 sm:mb-12">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Buy Verified Accounts - Premium PVA Accounts Shop
-            </h1>
-            <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
-              Browse our complete collection of 40+ verified accounts including
-              Gmail, PayPal, Facebook, Instagram, LinkedIn, Bank accounts and
-              more. All products come with 100% verification, instant delivery,
-              30-day warranty, and 24/7 customer support. Trusted by over 10,000
-              satisfied customers worldwide.
-            </p>
-          </div>
-
-          {/* Products Grid */}
-          <section aria-label="Product catalog">
-            <div className="grid grid-cols-1 
-            sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
-              {products.map((product) => (
-                <article
-                  key={product.slug}
-                  className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
-                  itemScope
-                  itemType="https://schema.org/Product">
-                  {/* Product Image */}
-                  <div className="relative h-60 w-full overflow-hidden rounded-t-lg bg-gray-100 flex items-center justify-center">
-                    <Image
-                      src={product.imagePath}
-                      alt={`${product.title} - Buy verified ${product.category} accounts at USA Markets SMM`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                      className="object-contain"
-                      loading="lazy"
-                      quality={85}
-                      itemProp="image"
-                    />
-                  </div>
-
-                  {/* Product Info */}
-                  <div className="p-4 sm:p-6">
-                    <p
-                      className="text-xs text-gray-500 mb-2"
-                      itemProp="category">
-                      {product.category}
-                    </p>
-                    <h2
-                      className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2"
-                      itemProp="name">
-                      {product.title}
-                    </h2>
-
-                    {/* Price Range */}
-                    <div
-                      itemProp="offers"
-                      itemScope
-                      itemType="https://schema.org/AggregateOffer">
-                      <meta itemProp="priceCurrency" content="USD" />
-                      <meta
-                        itemProp="lowPrice"
-                        content={product.priceRange.min.toString()}
-                      />
-                      <meta
-                        itemProp="highPrice"
-                        content={product.priceRange.max.toString()}
-                      />
-                      <p className="text-xl font-bold text-blue-600 mb-4">
-                        ${product.priceRange.min.toFixed(2)} – $
-                        {product.priceRange.max.toFixed(2)}
-                      </p>
-                    </div>
-
-                    {/* View Product Button */}
-                    <Link
-                      href={`/product/${product.slug}`}
-                      className="btn-primary block w-full text-white text-center font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
-                      aria-label={`View details for ${product.title}`}>
-                      View Product
-                    </Link>
-                  </div>
-                </article>
-              ))}
+            {/* Page Header */}
+            <div className="mb-8 sm:mb-12">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Buy Verified Accounts - Premium PVA Accounts Shop
+              </h1>
+              <p className="text-base sm:text-lg text-gray-600 max-w-3xl">
+                Browse our complete collection of 40+ verified accounts
+                including Gmail, PayPal, Facebook, Instagram, LinkedIn, Bank
+                accounts and more. All products come with 100% verification,
+                instant delivery, 30-day warranty, and 24/7 customer support.
+                Trusted by over 10,000 satisfied customers worldwide.
+              </p>
             </div>
 
-            {/* Empty State (shouldn't show, but just in case) */}
-            {products.length === 0 && (
-              <div className="text-center py-16">
-                <p className="text-gray-600 text-lg">
-                  No products available at the moment.
-                </p>
+            {/* Products Grid */}
+            <section aria-label="Product catalog">
+              <div
+                className="grid grid-cols-1 
+            sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                {products.map((product) => (
+                  <article
+                    key={product.slug}
+                    className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow"
+                    itemScope
+                    itemType="https://schema.org/Product">
+                    {/* Product Image */}
+                    <div className="relative h-60 w-full overflow-hidden rounded-t-lg bg-gray-100 flex items-center justify-center">
+                      <Image
+                        src={product.imagePath}
+                        alt={`${product.title} - Buy verified ${product.category} accounts at USA Markets SMM`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                        className="object-contain"
+                        loading="lazy"
+                        quality={85}
+                        itemProp="image"
+                      />
+                    </div>
+
+                    {/* Product Info */}
+                    <div className="p-4 sm:p-6">
+                      <p
+                        className="text-xs text-gray-500 mb-2"
+                        itemProp="category">
+                        {product.category}
+                      </p>
+                      <h2
+                        className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2"
+                        itemProp="name">
+                        {product.title}
+                      </h2>
+
+                      {/* Price Range */}
+                      <div
+                        itemProp="offers"
+                        itemScope
+                        itemType="https://schema.org/AggregateOffer">
+                        <meta itemProp="priceCurrency" content="USD" />
+                        <meta
+                          itemProp="lowPrice"
+                          content={product.priceRange.min.toString()}
+                        />
+                        <meta
+                          itemProp="highPrice"
+                          content={product.priceRange.max.toString()}
+                        />
+                        <p className="text-xl font-bold text-blue-600 mb-4">
+                          ${product.priceRange.min.toFixed(2)} – $
+                          {product.priceRange.max.toFixed(2)}
+                        </p>
+                      </div>
+
+                      {/* View Product Button */}
+                      <Link
+                        href={`/product/${product.slug}`}
+                        className="btn-primary block w-full text-white text-center font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                        aria-label={`View details for ${product.title}`}>
+                        View Product
+                      </Link>
+                    </div>
+                  </article>
+                ))}
               </div>
-            )}
-          </section>
-        </div>
+
+              {/* Empty State (shouldn't show, but just in case) */}
+              {products.length === 0 && (
+                <div className="text-center py-16">
+                  <p className="text-gray-600 text-lg">
+                    No products available at the moment.
+                  </p>
+                </div>
+              )}
+            </section>
+          </div>
         </main>
 
         <Footer />
