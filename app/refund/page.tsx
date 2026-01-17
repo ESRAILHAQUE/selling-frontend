@@ -1,6 +1,16 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Refund & Returns Policy - 30 Days Warranty | USA Markets SMM',
+  description: 'USA Markets SMM offers a 30-day warranty and 100% cash-back guarantee on all verified accounts. Read our refund and returns policy for complete details on replacements and refunds.',
+  openGraph: {
+    title: 'Refund & Returns Policy - USA Markets SMM',
+    description: '30-day warranty with 100% money-back guarantee on all verified accounts.',
+  },
+};
 
 export default function RefundPage() {
   return (

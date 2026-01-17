@@ -22,6 +22,18 @@ export default function CartPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Set dynamic page title and meta description
+    document.title = 'Shopping Cart - Buy Verified Accounts | USA Markets SMM';
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 'Review your shopping cart and proceed to checkout. Buy verified Gmail, PayPal, social media, and bank accounts with instant delivery and 30-day warranty.');
+    } else {
+      const meta = document.createElement('meta');
+      meta.name = 'description';
+      meta.content = 'Review your shopping cart and proceed to checkout. Buy verified Gmail, PayPal, social media, and bank accounts with instant delivery and 30-day warranty.';
+      document.head.appendChild(meta);
+    }
+    
     // Load cart items from localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {

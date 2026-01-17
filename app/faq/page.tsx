@@ -1,6 +1,16 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'FAQ - Frequently Asked Questions | USA Markets SMM',
+  description: 'Find answers to common questions about buying verified accounts from USA Markets SMM. Learn about payment methods, delivery times, warranties, and account verification.',
+  openGraph: {
+    title: 'Frequently Asked Questions - USA Markets SMM',
+    description: 'Get answers to your questions about our verified accounts and services.',
+  },
+};
 
 export default function FAQPage() {
   const faqs = [

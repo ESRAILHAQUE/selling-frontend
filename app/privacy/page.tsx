@@ -1,6 +1,16 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy - Secure & Confidential | USA Markets SMM',
+  description: 'Read our privacy policy to understand how USA Markets SMM collects, uses, and protects your personal information. We are committed to maintaining your privacy and data security.',
+  openGraph: {
+    title: 'Privacy Policy - USA Markets SMM',
+    description: 'Learn about our privacy practices and how we protect your personal information.',
+  },
+};
 
 export default function PrivacyPage() {
   return (
