@@ -7,11 +7,18 @@ import type { Metadata } from "next";
 
 // SEO Metadata for Shop Page
 export const metadata: Metadata = {
-  title: "Shop Verified Accounts | Buy Premium PVA Accounts - USA Markets SMM",
+  title: "Shop Verified Digital Accounts",
   description:
-    "Browse our complete collection of verified accounts including Gmail, PayPal, Facebook, Instagram, Twitter, LinkedIn, Bank accounts & more. 100% verified, instant delivery, 30-day warranty. Trusted by 10,000+ customers worldwide.",
+    "Browse premium verified accounts: Gmail, PayPal, Facebook, Instagram, Bank accounts & more. 100% verified, instant delivery, 30-day warranty, secure checkout.",
   keywords: [
     "buy verified accounts",
+    "shop digital accounts",
+    "gmail accounts",
+    "paypal accounts",
+    "facebook accounts",
+    "instagram accounts",
+    "bank accounts for sale",
+    "verified social media accounts",
     "pva accounts for sale",
     "bulk accounts",
     "buy gmail accounts",
@@ -20,19 +27,18 @@ export const metadata: Metadata = {
     "buy instagram accounts",
     "cheap verified accounts",
     "social media accounts",
-    "bank accounts for sale",
     "verified digital accounts",
   ],
   openGraph: {
-    title: "Shop Verified Accounts | USA Markets SMM",
+    title: "Shop Verified Digital Accounts | USA Markets SMM",
     description:
-      "Browse 40+ types of verified accounts. 100% verified, instant delivery, 30-day warranty.",
+      "Browse premium verified accounts with instant delivery and 30-day warranty. Trusted by 10,000+ customers worldwide.",
     url: "https://usamarketsmm.com/shop",
     siteName: "USA Markets SMM",
     type: "website",
     images: [
       {
-        url: "https://usamarketsmm.com/images/shop-og.jpg",
+        url: "https://usamarketsmm.com/images/hero/hero-image.png",
         width: 1200,
         height: 630,
         alt: "USA Markets SMM - Verified Accounts Shop",
@@ -41,9 +47,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shop Verified Accounts | USA Markets SMM",
+    title: "Shop Verified Digital Accounts | USA Markets SMM",
     description:
-      "Browse 40+ types of verified accounts. 100% verified, instant delivery, 30-day warranty.",
+      "Browse premium verified accounts with instant delivery and 30-day warranty.",
   },
   alternates: {
     canonical: "https://usamarketsmm.com/shop",
