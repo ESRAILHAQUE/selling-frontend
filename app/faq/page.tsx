@@ -1,5 +1,7 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import Breadcrumbs from '@/components/common/Breadcrumbs';
+import FAQSchema from '@/components/common/FAQSchema';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -57,16 +59,20 @@ export default function FAQPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Navbar />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-blue-600">Home</Link>
-          <span className="mx-2">/</span>
-          <span className="text-gray-900 font-semibold">FAQ</span>
-        </nav>
+    <>
+      {/* FAQ Schema for SEO */}
+      <FAQSchema faqs={faqs} />
+
+      <div className="min-h-screen bg-gray-50">
+        <Navbar />
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {/* Breadcrumbs with Schema */}
+          <Breadcrumbs
+            items={[
+              { label: "FAQ", href: "/faq" }
+            ]}
+          />
 
         {/* Page Header */}
         <div className="mb-8 sm:mb-12 text-center">
@@ -133,7 +139,8 @@ export default function FAQPage() {
       </div>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 

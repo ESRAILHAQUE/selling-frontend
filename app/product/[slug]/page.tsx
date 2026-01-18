@@ -2,6 +2,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProductDetails from "@/components/common/ProductDetails";
 import RelatedProducts from "@/components/common/RelatedProducts";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
+import ProductSchema from "@/components/common/ProductSchema";
 import { getProductBySlug, getAllProductSlugs, getProductShortDescription } from "@/lib/data/products-list";
 import { getMetaDescription } from "@/lib/data/meta-descriptions";
 import { notFound } from "next/navigation";
@@ -108,71 +110,31 @@ export default async function ProductPage({ params }: PageProps) {
   // Get meta description for structured data
   const productMetaDescription = getMetaDescription(slug, product.title);
 
-  // Structured Data (JSON-LD) for Google Rich Snippets
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.title,
-    description: productMetaDescription,
-    category: product.category,
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "USD",
-      lowPrice: product.priceRange.min,
-      highPrice: product.priceRange.max,
-      offerCount: product.options.length,
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: "USA Markets SMM",
-        url: "https://usamarketsmm.com",
-      },
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.9",
-      reviewCount: "1250",
-      bestRating: "5",
-      worstRating: "1",
-    },
-  };
-
-  // Breadcrumb Schema for Navigation
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: product.breadcrumbs.map((crumb, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: crumb,
-      item:
-        index === 0
-          ? "https://usamarketsmm.com"
-          : index === product.breadcrumbs.length - 1
-          ? `https://usamarketsmm.com/product/${slug}`
-          : `https://usamarketsmm.com/category/${crumb
-              .toLowerCase()
-              .replace(/ /g, "-")}`,
-    })),
-  };
+  // Create breadcrumb items from product breadcrumbs
+  const breadcrumbItems = product.breadcrumbs.slice(1).map((crumb, index) => ({
+    label: crumb,
+    href: index === product.breadcrumbs.length - 2 ? undefined : `/shop`
+  }));
 
   return (
     <>
-      {/* Product Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      {/* Breadcrumb Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      {/* Product Schema for SEO */}
+      <ProductSchema
+        name={product.title}
+        description={productMetaDescription}
+        image={product.imagePath || "/images/products/default.jpg"}
+        price={product.priceRange}
+        slug={slug}
+        category={product.category}
       />
 
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <main id="main-content" tabIndex={-1}>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+          {/* Breadcrumbs with Schema */}
+          <Breadcrumbs items={breadcrumbItems} />
+        </div>
         <ProductDetails product={productWithDescription} />
         <RelatedProducts />
         </main>

@@ -1,5 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Breadcrumbs from "@/components/common/Breadcrumbs";
 import Link from "next/link";
 import Image from "next/image";
 import { productsData } from "@/lib/data/products-list";
@@ -63,26 +64,6 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   const products = Object.values(productsData);
 
-  // BreadcrumbList Schema for Shop Page
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://usamarketsmm.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Shop",
-        item: "https://usamarketsmm.com/shop",
-      },
-    ],
-  };
-
   // ItemList Schema for Product Catalog
   const itemListSchema = {
     "@context": "https://schema.org",
@@ -98,12 +79,6 @@ export default function ShopPage() {
 
   return (
     <>
-      {/* Breadcrumb Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-
       {/* Product Catalog Structured Data */}
       <script
         type="application/ld+json"
@@ -114,14 +89,12 @@ export default function ShopPage() {
         <Navbar />
         <main id="main-content" tabIndex={-1}>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-            {/* Breadcrumbs */}
-            <nav className="text-sm text-gray-600 mb-6" aria-label="Breadcrumb">
-              <Link href="/" className="hover:text-blue-600">
-                Home
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-gray-900 font-semibold">Shop</span>
-            </nav>
+            {/* Breadcrumbs with Schema */}
+            <Breadcrumbs
+              items={[
+                { label: "Shop", href: "/shop" }
+              ]}
+            />
 
             {/* Page Header */}
             <div className="mb-8 sm:mb-12">

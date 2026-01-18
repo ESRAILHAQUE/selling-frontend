@@ -1,5 +1,6 @@
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import Breadcrumbs from '@/components/common/Breadcrumbs';
 import Link from 'next/link';
 import { Metadata } from 'next';
 
@@ -18,12 +19,12 @@ export default function PrivacyPage() {
       <Navbar />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Breadcrumbs */}
-        <nav className="text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-blue-600">Home</Link>
-          <span className="mx-2">/</span>
-          <span className="text-gray-900 font-semibold">Privacy Policy</span>
-        </nav>
+        {/* Breadcrumbs with Schema */}
+        <Breadcrumbs
+          items={[
+            { label: "Privacy Policy", href: "/privacy" }
+          ]}
+        />
 
         {/* Page Header */}
         <div className="mb-8 sm:mb-12">

@@ -21,17 +21,16 @@ const navItems: NavItem[] = [
     href: '/'
   },
   {
-    label: 'Email Accounts',
-    dropdown: [
-      { label: 'Buy Gmail Accounts', href: '/product/buy-gmail-accounts' },
-      { label: 'Buy Old Gmail Accounts', href: '/product/buy-old-gmail-accounts' },
-      { label: 'Buy Old Yahoo Account', href: '/product/buy-old-yahoo-account' },
-      { label: 'Buy Outlook Account', href: '/product/buy-outlook-account' }
-    ]
+    label: 'Blog',
+    href: '/blog'
   },
   {
     label: 'Social Accounts',
     dropdown: [
+      { label: 'Buy Gmail Accounts', href: '/product/buy-gmail-accounts' },
+      { label: 'Buy Old Gmail Accounts', href: '/product/buy-old-gmail-accounts' },
+      { label: 'Buy Old Yahoo Account', href: '/product/buy-old-yahoo-account' },
+      { label: 'Buy Outlook Account', href: '/product/buy-outlook-account' },
       { label: 'Buy Facebook Ads Accounts', href: '/product/buy-facebook-ads-accounts' },
       { label: 'Buy USA Facebook Accounts', href: '/product/buy-usa-facebook-accounts' },
       { label: 'Buy Facebook Account With 5000 Friends', href: '/product/buy-facebook-account-with-5000-friends' },
@@ -53,15 +52,9 @@ const navItems: NavItem[] = [
       { label: 'Buy Verified OnlyFans Accounts', href: '/product/buy-verified-onlyfans-accounts' },
       { label: 'Buy Verified Skrill Accounts', href: '/product/buy-verified-skrill-accounts' },
       { label: 'Buy Verified Bluebird Accounts', href: '/product/buy-verified-bluebird-accounts' },
-      { label: 'Buy Verified Luno Account', href: '/product/buy-verified-luno-account' },
       { label: 'Buy Verified Bank of America', href: '/product/buy-verified-bank-of-america' },
       { label: 'Buy Verified Wells Fargo Account', href: '/product/buy-verified-wells-fargo-account' },
-      { label: 'Buy Verified Chase Bank Account', href: '/product/buy-verified-chase-bank-account' }
-    ]
-  },
-  {
-    label: 'Premium Banking',
-    dropdown: [
+      { label: 'Buy Verified Chase Bank Account', href: '/product/buy-verified-chase-bank-account' },
       { label: 'Buy Verified Paxful Accounts', href: '/product/buy-verified-paxful-accounts' },
       { label: 'Buy Verified Apple Pay Accounts', href: '/product/buy-verified-apple-pay-accounts' },
       { label: 'Buy Verified Alipay Accounts', href: '/product/buy-verified-alipay-accounts' },

@@ -45,6 +45,13 @@ import * as buyGoogleBusinessReviews from "./descriptions/buy-google-business-re
 import * as buyGoogle5StarReviews from "./descriptions/buy-google-5-star-reviews";
 import * as buySoundcloudAccounts from "./descriptions/buy-soundcloud-accounts";
 import * as buyNaverAccount from "./descriptions/buy-naver-account";
+import * as buyVerifiedBybitAccount from "./descriptions/buy-verified-bybit-account";
+import * as buyVerifiedCryptoComAccount from "./descriptions/buy-verified-crypto-com-account";
+import * as buyVerifiedWiseAccounts from "./descriptions/buy-verified-wise-accounts";
+import * as buyVerifiedStripeAccounts from "./descriptions/buy-verified-stripe-accounts";
+import * as buyVerifiedGo2bankAccounts from "./descriptions/buy-verified-go2bank-accounts";
+import * as buyVerifiedVenmoAccounts from "./descriptions/buy-verified-venmo-accounts";
+import * as buyWalmartSellerAccount from "./descriptions/buy-walmart-seller-account";
 
 // Map slugs to description modules
 const descriptionModules: Record<string, { description: string }> = {
@@ -91,6 +98,13 @@ const descriptionModules: Record<string, { description: string }> = {
   "buy-google-5-star-reviews": buyGoogle5StarReviews,
   "buy-soundcloud-accounts": buySoundcloudAccounts,
   "buy-naver-account": buyNaverAccount,
+  "buy-verified-bybit-account": buyVerifiedBybitAccount,
+  "buy-verified-crypto-com-account": buyVerifiedCryptoComAccount,
+  "buy-verified-wise-accounts": buyVerifiedWiseAccounts,
+  "buy-verified-stripe-accounts": buyVerifiedStripeAccounts,
+  "buy-verified-go2bank-accounts": buyVerifiedGo2bankAccounts,
+  "buy-verified-venmo-accounts": buyVerifiedVenmoAccounts,
+  "buy-walmart-seller-account": buyWalmartSellerAccount,
 };
 
 /**

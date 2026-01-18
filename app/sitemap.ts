@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getAllProductSlugs } from '@/lib/data/products-list'
+import { getBlogPostSlugs } from '@/lib/data/blog-posts'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://usamarketsmm.com'
@@ -15,6 +16,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }))
 
+  // Get all blog post slugs
+  const blogSlugs = getBlogPostSlugs()
+  
+  // Generate blog URLs
+  const blogUrls = blogSlugs.map((slug) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }))
+
   return [
     {
       url: baseUrl,
@@ -27,6 +39,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/about`,
@@ -59,5 +77,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
     ...productUrls,
+    ...blogUrls,
   ]
 }
