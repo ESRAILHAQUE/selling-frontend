@@ -85,9 +85,6 @@ export default function ProductInfo({
         <div className="text-xl sm:text-2xl font-bold text-gray-900">
           ${product.priceRange.min.toFixed(2)} – ${product.priceRange.max.toFixed(2)}
         </div>
-        <div className="text-xs sm:text-sm text-gray-600">
-          Price range: ${product.priceRange.min.toFixed(2)} through ${product.priceRange.max.toFixed(2)}
-        </div>
       </div>
 
       {/* Short Description */}

@@ -1,3 +1,5 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -34,7 +36,10 @@ export default function DedicatedSolutions() {
             {/* Call-to-Action Button */}
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-colors shadow-lg hover:shadow-xl"
+              className="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-colors shadow-lg hover:shadow-xl"
+              style={{ backgroundColor: '#105495' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d4375'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#105495'}
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"

@@ -3,6 +3,101 @@
 import { useState, useEffect, useMemo, useCallback, memo } from "react";
 import { generateProductReviews } from "@/lib/data/review-generator";
 import { getProductDescription } from "@/lib/data/descriptions-split";
+import React from "react";
+
+// Function to make contact info clickable and colored
+const makeContactInfoClickable = (text: string): (string | React.ReactElement)[] => {
+  const parts: (string | React.ReactElement)[] = [];
+  let lastIndex = 0;
+
+  // Patterns for different contact info
+  const patterns = [
+    // Email pattern
+    {
+      regex: /\b([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})\b/g,
+      render: (match: string, key: number) => (
+        <a
+          key={`email-${key}`}
+          href={`mailto:${match}`}
+          className="text-blue-600 hover:text-blue-800 font-semibold underline decoration-2"
+        >
+          {match}
+        </a>
+      )
+    },
+    // Telegram pattern
+    {
+      regex: /@([a-zA-Z0-9_]{5,32})/g,
+      render: (match: string, key: number) => (
+        <a
+          key={`telegram-${key}`}
+          href={`https://t.me/${match.substring(1)}`}
+          className="text-purple-600 hover:text-purple-800 font-semibold underline decoration-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {match}
+        </a>
+      )
+    },
+    // Phone pattern with WhatsApp
+    {
+      regex: /\+\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
+      render: (match: string, key: number) => {
+        const cleanPhone = match.replace(/[^\d+]/g, '');
+        return (
+          <a
+            key={`phone-${key}`}
+            href={`https://wa.me/${cleanPhone}`}
+            className="text-green-600 hover:text-green-800 font-semibold underline decoration-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {match}
+          </a>
+        );
+      }
+    }
+  ];
+
+  const allMatches: Array<{ index: number; length: number; element: React.ReactElement }> = [];
+
+  // Find all matches
+  patterns.forEach(pattern => {
+    const text2 = text;
+    let match;
+    const regex = new RegExp(pattern.regex.source, pattern.regex.flags);
+    let counter = 0;
+    while ((match = regex.exec(text2)) !== null) {
+      allMatches.push({
+        index: match.index,
+        length: match[0].length,
+        element: pattern.render(match[0], counter++)
+      });
+    }
+  });
+
+  // Sort matches by index
+  allMatches.sort((a, b) => a.index - b.index);
+
+  // Build final array with text and links
+  allMatches.forEach((match) => {
+    // Add text before match
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    // Add the link
+    parts.push(match.element);
+    lastIndex = match.index + match.length;
+  });
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : [text];
+};
 
 interface Product {
   title?: string;
@@ -283,7 +378,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
                 </h2>
                 {content && (
                   <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {content}
+                    {makeContactInfoClickable(content)}
                   </p>
                 )}
               </div>
@@ -297,7 +392,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
               </h3>
               {content && (
                 <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                  {content}
+                  {makeContactInfoClickable(content)}
                 </p>
               )}
             </div>
@@ -308,7 +403,7 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
         return (
           <div key={index} className="mb-4">
             <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-              {trimmed}
+              {makeContactInfoClickable(trimmed)}
             </p>
           </div>
         );

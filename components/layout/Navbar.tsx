@@ -21,10 +21,6 @@ const navItems: NavItem[] = [
     href: '/'
   },
   {
-    label: 'Blog',
-    href: '/blog'
-  },
-  {
     label: 'Social Accounts',
     dropdown: [
       { label: 'Buy Gmail Accounts', href: '/product/buy-gmail-accounts' },
@@ -91,6 +87,10 @@ const navItems: NavItem[] = [
     dropdown: [
       { label: 'Shop', href: '/shop' }
     ]
+  },
+  {
+    label: 'Blog',
+    href: '/blog'
   }
 ];
 

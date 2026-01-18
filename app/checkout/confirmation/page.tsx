@@ -86,10 +86,6 @@ function ConfirmationContent() {
                 })}</p>
               </div>
               <div>
-                <h3 className="text-sm font-semibold text-gray-700 mb-2">Payment Method</h3>
-                <p className="text-gray-900 capitalize">{order.customer.paymentMethod.replace(/([A-Z])/g, ' $1').trim()}</p>
-              </div>
-              <div>
                 <h3 className="text-sm font-semibold text-gray-700 mb-2">Order Status</h3>
                 <span className="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-semibold capitalize">
                   {order.status}

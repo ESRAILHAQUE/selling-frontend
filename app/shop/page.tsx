@@ -122,13 +122,13 @@ export default function ShopPage() {
                     itemScope
                     itemType="https://schema.org/Product">
                     {/* Product Image */}
-                    <div className="relative h-60 w-full overflow-hidden rounded-t-lg bg-gray-100 flex items-center justify-center">
+                    <div className="relative aspect-square w-full overflow-hidden bg-white">
                       <Image
                         src={product.imagePath}
                         alt={`${product.title} - Buy verified ${product.category} accounts at USA Markets SMM`}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                        className="object-contain"
+                        className="object-cover"
                         loading="lazy"
                         quality={85}
                         itemProp="image"

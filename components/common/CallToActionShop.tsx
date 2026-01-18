@@ -1,8 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function CallToActionShop() {
   return (
-    <section className="relative bg-blue-500 py-16 overflow-hidden pb-24 sm:pb-28 md:pb-32">
+    <section className="relative py-16 overflow-hidden pb-24 sm:pb-28 md:pb-32" style={{ backgroundColor: '#105495' }}>
       {/* Wavy Bottom Border */}
       <div className="absolute bottom-0 left-0 right-0 w-full">
         <svg
@@ -36,7 +38,10 @@ export default function CallToActionShop() {
             {/* VISIT SHOP Button */}
             <Link
               href="/shop"
-              className="w-full sm:w-auto bg-gradient-to-r from-yellow-400 to-green-500 hover:from-yellow-500 hover:to-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+              className="w-full sm:w-auto text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+              style={{ backgroundColor: '#0d4375' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0a3358'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#0d4375'}
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"
@@ -57,7 +62,10 @@ export default function CallToActionShop() {
             {/* FAQ Button */}
             <Link
               href="/faq"
-              className="w-full sm:w-auto bg-gradient-to-r from-purple-400 to-pink-500 hover:from-purple-500 hover:to-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+              className="w-full sm:w-auto text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105"
+              style={{ backgroundColor: '#1565a0' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d4375'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1565a0'}
             >
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5"

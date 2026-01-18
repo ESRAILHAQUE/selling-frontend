@@ -32,6 +32,70 @@ interface FormData {
   notes: string;
 }
 
+// Payment method configurations with addresses
+const paymentMethods = {
+  btc: {
+    name: 'Bitcoin',
+    symbol: 'BTC',
+    network: 'Bitcoin Network',
+    address: '1718cLdXHN5crnKEXmvnwC7epTkpysiqCz',
+    color: 'from-orange-400 to-orange-600',
+    bgLight: 'bg-orange-50',
+    borderColor: 'border-orange-500',
+    textColor: 'text-orange-600',
+    description: 'Send Bitcoin to this address',
+    icon: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/btc.svg'
+  },
+  sol: {
+    name: 'Solana',
+    symbol: 'SOL',
+    network: 'Solana Network',
+    address: 'AYu2uyYtVQsabyZutN1yMvkXBY3fKMotqNYFPEFzEdX',
+    color: 'from-purple-400 to-purple-600',
+    bgLight: 'bg-purple-50',
+    borderColor: 'border-purple-500',
+    textColor: 'text-purple-600',
+    description: 'Send Solana to this address',
+    icon: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/sol.svg'
+  },
+  eth: {
+    name: 'Ethereum',
+    symbol: 'ETH',
+    network: 'Ethereum (ERC20)',
+    address: '0x7d2ea188ae93426b21d97b9cb4657274fb3d82a4',
+    color: 'from-blue-400 to-blue-600',
+    bgLight: 'bg-blue-50',
+    borderColor: 'border-blue-500',
+    textColor: 'text-blue-600',
+    description: 'Send Ethereum (ERC20) to this address',
+    icon: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/eth.svg'
+  },
+  ltc: {
+    name: 'Litecoin',
+    symbol: 'LTC',
+    network: 'Litecoin Network',
+    address: 'LWQH9p3CxfLrSCdy83Emp55f1iavRp4NMd',
+    color: 'from-gray-400 to-gray-600',
+    bgLight: 'bg-gray-50',
+    borderColor: 'border-gray-500',
+    textColor: 'text-gray-600',
+    description: 'Send Litecoin to this address',
+    icon: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/ltc.svg'
+  },
+  usdt: {
+    name: 'Tether',
+    symbol: 'USDT',
+    network: 'Tron (TRC20)',
+    address: 'TQTNtQoJcoqRF6qQ1Tm83ZpofEt9UXwvLW',
+    color: 'from-green-400 to-green-600',
+    bgLight: 'bg-green-50',
+    borderColor: 'border-green-500',
+    textColor: 'text-green-600',
+    description: 'Send USDT via Tron Network (TRC20)',
+    icon: 'https://cdn.jsdelivr.net/npm/cryptocurrency-icons@0.18.1/svg/color/usdt.svg'
+  }
+};
+
 export default function CheckoutPage() {
   const router = useRouter();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
@@ -51,6 +115,7 @@ export default function CheckoutPage() {
     notes: ''
   });
   const [errors, setErrors] = useState<Partial<FormData>>({});
+  const [copiedAddress, setCopiedAddress] = useState(false);
 
   useEffect(() => {
     // Load cart items from localStorage
@@ -82,6 +147,16 @@ export default function CheckoutPage() {
     }
   };
 
+  const copyAddress = async (address: string) => {
+    try {
+      await navigator.clipboard.writeText(address);
+      setCopiedAddress(true);
+      setTimeout(() => setCopiedAddress(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
   const validateForm = (): boolean => {
     const newErrors: Partial<FormData> = {};
 
@@ -98,7 +173,7 @@ export default function CheckoutPage() {
     if (!formData.state.trim()) newErrors.state = 'State is required';
     if (!formData.zipCode.trim()) newErrors.zipCode = 'ZIP code is required';
     if (!formData.country.trim()) newErrors.country = 'Country is required';
-    if (!formData.paymentMethod) newErrors.paymentMethod = 'Payment method is required';
+    if (!formData.paymentMethod) newErrors.paymentMethod = 'Please select a payment method';
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -391,76 +466,212 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Payment Method */}
+              {/* Payment Method Selection */}
               <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Payment Method</h2>
-                
-                <div className="space-y-3">
-                  <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                    formData.paymentMethod === 'crypto' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
-                  }`}>
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value="crypto"
-                      checked={formData.paymentMethod === 'crypto'}
-                      onChange={handleInputChange}
-                      className="mr-3"
-                      required
-                    />
-                    <div>
-                      <span className="font-semibold text-gray-900">Cryptocurrency</span>
-                      <p className="text-sm text-gray-600">Bitcoin, Ethereum, USDT, or any cryptocurrency</p>
-                    </div>
-                  </label>
-
-                  <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                    formData.paymentMethod === 'paypal' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
-                  }`}>
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value="paypal"
-                      checked={formData.paymentMethod === 'paypal'}
-                      onChange={handleInputChange}
-                      className="mr-3"
-                      required
-                    />
-                    <div>
-                      <span className="font-semibold text-gray-900">PayPal FNF / Payoneer</span>
-                      <p className="text-sm text-gray-600">PayPal Friends & Family or Payoneer</p>
-                    </div>
-                  </label>
-
-                  <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                    formData.paymentMethod === 'perfectmoney' ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-gray-400'
-                  }`}>
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value="perfectmoney"
-                      checked={formData.paymentMethod === 'perfectmoney'}
-                      onChange={handleInputChange}
-                      className="mr-3"
-                      required
-                    />
-                    <div>
-                      <span className="font-semibold text-gray-900">Perfect Money / Cash App</span>
-                      <p className="text-sm text-gray-600">Perfect Money or Cash App payment</p>
-                    </div>
-                  </label>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold text-gray-900">Payment Method</h2>
+                    <p className="text-sm text-gray-600">Select your preferred cryptocurrency</p>
+                  </div>
                 </div>
                 
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                  {Object.entries(paymentMethods).map(([key, method]) => (
+                    <label
+                      key={key}
+                      className={`relative flex flex-col p-3 border-2 rounded-xl cursor-pointer transition-all duration-200 hover:scale-105 ${
+                        formData.paymentMethod === key
+                          ? `${method.borderColor} ${method.bgLight} shadow-lg`
+                          : 'border-gray-200 hover:border-gray-300 bg-white'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value={key}
+                        checked={formData.paymentMethod === key}
+                        onChange={handleInputChange}
+                        className="absolute top-3 right-3"
+                      />
+                      <div className="flex items-center gap-2 mb-1">
+                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-md p-1.5">
+                          <img 
+                            src={method.icon} 
+                            alt={method.name}
+                            className="w-full h-full"
+                          />
+                        </div>
+                        <div>
+                          <p className="font-bold text-gray-900 text-base">{method.name}</p>
+                          <p className="text-xs text-gray-500">{method.symbol}</p>
+                        </div>
+                      </div>
+                      <p className="text-xs text-gray-600">{method.network}</p>
+                      {formData.paymentMethod === key && (
+                        <div className="absolute -top-1.5 -right-1.5">
+                          <div className={`w-5 h-5 bg-gradient-to-br ${method.color} rounded-full flex items-center justify-center shadow-lg`}>
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        </div>
+                      )}
+                    </label>
+                  ))}
+                </div>
+
                 {errors.paymentMethod && (
-                  <p className="text-red-500 text-xs mt-2">{errors.paymentMethod}</p>
+                  <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg mb-4">
+                    <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-red-700 text-sm font-medium">{errors.paymentMethod}</p>
+                  </div>
                 )}
 
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <p className="text-sm text-gray-700">
-                    <strong>Note:</strong> After placing your order, you will receive payment instructions via email. 
-                    Please complete the payment within 24 hours to confirm your order.
-                  </p>
-                </div>
+                {/* Payment Details Display */}
+                {formData.paymentMethod && (
+                  <div className={`mt-6 p-4 ${paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].bgLight} rounded-xl border-2 ${paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].borderColor}`}>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-lg p-2 border-2 border-gray-100">
+                        <img 
+                          src={paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].icon}
+                          alt={paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].name}
+                          className="w-full h-full"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-base font-bold text-gray-900">
+                          {paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].name} Payment
+                        </h3>
+                        <p className={`text-xs ${paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].textColor} font-medium`}>
+                          {paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].description}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* QR Code */}
+                    <div className="flex justify-center mb-4">
+                      <div className="bg-white p-3 rounded-lg shadow-lg border-2 border-white">
+                        <img
+                          src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].address}&margin=5`}
+                          alt="Payment QR Code"
+                          className="w-40 h-40"
+                        />
+                        <p className="text-center text-xs text-gray-500 mt-2">Scan with wallet</p>
+                      </div>
+                    </div>
+
+                    {/* Network Information */}
+                    <div className="mb-3 p-3 bg-white rounded-lg border border-gray-200">
+                      <div className="flex items-center gap-2 mb-1">
+                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <span className="text-xs font-semibold text-gray-700">Network</span>
+                      </div>
+                      <p className={`text-sm font-bold ${paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].textColor}`}>
+                        {paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].network}
+                      </p>
+                    </div>
+
+                    {/* Wallet Address */}
+                    <div className="mb-4">
+                      <label className="block text-xs font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        Wallet Address
+                      </label>
+                      <div className="flex gap-2">
+                        <div className="flex-1 relative">
+                          <input
+                            type="text"
+                            value={paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].address}
+                            readOnly
+                            className="w-full px-3 py-2.5 text-xs text-gray-900 bg-white border-2 border-gray-300 rounded-lg font-mono break-all"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => copyAddress(paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].address)}
+                          className={`px-4 py-2.5 bg-gradient-to-br ${paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].color} hover:opacity-90 text-white rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl flex items-center gap-2 whitespace-nowrap`}
+                        >
+                          {copiedAddress ? (
+                            <>
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                              </svg>
+                              <span className="hidden sm:inline text-sm">Copied!</span>
+                            </>
+                          ) : (
+                            <>
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                              </svg>
+                              <span className="hidden sm:inline text-sm">Copy</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Important Instructions */}
+                    <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-lg p-3">
+                      <div className="flex gap-2">
+                        <div className="flex-shrink-0">
+                          <div className="w-8 h-8 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center">
+                            <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="font-bold text-gray-900 mb-2 text-sm">⚠️ Important Instructions</h4>
+                          <ul className="space-y-1.5 text-xs text-gray-700">
+                            <li className="flex items-start gap-1.5">
+                              <svg className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              <span><strong>Send exact amount</strong> to the address above</span>
+                            </li>
+                            <li className="flex items-start gap-1.5">
+                              <svg className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              <span><strong>Verify network:</strong> {paymentMethods[formData.paymentMethod as keyof typeof paymentMethods].network}</span>
+                            </li>
+                            <li className="flex items-start gap-1.5">
+                              <svg className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              <span><strong>Double-check address</strong> before sending</span>
+                            </li>
+                            <li className="flex items-start gap-1.5">
+                              <svg className="w-4 h-4 text-green-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                              </svg>
+                              <span><strong>Processing:</strong> 1-2 hours after payment</span>
+                            </li>
+                          </ul>
+                          <div className="mt-2 p-2 bg-red-50 border border-red-200 rounded-lg">
+                            <p className="text-xs text-red-800 font-semibold flex items-center gap-1.5">
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                                <path fillRule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clipRule="evenodd" />
+                              </svg>
+                              Wrong network = Lost funds!
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 

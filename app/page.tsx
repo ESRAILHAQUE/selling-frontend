@@ -30,7 +30,7 @@ export default function Home() {
       <DedicatedSolutions />
 
       {/* Stats Section */}
-      <section className="relative py-8 sm:py-12 lg:py-16 bg-teal-700 overflow-hidden">
+      <section className="relative py-8 sm:py-12 lg:py-16 overflow-hidden" style={{ backgroundColor: '#105495' }}>
         {/* Multiple Wavy Bottom Borders - Overlapping */}
         <div className="absolute bottom-0 left-0 right-0 w-full">
           <svg
