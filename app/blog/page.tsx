@@ -1,40 +1,22 @@
+'use client';
+
+import { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Breadcrumbs from '@/components/common/Breadcrumbs';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllBlogPosts, getBlogCategories } from '@/lib/data/blog-posts';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Blog - Digital Marketing Tips & Guides | USA Markets SMM',
-  description: 'Read our blog for expert tips on digital marketing, social media strategies, email marketing, and guides on using verified accounts for business growth.',
-  keywords: [
-    'digital marketing blog',
-    'social media tips',
-    'email marketing guide',
-    'instagram marketing',
-    'business growth',
-    'verified accounts guide',
-    'marketing strategies',
-    'seo tips'
-  ],
-  openGraph: {
-    title: 'Blog - Digital Marketing Tips & Guides',
-    description: 'Expert articles on digital marketing, social media, and business growth strategies.',
-    url: 'https://usamarketsmm.com/blog',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Blog - Digital Marketing Tips & Guides',
-    description: 'Expert articles on digital marketing, social media, and business growth strategies.',
-  },
-};
 
 export default function BlogPage() {
-  const posts = getAllBlogPosts();
+  const allPosts = getAllBlogPosts();
   const categories = getBlogCategories();
+  const [selectedCategory, setSelectedCategory] = useState<string>('All Posts');
+
+  // Filter posts based on selected category
+  const posts = selectedCategory === 'All Posts' 
+    ? allPosts 
+    : allPosts.filter(post => post.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -61,16 +43,25 @@ export default function BlogPage() {
         {/* Categories */}
         <div className="mb-8 sm:mb-12">
           <div className="flex flex-wrap justify-center gap-3">
-            <Link
-              href="/blog"
-              className="px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 transition-colors"
+            <button
+              onClick={() => setSelectedCategory('All Posts')}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                selectedCategory === 'All Posts'
+                  ? 'bg-blue-600 text-white hover:bg-blue-700'
+                  : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+              }`}
             >
               All Posts
-            </Link>
+            </button>
             {categories.map((category) => (
               <button
                 key={category}
-                className="px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-colors border border-gray-200"
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                  selectedCategory === category
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'
+                }`}
               >
                 {category}
               </button>
