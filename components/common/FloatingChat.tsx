@@ -70,7 +70,7 @@ export default function FloatingChat() {
 
       {/* We Are Here Text - Only Visible When Chat is Closed */}
       {!isOpen && (
-        <div className="absolute bottom-16 right-16 animate-bounce">
+        <div className="absolute bottom-16 right-4 animate-bounce">
           <div className="relative bg-white px-4 py-2 rounded-lg shadow-lg">
             <p className="text-sm font-bold whitespace-nowrap" style={{ color: '#105495' }}>
               We Are Here! 👋
