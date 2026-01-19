@@ -107,34 +107,64 @@ export const productsData: Record<string, ProductData> = {
       { id: "5", name: "200 Old Gmail Accounts", price: 300 },
     ]
   ),
-  "buy-old-yahoo-account": createProduct(
-    "buy-old-yahoo-account",
-    "Buy Old Yahoo Account",
-    "Email Accounts",
-    ["Email Accounts"],
-    { min: 8, max: 25 },
-    [
+  "buy-old-yahoo-account": {
+    slug: "buy-old-yahoo-account",
+    title: "Buy Old Yahoo Account",
+    category: "Email Accounts",
+    categories: ["Email Accounts"],
+    priceRange: { min: 8, max: 25 },
+    breadcrumbs: ["Home", "Email Accounts", "Buy Old Yahoo Account"],
+    serviceDetails: [
+      "100% verified account",
+      "Replacement guaranteed",
+      "Reliable and cheap price",
+      "Accounts older than 2-12 years.",
+      "Good, strong, active good account",
+      "Best quality account",
+      "24 hours customer support",
+      "Phone Verified account USA, UK, CA etc.",
+      "Fast delivery",
+      "100% cash-back guarantee",
+    ],
+    options: [
       { id: "1", name: "05 Old Yahoo Accounts", price: 8 },
       { id: "2", name: "20 Old Yahoo Accounts", price: 12 },
       { id: "3", name: "50 Old Yahoo Accounts", price: 18 },
       { id: "4", name: "100 Old Yahoo Accounts", price: 22 },
       { id: "5", name: "200 Old Yahoo Accounts", price: 25 },
-    ]
-  ),
-  "buy-outlook-account": createProduct(
-    "buy-outlook-account",
-    "Buy Outlook Account",
-    "Email Accounts",
-    ["Email Accounts"],
-    { min: 16, max: 260 },
-    [
+    ],
+    imagePath: "/images/products/oldYahooAccount.jpg",
+    description: "",
+  },
+  "buy-outlook-account": {
+    slug: "buy-outlook-account",
+    title: "Buy Outlook Account",
+    category: "Email Accounts",
+    categories: ["Email Accounts"],
+    priceRange: { min: 16, max: 260 },
+    breadcrumbs: ["Home", "Email Accounts", "Buy Outlook Account"],
+    serviceDetails: [
+      "100% verified account",
+      "Replacement guaranteed",
+      "Reliable and cheap price",
+      "Accounts older than 2-12 years.",
+      "Good, strong, active good account",
+      "Best quality account",
+      "24 hours customer support",
+      "Phone Verified account USA, UK, CA etc.",
+      "Fast delivery",
+      "100% cash-back guarantee",
+    ],
+    options: [
       { id: "1", name: "05 Outlook Accounts", price: 16 },
       { id: "2", name: "20 Outlook Accounts", price: 50 },
       { id: "3", name: "50 Outlook Accounts", price: 100 },
       { id: "4", name: "100 Outlook Accounts", price: 180 },
       { id: "5", name: "200 Outlook Accounts", price: 260 },
-    ]
-  ),
+    ],
+    imagePath: "/images/products/outlookAccount.jpg",
+    description: "",
+  },
   // Social Accounts
   "buy-facebook-ads-accounts": createProduct(
     "buy-facebook-ads-accounts",

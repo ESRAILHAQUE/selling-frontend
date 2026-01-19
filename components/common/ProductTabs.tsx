@@ -10,78 +10,103 @@ const makeContactInfoClickable = (text: string): (string | React.ReactElement)[]
   const parts: (string | React.ReactElement)[] = [];
   let lastIndex = 0;
 
-  // Patterns for different contact info
-  const patterns = [
-    // Email pattern
-    {
-      regex: /\b([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})\b/g,
-      render: (match: string, key: number) => (
+  const allMatches: Array<{ index: number; length: number; element: React.ReactElement; priority: number }> = [];
+
+  // 1. Find all email addresses first (highest priority)
+  const emailRegex = /\b([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})\b/g;
+  let emailMatch;
+  let emailCounter = 0;
+  while ((emailMatch = emailRegex.exec(text)) !== null) {
+    allMatches.push({
+      index: emailMatch.index,
+      length: emailMatch[0].length,
+      priority: 1, // Highest priority
+      element: (
         <a
-          key={`email-${key}`}
-          href={`mailto:${match}`}
+          key={`email-${emailCounter++}`}
+          href={`mailto:${emailMatch[0]}`}
           className="text-blue-600 hover:text-blue-800 font-semibold underline decoration-2"
         >
-          {match}
+          {emailMatch[0]}
         </a>
       )
-    },
-    // Telegram pattern
-    {
-      regex: /@([a-zA-Z0-9_]{5,32})/g,
-      render: (match: string, key: number) => (
+    });
+  }
+
+  // 2. Find all phone numbers (second priority)
+  const phoneRegex = /\+\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g;
+  let phoneMatch;
+  let phoneCounter = 0;
+  while ((phoneMatch = phoneRegex.exec(text)) !== null) {
+    const cleanPhone = phoneMatch[0].replace(/[^\d+]/g, '');
+    allMatches.push({
+      index: phoneMatch.index,
+      length: phoneMatch[0].length,
+      priority: 2,
+      element: (
         <a
-          key={`telegram-${key}`}
-          href={`https://t.me/${match.substring(1)}`}
+          key={`phone-${phoneCounter++}`}
+          href={`https://wa.me/${cleanPhone}`}
+          className="text-green-600 hover:text-green-800 font-semibold underline decoration-2"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {phoneMatch[0]}
+        </a>
+      )
+    });
+  }
+
+  // 3. Find Telegram handles (lowest priority, will be filtered if overlaps with email)
+  const telegramRegex = /@([a-zA-Z0-9_]{5,32})/g;
+  let telegramMatch;
+  let telegramCounter = 0;
+  while ((telegramMatch = telegramRegex.exec(text)) !== null) {
+    allMatches.push({
+      index: telegramMatch.index,
+      length: telegramMatch[0].length,
+      priority: 3, // Lowest priority
+      element: (
+        <a
+          key={`telegram-${telegramCounter++}`}
+          href={`https://t.me/${telegramMatch[0].substring(1)}`}
           className="text-purple-600 hover:text-purple-800 font-semibold underline decoration-2"
           target="_blank"
           rel="noopener noreferrer"
         >
-          {match}
+          {telegramMatch[0]}
         </a>
       )
-    },
-    // Phone pattern with WhatsApp
-    {
-      regex: /\+\d{1,3}[-.\s]?\(?\d{1,4}\)?[-.\s]?\d{1,4}[-.\s]?\d{1,9}/g,
-      render: (match: string, key: number) => {
-        const cleanPhone = match.replace(/[^\d+]/g, '');
-        return (
-          <a
-            key={`phone-${key}`}
-            href={`https://wa.me/${cleanPhone}`}
-            className="text-green-600 hover:text-green-800 font-semibold underline decoration-2"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {match}
-          </a>
-        );
-      }
-    }
-  ];
+    });
+  }
 
-  const allMatches: Array<{ index: number; length: number; element: React.ReactElement }> = [];
-
-  // Find all matches
-  patterns.forEach(pattern => {
-    const text2 = text;
-    let match;
-    const regex = new RegExp(pattern.regex.source, pattern.regex.flags);
-    let counter = 0;
-    while ((match = regex.exec(text2)) !== null) {
-      allMatches.push({
-        index: match.index,
-        length: match[0].length,
-        element: pattern.render(match[0], counter++)
-      });
-    }
+  // Sort by index first, then by priority (lower number = higher priority)
+  allMatches.sort((a, b) => {
+    if (a.index !== b.index) return a.index - b.index;
+    return a.priority - b.priority;
   });
 
-  // Sort matches by index
-  allMatches.sort((a, b) => a.index - b.index);
+  // Remove overlapping matches (keep higher priority)
+  const filteredMatches: typeof allMatches = [];
+  for (const current of allMatches) {
+    const hasOverlap = filteredMatches.some(existing => {
+      const existingEnd = existing.index + existing.length;
+      const currentEnd = current.index + current.length;
+      // Check if current overlaps with existing
+      return (
+        (current.index >= existing.index && current.index < existingEnd) ||
+        (currentEnd > existing.index && currentEnd <= existingEnd) ||
+        (current.index <= existing.index && currentEnd >= existingEnd)
+      );
+    });
+    
+    if (!hasOverlap) {
+      filteredMatches.push(current);
+    }
+  }
 
   // Build final array with text and links
-  allMatches.forEach((match) => {
+  filteredMatches.forEach((match) => {
     // Add text before match
     if (match.index > lastIndex) {
       parts.push(text.substring(lastIndex, match.index));
