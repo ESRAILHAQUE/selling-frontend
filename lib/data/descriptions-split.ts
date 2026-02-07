@@ -16,7 +16,6 @@ import * as buySendgridAccounts from "./descriptions/buy-sendgrid-accounts";
 import * as buyVerifiedPaypalAccounts from "./descriptions/buy-verified-paypal-accounts";
 import * as buyVerifiedPayoneerAccounts from "./descriptions/buy-verified-payoneer-accounts";
 import * as buyVerifiedCashAppAccount from "./descriptions/buy-verified-cash-app-account";
-import * as buyChimeBankAccounts from "./descriptions/buy-chime-bank-accounts";
 import * as buyVerifiedOnlyfansAccounts from "./descriptions/buy-verified-onlyfans-accounts";
 import * as buyVerifiedSkrillAccounts from "./descriptions/buy-verified-skrill-accounts";
 import * as buyVerifiedBluebirdAccounts from "./descriptions/buy-verified-bluebird-accounts";
@@ -69,7 +68,6 @@ const descriptionModules: Record<string, { description: string }> = {
   "buy-verified-paypal-accounts": buyVerifiedPaypalAccounts,
   "buy-verified-payoneer-accounts": buyVerifiedPayoneerAccounts,
   "buy-verified-cash-app-account": buyVerifiedCashAppAccount,
-  "buy-chime-bank-accounts": buyChimeBankAccounts,
   "buy-verified-onlyfans-accounts": buyVerifiedOnlyfansAccounts,
   "buy-verified-skrill-accounts": buyVerifiedSkrillAccounts,
   "buy-verified-bluebird-accounts": buyVerifiedBluebirdAccounts,
@@ -166,7 +164,6 @@ export const availableProducts = [
   "buy-verified-paypal-accounts",
   "buy-verified-payoneer-accounts",
   "buy-verified-cash-app-account",
-  "buy-chime-bank-accounts",
   "buy-verified-onlyfans-accounts",
   "buy-verified-skrill-accounts",
   "buy-verified-bluebird-accounts",

@@ -355,19 +355,6 @@ export const productsData: Record<string, ProductData> = {
       { id: "4", name: "Business Stripe Account", price: 570 },
     ]
   ),
-  "buy-chime-bank-accounts": createProduct(
-    "buy-chime-bank-accounts",
-    "Buy Chime Bank Accounts",
-    "Bank account",
-    ["Bank account"],
-    { min: 100, max: 220 },
-    [
-      { id: "1", name: "Basic Chime Account", price: 100 },
-      { id: "2", name: "Verified Chime Account", price: 140 },
-      { id: "3", name: "Premium Chime Account", price: 180 },
-      { id: "4", name: "Business Chime Account", price: 220 },
-    ]
-  ),
   "buy-verified-onlyfans-accounts": createProduct(
     "buy-verified-onlyfans-accounts",
     "Buy Verified OnlyFans Accounts",
@@ -792,7 +779,6 @@ export const productShortDescriptions: Record<string, string> = {
   "buy-verified-coinbase-accounts": "Get verified Coinbase accounts for secure cryptocurrency trading and investment. Our premium Coinbase accounts are fully KYC verified, bank-linked, and ready for immediate use. Perfect for crypto enthusiasts, investors, and businesses who need reliable Coinbase access. Start trading securely with our trusted Coinbase account service.",
   "buy-verified-paypal-accounts": "Purchase verified PayPal accounts for secure online payments and transactions. Our premium PayPal accounts are fully verified, bank-linked, and ready for immediate use. Perfect for e-commerce businesses, freelancers, and individuals who need reliable PayPal access. Get instant delivery and full payment processing capabilities.",
   "buy-verified-cash-app-account": "Get verified Cash App accounts for instant money transfers and payments. Our premium Cash App accounts are fully verified, bank-linked, and ready for immediate use. Perfect for businesses, freelancers, and individuals who need reliable Cash App access. Start sending and receiving money instantly with our trusted Cash App account service.",
-  "buy-chime-bank-accounts": "Purchase verified Chime bank accounts for modern online banking. Our premium Chime accounts are fully verified, FDIC-insured, and ready for immediate use. Perfect for individuals and businesses who need reliable online banking with no hidden fees. Get instant delivery and full banking access with our trusted Chime account service.",
   "buy-verified-payoneer-accounts": "Get verified Payoneer accounts for global payments and freelancer payments. Our premium Payoneer accounts are fully verified, bank-linked, and ready for international transactions. Perfect for freelancers, businesses, and individuals who need reliable global payment solutions. Receive payments worldwide with our trusted Payoneer account service.",
   "buy-verified-skrill-accounts": "Purchase verified Skrill accounts for secure online payments and money transfers. Our premium Skrill accounts are fully verified, approved, and ready for immediate use. Perfect for online businesses, freelancers, and individuals who need reliable payment processing. Get instant delivery and full payment capabilities with our trusted Skrill account service.",
   "buy-verified-onlyfans-accounts": "Get verified OnlyFans accounts for content creation and monetization. Our premium OnlyFans accounts are fully verified, ready to use, and approved for content publishing. Perfect for content creators, influencers, and businesses who need reliable OnlyFans access. Start monetizing your content instantly with our trusted OnlyFans account service.",

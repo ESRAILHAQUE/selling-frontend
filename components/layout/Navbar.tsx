@@ -44,7 +44,6 @@ const navItems: NavItem[] = [
       { label: 'Buy Verified PayPal Accounts', href: '/product/buy-verified-paypal-accounts' },
       { label: 'Buy Verified Payoneer Accounts', href: '/product/buy-verified-payoneer-accounts' },
       { label: 'Buy Verified Cash App Account', href: '/product/buy-verified-cash-app-account' },
-      { label: 'Buy Chime Bank Accounts', href: '/product/buy-chime-bank-accounts' },
       { label: 'Buy Verified OnlyFans Accounts', href: '/product/buy-verified-onlyfans-accounts' },
       { label: 'Buy Verified Skrill Accounts', href: '/product/buy-verified-skrill-accounts' },
       { label: 'Buy Verified Bluebird Accounts', href: '/product/buy-verified-bluebird-accounts' },

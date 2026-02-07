@@ -30,8 +30,6 @@ export const metaDescriptions: Record<string, string> = {
     "Buy verified Payoneer accounts for global payments. Ready to use with full verification and 24/7 support.",
   "buy-verified-cash-app-account":
     "Purchase verified Cash App accounts. Fully functional with bank linkage, instant delivery and replacement guarantee.",
-  "buy-chime-bank-accounts":
-    "Buy Chime bank accounts for online banking. Verified accounts with debit cards and full access to all features.",
   "buy-verified-onlyfans-accounts":
     "Get verified OnlyFans accounts for content creation. Ready to monetize with full verification and instant access.",
   "buy-verified-skrill-accounts":
