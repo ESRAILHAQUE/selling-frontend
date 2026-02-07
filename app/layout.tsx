@@ -53,6 +53,9 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  alternates: {
+    canonical: 'https://usamarketsmm.com/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
