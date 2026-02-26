@@ -42,21 +42,21 @@ export default function OrganizationSchema() {
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "Gmail Accounts"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "Yahoo Accounts"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "Outlook Accounts"
               }
             }
@@ -69,14 +69,14 @@ export default function OrganizationSchema() {
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "PayPal Accounts"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "Cash App Accounts"
               }
             }
@@ -89,14 +89,14 @@ export default function OrganizationSchema() {
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "Facebook Accounts"
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
-                "@type": "Product",
+                "@type": "Service",
                 "name": "Instagram Accounts"
               }
             }
