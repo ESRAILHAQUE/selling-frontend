@@ -9,21 +9,28 @@ export function middleware(request: NextRequest) {
   const host = url.hostname;
   const path = url.pathname + url.search;
 
-  // Only apply redirects for production domain (not localhost)
-  if (host !== CANONICAL_HOST && host !== `www.${CANONICAL_HOST}`) {
-    return NextResponse.next();
+  // Only apply redirects for production domain (not localhost / dev)
+  if (host === CANONICAL_HOST || host === `www.${CANONICAL_HOST}`) {
+    // 1. Redirect www to non-www (canonical)
+    if (host === `www.${CANONICAL_HOST}`) {
+      const redirectUrl = new URL(path, CANONICAL_URL);
+      return NextResponse.redirect(redirectUrl, 301);
+    }
+
+    // 2. Redirect http to https
+    if (url.protocol === 'http:') {
+      const redirectUrl = new URL(path, CANONICAL_URL);
+      return NextResponse.redirect(redirectUrl, 301);
+    }
   }
 
-  // 1. Redirect www to non-www (canonical)
-  if (host === `www.${CANONICAL_HOST}`) {
-    const redirectUrl = new URL(path, CANONICAL_URL);
-    return NextResponse.redirect(redirectUrl, 301);
-  }
-
-  // 2. Redirect http to https
-  if (url.protocol === 'http:') {
-    const redirectUrl = new URL(path, CANONICAL_URL);
-    return NextResponse.redirect(redirectUrl, 301);
+  // 3. Redirect legacy product URLs /product/[slug] -> /[slug]
+  if (url.pathname.startsWith('/product/')) {
+    const slug = url.pathname.replace('/product/', '');
+    if (slug) {
+      const redirectTarget = new URL(`/${slug}${url.search}`, url.origin);
+      return NextResponse.redirect(redirectTarget, 301);
+    }
   }
 
   return NextResponse.next();

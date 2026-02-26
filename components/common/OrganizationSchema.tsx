@@ -18,15 +18,8 @@ export default function OrganizationSchema() {
       "https://facebook.com/usamarketsmm",
       "https://twitter.com/usamarketsmm"
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "1250",
-      "bestRating": "5",
-      "worstRating": "1"
-    },
     "priceRange": "$6 - $4900",
-    "paymentAccepted": "Credit Card, Cryptocurrency, PayPal, Bank Transfer",
+    "paymentAccepted": "Bitcoin, Ethereum, Litecoin, Solana, USDT",
     "areaServed": {
       "@type": "Place",
       "name": "Worldwide"

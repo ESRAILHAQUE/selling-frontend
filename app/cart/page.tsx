@@ -6,6 +6,10 @@ import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Image from 'next/image';
 
+// Note: metadata must be in a server component. This page uses localStorage so
+// it stays as a client component — title is set below via useEffect as a fallback.
+// For proper SSR metadata, wrap this in a server layout.
+
 interface CartItem {
   id: string;
   productSlug: string;
@@ -22,18 +26,8 @@ export default function CartPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Set dynamic page title and meta description
     document.title = 'Shopping Cart - Buy Verified Accounts | USA Markets SMM';
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Review your shopping cart and proceed to checkout. Buy verified Gmail, PayPal, social media, and bank accounts with instant delivery and 30-day warranty.');
-    } else {
-      const meta = document.createElement('meta');
-      meta.name = 'description';
-      meta.content = 'Review your shopping cart and proceed to checkout. Buy verified Gmail, PayPal, social media, and bank accounts with instant delivery and 30-day warranty.';
-      document.head.appendChild(meta);
-    }
-    
+
     // Load cart items from localStorage
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -85,9 +79,17 @@ export default function CartPage() {
     return (
       <div className="min-h-screen bg-gray-50">
         <Navbar />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="text-center">Loading...</div>
-        </div>
+        <main id="main-content" tabIndex={-1}>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div className="flex items-center justify-center gap-3 text-gray-500">
+              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+              </svg>
+              <span>Loading your cart...</span>
+            </div>
+          </div>
+        </main>
         <Footer />
       </div>
     );
@@ -96,15 +98,16 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
+      <main id="main-content" tabIndex={-1}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Page Header */}
         <div className="mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Shopping Cart</h1>
-          <nav className="text-sm text-gray-600">
+          <nav aria-label="Breadcrumb" className="text-sm text-gray-600">
             <Link href="/" className="hover:text-blue-600">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-gray-900 font-semibold">Cart</span>
+            <span className="mx-2" aria-hidden="true">/</span>
+            <span className="text-gray-900 font-semibold" aria-current="page">Cart</span>
           </nav>
         </div>
 
@@ -162,7 +165,7 @@ export default function CartPage() {
                           <div className="flex justify-between items-start mb-2">
                             <div>
                               <Link
-                                href={`/product/${item.productSlug}`}
+                                href={`/${item.productSlug}`}
                                 className="text-lg sm:text-xl font-semibold text-gray-900 hover:text-blue-600 transition-colors"
                               >
                                 {item.productTitle}
@@ -297,6 +300,7 @@ export default function CartPage() {
           </div>
         )}
       </div>
+      </main>
 
       <Footer />
     </div>

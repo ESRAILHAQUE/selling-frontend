@@ -355,32 +355,6 @@ export const productsData: Record<string, ProductData> = {
       { id: "4", name: "Business Stripe Account", price: 570 },
     ]
   ),
-  "buy-verified-onlyfans-accounts": createProduct(
-    "buy-verified-onlyfans-accounts",
-    "Buy Verified OnlyFans Accounts",
-    "Bank account",
-    ["Bank account"],
-    { min: 90, max: 360 },
-    [
-      { id: "1", name: "Basic OnlyFans Account", price: 90 },
-      { id: "2", name: "Verified OnlyFans Account", price: 180 },
-      { id: "3", name: "Premium OnlyFans Account", price: 270 },
-      { id: "4", name: "VIP OnlyFans Account", price: 360 },
-    ]
-  ),
-  "buy-verified-skrill-accounts": createProduct(
-    "buy-verified-skrill-accounts",
-    "Buy Verified Skrill Accounts",
-    "Bank account",
-    ["Bank account"],
-    { min: 90, max: 800 },
-    [
-      { id: "1", name: "Basic Skrill Account", price: 90 },
-      { id: "2", name: "Verified Skrill Account", price: 250 },
-      { id: "3", name: "Premium Skrill Account", price: 500 },
-      { id: "4", name: "Business Skrill Account", price: 800 },
-    ]
-  ),
   "buy-verified-go2bank-accounts": createProduct(
     "buy-verified-go2bank-accounts",
     "Buy Verified Go2Bank Accounts",
@@ -444,19 +418,6 @@ export const productsData: Record<string, ProductData> = {
       { id: "2", name: "Verified Wells Fargo Account", price: 550 },
       { id: "3", name: "Premium Wells Fargo Account", price: 1100 },
       { id: "4", name: "Business Wells Fargo Account", price: 2200 },
-    ]
-  ),
-  "buy-verified-chase-bank-account": createProduct(
-    "buy-verified-chase-bank-account",
-    "Buy Verified Chase Bank Account",
-    "Bank account",
-    ["Bank account"],
-    { min: 80, max: 1000 },
-    [
-      { id: "1", name: "Basic Chase Bank Account", price: 80 },
-      { id: "2", name: "Verified Chase Bank Account", price: 300 },
-      { id: "3", name: "Premium Chase Bank Account", price: 600 },
-      { id: "4", name: "Business Chase Bank Account", price: 1000 },
     ]
   ),
   // Premium Banking
@@ -780,9 +741,6 @@ export const productShortDescriptions: Record<string, string> = {
   "buy-verified-paypal-accounts": "Purchase verified PayPal accounts for secure online payments and transactions. Our premium PayPal accounts are fully verified, bank-linked, and ready for immediate use. Perfect for e-commerce businesses, freelancers, and individuals who need reliable PayPal access. Get instant delivery and full payment processing capabilities.",
   "buy-verified-cash-app-account": "Get verified Cash App accounts for instant money transfers and payments. Our premium Cash App accounts are fully verified, bank-linked, and ready for immediate use. Perfect for businesses, freelancers, and individuals who need reliable Cash App access. Start sending and receiving money instantly with our trusted Cash App account service.",
   "buy-verified-payoneer-accounts": "Get verified Payoneer accounts for global payments and freelancer payments. Our premium Payoneer accounts are fully verified, bank-linked, and ready for international transactions. Perfect for freelancers, businesses, and individuals who need reliable global payment solutions. Receive payments worldwide with our trusted Payoneer account service.",
-  "buy-verified-skrill-accounts": "Purchase verified Skrill accounts for secure online payments and money transfers. Our premium Skrill accounts are fully verified, approved, and ready for immediate use. Perfect for online businesses, freelancers, and individuals who need reliable payment processing. Get instant delivery and full payment capabilities with our trusted Skrill account service.",
-  "buy-verified-onlyfans-accounts": "Get verified OnlyFans accounts for content creation and monetization. Our premium OnlyFans accounts are fully verified, ready to use, and approved for content publishing. Perfect for content creators, influencers, and businesses who need reliable OnlyFans access. Start monetizing your content instantly with our trusted OnlyFans account service.",
-  "buy-verified-chase-bank-account": "Purchase verified Chase Bank accounts for premium banking services. Our premium Chase accounts are fully verified, approved, and ready for immediate banking access. Perfect for businesses and individuals who need reliable Chase Bank services. Get instant delivery and full banking capabilities with our trusted Chase Bank account service.",
   "buy-verified-apple-pay-accounts": "Get verified Apple Pay accounts for secure contactless payments. Our premium Apple Pay accounts are fully verified, card-linked, and ready for immediate use. Perfect for businesses and individuals who need reliable Apple Pay access. Make secure payments instantly with our trusted Apple Pay account service.",
   "buy-verified-bybit-account": "Purchase verified Bybit accounts for cryptocurrency derivatives trading. Our premium Bybit accounts are fully KYC verified, approved, and ready for immediate trading. Perfect for crypto traders and investors who need reliable Bybit exchange access. Start trading derivatives instantly with our trusted Bybit account service.",
   "buy-verified-crypto-com-account": "Get verified Crypto.com accounts for cryptocurrency trading and card services. Our premium Crypto.com accounts are fully verified, approved, and ready for immediate use. Perfect for crypto enthusiasts who need reliable Crypto.com access. Start trading and earn rewards with our trusted Crypto.com account service.",

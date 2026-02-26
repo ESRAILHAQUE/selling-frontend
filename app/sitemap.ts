@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   
   // Generate product URLs
   const productUrls = productSlugs.map((slug) => ({
-    url: `${baseUrl}/product/${slug}`,
+    url: `${baseUrl}/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.8,

@@ -23,69 +23,64 @@ const navItems: NavItem[] = [
   {
     label: 'Social Accounts',
     dropdown: [
-      { label: 'Buy Gmail Accounts', href: '/product/buy-gmail-accounts' },
-      { label: 'Buy Old Gmail Accounts', href: '/product/buy-old-gmail-accounts' },
-      { label: 'Buy Old Yahoo Account', href: '/product/buy-old-yahoo-account' },
-      { label: 'Buy Outlook Account', href: '/product/buy-outlook-account' },
-      { label: 'Buy Facebook Ads Accounts', href: '/product/buy-facebook-ads-accounts' },
-      { label: 'Buy USA Facebook Accounts', href: '/product/buy-usa-facebook-accounts' },
-      { label: 'Buy Facebook Account With 5000 Friends', href: '/product/buy-facebook-account-with-5000-friends' },
-      { label: 'Buy LinkedIn Account', href: '/product/buy-linkedin-account' },
-      { label: 'Buy Twitter Accounts', href: '/product/buy-twitter-accounts' },
-      { label: 'Buy Instagram Accounts', href: '/product/buy-instagram-accounts' },
-      { label: 'Buy SendGrid accounts', href: '/product/buy-sendgrid-accounts' },
-      { label: 'Buy Soundcloud Accounts', href: '/product/buy-soundcloud-accounts' },
-      { label: 'Buy naver account', href: '/product/buy-naver-account' }
+      { label: 'Buy Gmail Accounts', href: '/buy-gmail-accounts' },
+      { label: 'Buy Old Gmail Accounts', href: '/buy-old-gmail-accounts' },
+      { label: 'Buy Old Yahoo Account', href: '/buy-old-yahoo-account' },
+      { label: 'Buy Outlook Account', href: '/buy-outlook-account' },
+      { label: 'Buy Facebook Ads Accounts', href: '/buy-facebook-ads-accounts' },
+      { label: 'Buy USA Facebook Accounts', href: '/buy-usa-facebook-accounts' },
+      { label: 'Buy Facebook Account With 5000 Friends', href: '/buy-facebook-account-with-5000-friends' },
+      { label: 'Buy LinkedIn Account', href: '/buy-linkedin-account' },
+      { label: 'Buy Twitter Accounts', href: '/buy-twitter-accounts' },
+      { label: 'Buy Instagram Accounts', href: '/buy-instagram-accounts' },
+      { label: 'Buy SendGrid accounts', href: '/buy-sendgrid-accounts' },
+      { label: 'Buy Soundcloud Accounts', href: '/buy-soundcloud-accounts' },
+      { label: 'Buy naver account', href: '/buy-naver-account' }
     ]
   },
   {
     label: 'Bank account',
     dropdown: [
-      { label: 'Buy Verified PayPal Accounts', href: '/product/buy-verified-paypal-accounts' },
-      { label: 'Buy Verified Payoneer Accounts', href: '/product/buy-verified-payoneer-accounts' },
-      { label: 'Buy Verified Cash App Account', href: '/product/buy-verified-cash-app-account' },
-      { label: 'Buy Verified OnlyFans Accounts', href: '/product/buy-verified-onlyfans-accounts' },
-      { label: 'Buy Verified Skrill Accounts', href: '/product/buy-verified-skrill-accounts' },
-      { label: 'Buy Verified Bluebird Accounts', href: '/product/buy-verified-bluebird-accounts' },
-      { label: 'Buy Verified Bank of America', href: '/product/buy-verified-bank-of-america' },
-      { label: 'Buy Verified Wells Fargo Account', href: '/product/buy-verified-wells-fargo-account' },
-      { label: 'Buy Verified Chase Bank Account', href: '/product/buy-verified-chase-bank-account' },
-      { label: 'Buy Verified Paxful Accounts', href: '/product/buy-verified-paxful-accounts' },
-      { label: 'Buy Verified Apple Pay Accounts', href: '/product/buy-verified-apple-pay-accounts' },
-      { label: 'Buy Verified Alipay Accounts', href: '/product/buy-verified-alipay-accounts' },
-      { label: 'Buy Verified Moonpay Accounts', href: '/product/buy-verified-moonpay-accounts' },
-      { label: 'Buy Verified RedotPay Accounts', href: '/product/buy-verified-redotpay-accounts' },
-      { label: 'Buy Verified Bittrex Account', href: '/product/buy-verified-bittrex-account' },
-      { label: 'Buy Verified Revolut Accounts', href: '/product/buy-verified-revolut-accounts' },
-      { label: 'Buy Verified Advcash Account', href: '/product/buy-verified-advcash-account' },
-      { label: 'Buy Verified 2CheckOut Account', href: '/product/buy-verified-2checkout-account' },
-      { label: 'Buy Verified TransferWise Account', href: '/product/buy-verified-transferwise-account' },
-      { label: 'Buy Verified Perfect Money Account', href: '/product/buy-verified-perfect-money-account' },
-      { label: 'Buy Verified Webmoney Account', href: '/product/buy-verified-webmoney-account' }
+      { label: 'Buy Verified PayPal Accounts', href: '/buy-verified-paypal-accounts' },
+      { label: 'Buy Verified Payoneer Accounts', href: '/buy-verified-payoneer-accounts' },
+      { label: 'Buy Verified Cash App Account', href: '/buy-verified-cash-app-account' },
+      { label: 'Buy Verified Bluebird Accounts', href: '/buy-verified-bluebird-accounts' },
+      { label: 'Buy Verified Bank of America', href: '/buy-verified-bank-of-america' },
+      { label: 'Buy Verified Wells Fargo Account', href: '/buy-verified-wells-fargo-account' },
+      { label: 'Buy Verified Paxful Accounts', href: '/buy-verified-paxful-accounts' },
+      { label: 'Buy Verified Apple Pay Accounts', href: '/buy-verified-apple-pay-accounts' },
+      { label: 'Buy Verified Alipay Accounts', href: '/buy-verified-alipay-accounts' },
+      { label: 'Buy Verified Moonpay Accounts', href: '/buy-verified-moonpay-accounts' },
+      { label: 'Buy Verified RedotPay Accounts', href: '/buy-verified-redotpay-accounts' },
+      { label: 'Buy Verified Bittrex Account', href: '/buy-verified-bittrex-account' },
+      { label: 'Buy Verified Revolut Accounts', href: '/buy-verified-revolut-accounts' },
+      { label: 'Buy Verified Advcash Account', href: '/buy-verified-advcash-account' },
+      { label: 'Buy Verified 2CheckOut Account', href: '/buy-verified-2checkout-account' },
+      { label: 'Buy Verified TransferWise Account', href: '/buy-verified-transferwise-account' },
+      { label: 'Buy Verified Perfect Money Account', href: '/buy-verified-perfect-money-account' },
+      { label: 'Buy Verified Webmoney Account', href: '/buy-verified-webmoney-account' }
     ]
   },
   {
     label: 'Google',
     dropdown: [
-      { label: 'Buy Google Voice Accounts', href: '/product/buy-google-voice-accounts' },
-      { label: 'Buy Google Ads Account', href: '/product/buy-google-ads-account' },
-      { label: 'Buy Verified Coinbase Accounts', href: '/product/buy-verified-coinbase-accounts' },
-      { label: 'Buy Verified Binance Accounts', href: '/product/buy-verified-binance-accounts' }
+      { label: 'Buy Google Voice Accounts', href: '/buy-google-voice-accounts' },
+      { label: 'Buy Google Ads Account', href: '/buy-google-ads-account' },
+      { label: 'Buy Verified Coinbase Accounts', href: '/buy-verified-coinbase-accounts' },
+      { label: 'Buy Verified Binance Accounts', href: '/buy-verified-binance-accounts' }
     ]
   },
   {
     label: 'Reviews',
     dropdown: [
-      { label: 'Buy Google reviews', href: '/product/buy-google-reviews' },
-      { label: 'Buy Google Business Reviews', href: '/product/buy-google-business-reviews' },
-      { label: 'Buy Google 5 Star Reviews', href: '/product/buy-google-5-star-reviews' }
+      { label: 'Buy Google reviews', href: '/buy-google-reviews' },
+      { label: 'Buy Google Business Reviews', href: '/buy-google-business-reviews' },
+      { label: 'Buy Google 5 Star Reviews', href: '/buy-google-5-star-reviews' }
     ]
   },
   {
     label: 'Contact Us',
-    dropdown: [
-      { label: 'Shop', href: '/shop' }
-    ]
+    href: '/contact'
   },
   {
     label: 'Blog',

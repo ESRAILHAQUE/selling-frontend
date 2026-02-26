@@ -4,7 +4,11 @@ import ProductDetails from "@/components/common/ProductDetails";
 import RelatedProducts from "@/components/common/RelatedProducts";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 import ProductSchema from "@/components/common/ProductSchema";
-import { getProductBySlug, getAllProductSlugs, getProductShortDescription } from "@/lib/data/products-list";
+import {
+  getProductBySlug,
+  getAllProductSlugs,
+  getProductShortDescription,
+} from "@/lib/data/products-list";
 import { getMetaDescription } from "@/lib/data/meta-descriptions";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -15,7 +19,7 @@ interface PageProps {
   }>;
 }
 
-// Generate metadata for SEO
+// Generate metadata for SEO for product pages at /[slug]
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
@@ -29,7 +33,6 @@ export async function generateMetadata({
     };
   }
 
-  // Get optimized meta description (doesn't load full description)
   const metaDescription = getMetaDescription(slug, product.title);
   const productUrl = `https://usamarketsmm.com/${slug}`;
 
@@ -72,10 +75,10 @@ export async function generateMetadata({
       images: [product.imagePath || "/images/products/default.jpg"],
     },
     robots: {
-      index: false,
+      index: true,
       follow: true,
       googleBot: {
-        index: false,
+        index: true,
         follow: true,
         "max-video-preview": -1,
         "max-image-preview": "large",
@@ -88,15 +91,15 @@ export async function generateMetadata({
   };
 }
 
-// Generate static params for all products
+// Generate static params for all product slugs at root level
 export async function generateStaticParams() {
   const slugs = getAllProductSlugs();
   return slugs.map((slug) => ({
-    slug: slug,
+    slug,
   }));
 }
 
-export default async function ProductPage({ params }: PageProps) {
+export default async function ProductSlugPage({ params }: PageProps) {
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
@@ -104,17 +107,13 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
-  // Get short description for product
   const shortDescription = getProductShortDescription(slug);
   const productWithDescription = { ...product, shortDescription };
-
-  // Get meta description for structured data
   const productMetaDescription = getMetaDescription(slug, product.title);
 
-  // Create breadcrumb items from product breadcrumbs
   const breadcrumbItems = product.breadcrumbs.slice(1).map((crumb, index) => ({
     label: crumb,
-    href: index === product.breadcrumbs.length - 2 ? undefined : `/shop`
+    href: index === product.breadcrumbs.length - 2 ? undefined : `/shop`,
   }));
 
   return (
@@ -132,15 +131,16 @@ export default async function ProductPage({ params }: PageProps) {
       <div className="min-h-screen bg-gray-50">
         <Navbar />
         <main id="main-content" tabIndex={-1}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
-          {/* Breadcrumbs with Schema */}
-          <Breadcrumbs items={breadcrumbItems} />
-        </div>
-        <ProductDetails product={productWithDescription} />
-        <RelatedProducts currentSlug={slug} category={product.category} />
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8">
+            {/* Breadcrumbs with Schema */}
+            <Breadcrumbs items={breadcrumbItems} />
+          </div>
+          <ProductDetails product={productWithDescription} />
+          <RelatedProducts currentSlug={slug} category={product.category} />
         </main>
         <Footer />
       </div>
     </>
   );
 }
+

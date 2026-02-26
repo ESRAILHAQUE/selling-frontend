@@ -20,7 +20,7 @@ export default function ProductSchema({
   category = "Digital Products",
   inStock = true,
 }: ProductSchemaProps) {
-  const productUrl = `https://usamarketsmm.com/product/${slug}`;
+  const productUrl = `https://usamarketsmm.com/${slug}`;
   const imageUrl = `https://usamarketsmm.com${image}`;
 
   const schema = {
@@ -49,13 +49,6 @@ export default function ProductSchema({
         "@type": "Organization",
         "name": "USA Markets SMM"
       }
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "1250",
-      "bestRating": "5",
-      "worstRating": "1"
     },
     "category": category,
     "sku": slug,

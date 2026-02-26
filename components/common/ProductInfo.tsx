@@ -1,5 +1,8 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 interface ProductOption {
   id: string;
   name: string;
@@ -33,11 +36,15 @@ export default function ProductInfo({
   quantity,
   setQuantity
 }: ProductInfoProps) {
+  const router = useRouter();
+  const [optionError, setOptionError] = useState(false);
+
   const handleAddToCart = () => {
     if (!selectedOption) {
-      alert('Please select an option');
+      setOptionError(true);
       return;
     }
+    setOptionError(false);
     
     // Get current cart from localStorage
     const currentCart = localStorage.getItem('cart');
@@ -65,7 +72,7 @@ export default function ProductInfo({
     }
     
     // Navigate to cart page
-    window.location.href = '/cart';
+    router.push('/cart');
   };
 
   return (
@@ -143,16 +150,19 @@ export default function ProductInfo({
 
       {/* Product Options Dropdown */}
       <div className="mb-3 sm:mb-4">
-        <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
-          {product.title}
+        <label htmlFor="product-option" className="block text-xs sm:text-sm font-medium text-gray-700 mb-2">
+          Select Package
         </label>
         <select
+          id="product-option"
           value={selectedOption?.id || ''}
           onChange={(e) => {
             const option = product.options.find(opt => opt.id === e.target.value);
             setSelectedOption(option || null);
+            setOptionError(false);
           }}
-          className="w-full px-3 sm:px-4 py-2 text-sm sm:text-base text-gray-900 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          className={`w-full px-3 sm:px-4 py-2 text-sm sm:text-base text-gray-900 bg-white border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${optionError ? 'border-red-500' : 'border-gray-300'}`}
+          aria-describedby={optionError ? 'option-error' : undefined}
         >
           <option value="">Choose an option</option>
           {product.options.map((option) => (
@@ -161,6 +171,9 @@ export default function ProductInfo({
             </option>
           ))}
         </select>
+        {optionError && (
+          <p id="option-error" className="mt-1 text-xs text-red-600">Please select a package before adding to cart.</p>
+        )}
       </div>
 
       {/* Price Display (when option selected) */}

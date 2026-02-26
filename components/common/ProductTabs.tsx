@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback, memo } from "react";
+import { useState, useEffect, useMemo, memo } from "react";
+import type React from "react";
 import { generateProductReviews } from "@/lib/data/review-generator";
 import { getProductDescription } from "@/lib/data/descriptions-split";
-import React from "react";
+import { markdownToHtml } from "@/lib/utils/markdown";
 
 // Function to make contact info clickable and colored
 const makeContactInfoClickable = (text: string): (string | React.ReactElement)[] => {
@@ -480,6 +481,11 @@ function ProductTabs({ product, activeTab, setActiveTab }: ProductTabsProps) {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
                 <span className="ml-3 text-gray-600">Loading content...</span>
               </div>
+            ) : loadedDescription && loadedDescription.trim() !== "" ? (
+              <div
+                className="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-h1:text-2xl prose-h2:text-xl prose-h2:mt-6 prose-h2:mb-3 prose-h3:text-lg prose-h3:mt-4 prose-h3:mb-2 prose-p:text-gray-700 prose-p:leading-relaxed prose-ul:list-disc prose-ul:ml-6 prose-strong:text-gray-900"
+                dangerouslySetInnerHTML={{ __html: markdownToHtml(loadedDescription) }}
+              />
             ) : (
               <>{formattedDescription}</>
             )}

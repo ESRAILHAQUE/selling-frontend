@@ -16,13 +16,10 @@ import * as buySendgridAccounts from "./descriptions/buy-sendgrid-accounts";
 import * as buyVerifiedPaypalAccounts from "./descriptions/buy-verified-paypal-accounts";
 import * as buyVerifiedPayoneerAccounts from "./descriptions/buy-verified-payoneer-accounts";
 import * as buyVerifiedCashAppAccount from "./descriptions/buy-verified-cash-app-account";
-import * as buyVerifiedOnlyfansAccounts from "./descriptions/buy-verified-onlyfans-accounts";
-import * as buyVerifiedSkrillAccounts from "./descriptions/buy-verified-skrill-accounts";
 import * as buyVerifiedBluebirdAccounts from "./descriptions/buy-verified-bluebird-accounts";
 import * as buyVerifiedLunoAccount from "./descriptions/buy-verified-luno-account";
 import * as buyVerifiedBankOfAmerica from "./descriptions/buy-verified-bank-of-america";
 import * as buyVerifiedWellsFargoAccount from "./descriptions/buy-verified-wells-fargo-account";
-import * as buyVerifiedChaseBankAccount from "./descriptions/buy-verified-chase-bank-account";
 import * as buyVerifiedPaxfulAccounts from "./descriptions/buy-verified-paxful-accounts";
 import * as buyVerifiedApplePayAccounts from "./descriptions/buy-verified-apple-pay-accounts";
 import * as buyVerifiedAlipayAccounts from "./descriptions/buy-verified-alipay-accounts";
@@ -68,13 +65,10 @@ const descriptionModules: Record<string, { description: string }> = {
   "buy-verified-paypal-accounts": buyVerifiedPaypalAccounts,
   "buy-verified-payoneer-accounts": buyVerifiedPayoneerAccounts,
   "buy-verified-cash-app-account": buyVerifiedCashAppAccount,
-  "buy-verified-onlyfans-accounts": buyVerifiedOnlyfansAccounts,
-  "buy-verified-skrill-accounts": buyVerifiedSkrillAccounts,
   "buy-verified-bluebird-accounts": buyVerifiedBluebirdAccounts,
   "buy-verified-luno-account": buyVerifiedLunoAccount,
   "buy-verified-bank-of-america": buyVerifiedBankOfAmerica,
   "buy-verified-wells-fargo-account": buyVerifiedWellsFargoAccount,
-  "buy-verified-chase-bank-account": buyVerifiedChaseBankAccount,
   "buy-verified-paxful-accounts": buyVerifiedPaxfulAccounts,
   "buy-verified-apple-pay-accounts": buyVerifiedApplePayAccounts,
   "buy-verified-alipay-accounts": buyVerifiedAlipayAccounts,
@@ -164,13 +158,10 @@ export const availableProducts = [
   "buy-verified-paypal-accounts",
   "buy-verified-payoneer-accounts",
   "buy-verified-cash-app-account",
-  "buy-verified-onlyfans-accounts",
-  "buy-verified-skrill-accounts",
   "buy-verified-bluebird-accounts",
   "buy-verified-luno-account",
   "buy-verified-bank-of-america",
   "buy-verified-wells-fargo-account",
-  "buy-verified-chase-bank-account",
   "buy-verified-paxful-accounts",
   "buy-verified-apple-pay-accounts",
   "buy-verified-alipay-accounts",

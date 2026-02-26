@@ -30,10 +30,6 @@ export const metaDescriptions: Record<string, string> = {
     "Buy verified Payoneer accounts for global payments. Ready to use with full verification and 24/7 support.",
   "buy-verified-cash-app-account":
     "Purchase verified Cash App accounts. Fully functional with bank linkage, instant delivery and replacement guarantee.",
-  "buy-verified-onlyfans-accounts":
-    "Get verified OnlyFans accounts for content creation. Ready to monetize with full verification and instant access.",
-  "buy-verified-skrill-accounts":
-    "Buy verified Skrill accounts for online payments. Fully verified with document approval and instant delivery.",
   "buy-verified-bluebird-accounts":
     "Purchase verified Bluebird accounts by American Express. Ready to use with card delivery and full support.",
   "buy-verified-luno-account":
@@ -42,8 +38,6 @@ export const metaDescriptions: Record<string, string> = {
     "Buy Bank of America accounts for secure banking. Verified accounts with full online access and 24/7 support.",
   "buy-verified-wells-fargo-account":
     "Purchase Wells Fargo accounts for trusted banking. Verified with online banking access and instant delivery.",
-  "buy-verified-chase-bank-account":
-    "Get Chase Bank accounts for premium banking. Verified accounts with debit cards and full online access.",
   "buy-verified-paxful-accounts":
     "Buy verified Paxful accounts for Bitcoin trading. Fully verified with ID approval and instant access.",
   "buy-verified-apple-pay-accounts":

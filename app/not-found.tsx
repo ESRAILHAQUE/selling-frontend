@@ -54,37 +54,37 @@ export default function NotFound() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
             <Link
-              href="/product/buy-gmail-accounts"
+              href="/buy-gmail-accounts"
               className="text-blue-600 hover:text-blue-800 hover:underline"
             >
               → Buy Gmail Accounts
             </Link>
             <Link
-              href="/product/buy-verified-paypal-accounts"
+              href="/buy-verified-paypal-accounts"
               className="text-blue-600 hover:text-blue-800 hover:underline"
             >
               → Buy PayPal Accounts
             </Link>
             <Link
-              href="/product/buy-facebook-ads-accounts"
+              href="/buy-facebook-ads-accounts"
               className="text-blue-600 hover:text-blue-800 hover:underline"
             >
               → Buy Facebook Ads Accounts
             </Link>
             <Link
-              href="/product/buy-instagram-accounts"
+              href="/buy-instagram-accounts"
               className="text-blue-600 hover:text-blue-800 hover:underline"
             >
               → Buy Instagram Accounts
             </Link>
             <Link
-              href="/product/buy-verified-cash-app-account"
+              href="/buy-verified-cash-app-account"
               className="text-blue-600 hover:text-blue-800 hover:underline"
             >
               → Buy Cash App Accounts
             </Link>
             <Link
-              href="/product/buy-google-ads-account"
+              href="/buy-google-ads-account"
               className="text-blue-600 hover:text-blue-800 hover:underline"
             >
               → Buy Google Ads Account
@@ -115,7 +115,12 @@ export default function NotFound() {
               @Usamarketsmm
             </a>
           </p>
-          <p>WhatsApp: +1(712)298-2593</p>
+          <p>
+            WhatsApp:{' '}
+            <a href="https://wa.me/17122982593" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              +1(712)298-2593
+            </a>
+          </p>
         </div>
       </div>
     </div>

@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from '@/components/common/Logo';
@@ -49,10 +47,7 @@ export default function Hero() {
               {/* See Service Button */}
               <Link
                 href="/shop"
-                className="inline-block text-white font-bold uppercase px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-colors shadow-lg text-sm sm:text-base"
-                style={{ backgroundColor: '#105495' }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d4375'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#105495'}
+                className="inline-block text-white font-bold uppercase px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-colors shadow-lg text-sm sm:text-base bg-[#105495] hover:bg-[#0d4375]"
               >
                 See Service
               </Link>
@@ -63,39 +58,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Left Hover Zone with Arrow */}
-        <div className="absolute top-0 left-0 w-20 sm:w-24 lg:w-32 h-full z-20 group/left">
-          <div className="absolute top-1/2 -translate-y-1/2 left-4 sm:left-6 lg:left-8 flex items-center pointer-events-none opacity-0 group-hover/left:opacity-100 transition-opacity duration-300">
-            <button
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-colors pointer-events-auto"
-              style={{ backgroundColor: '#105495' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d4375'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#105495'}
-              aria-label="Previous"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Right Hover Zone with Arrow */}
-        <div className="absolute top-0 right-0 w-20 sm:w-24 lg:w-32 h-full z-20 group/right">
-          <div className="absolute top-1/2 -translate-y-1/2 right-4 sm:right-6 lg:right-8 flex items-center pointer-events-none opacity-0 group-hover/right:opacity-100 transition-opacity duration-300">
-            <button
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-lg transition-colors pointer-events-auto"
-              style={{ backgroundColor: '#105495' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#0d4375'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#105495'}
-              aria-label="Next"
-            >
-              <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );

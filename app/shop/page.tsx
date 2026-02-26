@@ -170,7 +170,7 @@ export default function ShopPage() {
 
                       {/* View Product Button */}
                       <Link
-                        href={`/product/${product.slug}`}
+                    href={`/${product.slug}`}
                         className="btn-primary block w-full text-white text-center font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                         aria-label={`View details for ${product.title}`}>
                         View Product
