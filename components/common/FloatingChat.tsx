@@ -81,7 +81,7 @@ export default function FloatingChat() {
         </div>
       )}
 
-      {/* Chat/Close Button - Toggles between message and cross icon */}
+     
       <button
         onClick={toggleChat}
         className="w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all duration-300 relative"
